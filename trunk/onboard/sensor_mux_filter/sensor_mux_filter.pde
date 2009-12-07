@@ -4,11 +4,17 @@
 #include <NMEA.h>
 
 #define IMU_SAMPLE_RATE 1.0/23.5 // 23.5 Hz
+#define KALMAN_GYRO_TRUST 0.001 
+#define KALMAN_ACCEL_TRUST 0.3
+#define KALMAN_ERROR_SQUARED 0.003
+
+// 8bit addr = 0xC0, 7bit addr = 0x60
+#define I2C_COMPASS_ADDR 0x60
 
 // KALMAN CONTROLLERS
-Kalman kalman_roll(IMU_SAMPLE_RATE, 0.3, 0.003, 0.001);
-Kalman kalman_pitch(IMU_SAMPLE_RATE, 0.3, 0.003, 0.001);
-Kalman kalman_yaw(IMU_SAMPLE_RATE, 0.3, 0.003, 0.001);
+Kalman kalman_roll(IMU_SAMPLE_RATE, KALMAN_ACCEL_TRUST, KALMAN_ERROR_SQUARED, KALMAN_GYRO_TRUST);
+Kalman kalman_pitch(IMU_SAMPLE_RATE, KALMAN_ACCEL_TRUST, KALMAN_ERROR_SQUARED, KALMAN_GYRO_TRUST);
+Kalman kalman_yaw(IMU_SAMPLE_RATE, KALMAN_ACCEL_TRUST, KALMAN_ERROR_SQUARED, KALMAN_GYRO_TRUST);
 
 // IMU CONTROLLER
 IMU imuHandler(&Serial1);
@@ -39,15 +45,18 @@ void setup() {
 
 	telemetry_packet.header = 'A';
 	telemetry_packet.footer = 'Z';
-
+        
+        // let the IMU power up
 	delay(1000);
 
+        // issue a start poll
 	Serial.println("Starting IMU...");
 	imuHandler.start();
-
+        
 	Serial.println("Calibration mode...");
 	Serial.println("Set imu to flat position");
-
+        
+        // set nulls for flat position - not working
 	while (!imuHandler.packetReady()) {}
 	imuHandler.setNulls();
 }
@@ -63,6 +72,7 @@ void processIMU() {
 	if (!imuHandler.packetReady())
 		return;
 	
+        // normalized g
 	float g = sqrt(
 		imuHandler.f_accel[0]*imuHandler.f_accel[0]+
 		imuHandler.f_accel[1]*imuHandler.f_accel[1]+
@@ -82,7 +92,7 @@ void processIMU() {
 	telemetry_packet.imuAttitudes[1] = kalman_pitch._angle;
 	telemetry_packet.imuAttitudes[2] = kalman_yaw._angle;
 
-	// send packet
+	// send packet and flash a led
 	digitalWrite(13, HIGH);
 	Serial.write((uint8_t *)&telemetry_packet, sizeof(packet_t));
 	digitalWrite(13, LOW);
@@ -103,12 +113,12 @@ void processGPS() {
 
 // READ COMPASS
 void processCompass(void) {
+        // how is this faster than a shift?
 	if (Wire.available() == 2)
 		compass_heading = Wire.receive() * 256 + Wire.receive();
 
-	Wire.beginTransmission(0x60);
-	Wire.send(0x02);
+	Wire.beginTransmission(I2C_COMPASS_ADDR);
+	Wire.send(0x02); // request 2 bytes of data
 	Wire.endTransmission();
-	// 8bit addr = 0xC0, 7bit addr = 0x60
-	Wire.requestFrom(0x60, 2);
+	Wire.requestFrom(I2C_COMPASS_ADDR, 2);
 }

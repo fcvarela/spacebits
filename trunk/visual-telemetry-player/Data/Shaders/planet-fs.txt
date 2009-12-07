@@ -1,0 +1,29 @@
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+/*
+ *  planet-fs.txt
+ *  
+ *
+ *  Copyright 2008 Filipe Varela. All rights reserved.
+ *
+ */
+
+varying vec4 diffuse,specular;
+varying float nxDir;
+uniform sampler2D planetSurface;
+
+void main()
+{
+	vec4 color;
+
+	vec4 surface = texture2D(planetSurface, gl_TexCoord[0].st);
+	color = (gl_LightSource[0].ambient + diffuse + specular*nxDir) * surface;
+	gl_FragColor = color;
+}

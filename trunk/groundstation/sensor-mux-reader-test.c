@@ -23,6 +23,8 @@ typedef struct {
 packet_t packet;
 int port;
 struct timeval start,end;
+
+// quick hack. make this come from stdin ASAP
 char serialportname[] = "/dev/cu.usbserial-A7006REC";
 
 void catch_quit(int signal) {
