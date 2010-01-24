@@ -10,6 +10,8 @@
 #include <signal.h>
 #include <unistd.h>
 
+#define deg2rad 57.2957795
+
 // final packet
 typedef struct {
 	float imuAttitudes[3];
@@ -97,7 +99,7 @@ int setupPort(char *port) {
 void parsePacket() {
 	printf("Freq: %f\n", 1.0/timeval_subtract(&end, &start));
 	printf("Roll: %f Pitch: %f Yaw: %f\n",
-		packet.imuAttitudes[0]*57.2957795,packet.imuAttitudes[1]*57.2957795,packet.imuAttitudes[2]*57.2957795);
+		packet.imuAttitudes[0]*deg2rad,packet.imuAttitudes[1]*deg2rad,packet.imuAttitudes[2]*deg2rad);
 	printf("Lat: %f Lon: %f Alt: %d\n",
 		packet.gpsLatLong[0], packet.gpsLatLong[1], packet.gpsAltitude);
 	printf("TOF: %f Valid: %d, Satellites: %d\n",
