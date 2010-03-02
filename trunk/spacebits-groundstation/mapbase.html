@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<title>Spacebits Map</title>
+		<script type="text/javascript" src="http://js.sapo.pt/Bundles/SAPOMapsAPI.js"></script>
+		<script type="text/javascript">
+			window.onload = init;
+			var map, altair;
+			
+			function init() {
+				map = new SAPO.Maps.Map('map_div');
+				map.addControl(new SAPO.Maps.Control.MapType());
+				map.addControl(new SAPO.Maps.Control.Navigation());
+				map.setBaseLayer(map.getBaseLayers().HYBRID_MAP);
+				map.setMapCenter(new OpenLayers.LonLat(-9, 38));
+				altair = new SAPO.Maps.Marker(new OpenLayers.LonLat(-9, 38), {draggable: false});
+				map.addOverlay(altair);
+			}
+		</script>
+	</head>
+	<body style="width:100%;height:100%">
+		<div id="map_div" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"></div>
+	</body>
+</html>
