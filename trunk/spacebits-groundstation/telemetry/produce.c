@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "libsapo-broker2.h"
 #include "telemetry.h"
 
 int main(int argc, char **argv) {

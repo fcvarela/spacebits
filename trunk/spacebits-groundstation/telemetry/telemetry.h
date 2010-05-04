@@ -1,16 +1,5 @@
 #include <stdint.h>
 
-// axis names
-enum axisnames {AXIS_X, AXIS_Y, AXIS_Z};
-
-// commands
-enum commands {
-	COMMAND_RESET,
-	COMMAND_TAKE_PICTURE,
-	COMMAND_RECORD_START,
-	COMMAND_RECORD_STOP
-};
-
 // the telemetry packet: head/foot sparkfun-like
 // header+packet+footer = 256 bits (32 bytes)
 #define PACKET_HEADER 'A'
@@ -37,8 +26,8 @@ typedef struct {
 } spacebits_telemetry_t;
 #define PACKET_FOOTER 'Z'
 
-#define COMMAND_QUEUE "_commands_"
-#define TELEMETRY_TOPIC "_telemetry_"
+#define COMMAND_QUEUE "/spacebits/control"
+#define TELEMETRY_TOPIC "/spacebits/telemetry"
 
 // prototypes
 void catch_quit(int signal);

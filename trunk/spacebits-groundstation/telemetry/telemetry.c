@@ -12,14 +12,17 @@
 #include <pthread.h>
 
 #include "telemetry.h"
+#include "sapo_broker.h"
 
-#define SERIAL_PORT "/dev/cu.usbserial-FTOYMOEJ"
+#define SERIAL_PORT "/dev/cu.usbserial-A6007x6A"
 #define SERIAL_SPD 115200
 
-pthread_t command_fifo_thread;
+pthread_t command_thread;
 pthread_mutex_t serial_port_lock = PTHREAD_MUTEX_INITIALIZER;
 
 int serial_port;
+broker_server_t *broker_server;
+sapo_broker_t *broker;
 
 void catch_quit(int signal) {
 	close(serial_port);
@@ -37,12 +40,21 @@ int main(int argc, char **argv) {
 		perror("setup_port");
 		return 1;
 	}
+	
+	// init broker connection
+	char hostname[] = "127.0.0.1";
+	broker_server = malloc(sizeof(broker_server_t));
+	broker_server->hostname = strdup(hostname);
+	broker_server->port = 3323;
+	broker_server->transport = 0;
+	broker_server->protocol = 1;
+	broker = broker_init(*broker_server);
 
 	printf("Will spawn IO loops\n");
 	packet_loop();
 
 	// detach command thread
-	pthread_create(&command_fifo_thread, NULL, (void *)&command_loop, NULL);
+	pthread_create(&command_thread, NULL, (void *)&command_loop, NULL);
 	
 	return 0;
 }
@@ -93,8 +105,17 @@ void packet_loop(void) {
 		}
 		
 		pthread_mutex_unlock(&serial_port_lock);
-		printf("Got a packet\n");
 		// push packet to telemetry topic
+		char msg[1024];
+		char fmt[] = "<balloon><gps><lat>%f</lat><lon>%f</lon><altitude>%hd</altitude></gps><sensors><sensor idx=\"0\">%hd</sensor><sensor idx=\"1\">%hd</sensor><sensor idx=\"2\">%hd</sensor><sensor idx=\"3\">%hd</sensor><sensor idx=\"4\">%hd</sensor><sensor idx=\"5\">%hd</sensor><sensor idx=\"6\">%hd</sensor><sensor idx=\"7\">%hd</sensor><sensor idx=\"8\">%hd</sensor><sensor idx=\"9\">%hd</sensor><sensor idx=\"10\">%hd</sensor><sensor idx=\"11\">%hd</sensor><sensor idx=\"12\">%hd</sensor><sensor idx=\"13\">%hd</sensor><sensor idx=\"14\">%hd</sensor><sensor idx=\"15\">%hd</sensor></balloon>\n";
+		sprintf(msg, fmt, packet.latitude, packet.longitude, packet.gps_altitude,
+			packet.channel00, packet.channel01, packet.channel02, packet.channel03,
+			packet.channel04, packet.channel05, packet.channel06, packet.channel07,
+			packet.channel08, packet.channel09, packet.channel10, packet.channel11,
+			packet.channel12, packet.channel13, packet.channel14, packet.channel15);
+			
+		unsigned int retval = broker_publish(broker, TELEMETRY_TOPIC, msg, strlen(msg));
+		printf("Published packet: %u\n", retval);
 	}
 }
 
@@ -102,14 +123,16 @@ void command_loop(void) {
 	char hf[] = {'A','Z'};
 	printf("Command loop started...\n");
 	while (1) {
-		// read_from_queue...
+		// read from command queue...
 		sleep(1);
 		continue;
 		// got cmd? write to queue
+		/*
 		pthread_mutex_lock(&serial_port_lock);
 		write(serial_port, &hf[0], 1);
 		write(serial_port, (char)COMMAND_RESET, 1);
 		write(serial_port, &hf[1], 1);
 		pthread_mutex_unlock(&serial_port_lock);
+		*/
 	}
 }
