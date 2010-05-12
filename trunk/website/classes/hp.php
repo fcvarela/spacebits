@@ -112,14 +112,14 @@ class Spacebits_Homepage {
       case "save":
         if($this->uid=="") return;
         if($db = new PDO($this->db)) {
-          $sql="REPLACE INTO articles VALUES(".$this->quote($id).",".$db->quote($_POST['articlecontent']).",".$db->quote($_POST['articletitle']).",".time().",'".$this->uid."');";
+          $sql="REPLACE INTO articles VALUES(".$db->quote($id).",".$db->quote($_POST['articlecontent']).",".$db->quote($_POST['articletitle']).",".time().",'".$this->uid."');";
           $q = $db->exec($sql);
           header("Location: /page/".$id); 
           }
         break;
       default:
         if($db = new PDO('sqlite:../db/site.db')) {
-          $sql="SELECT body,title FROM articles WHERE id=".$db->quote($id.);
+          $sql="SELECT body,title FROM articles WHERE id=".$db->quote($id);
           $q = $db->prepare($sql);
           $q->execute();
           $r=$q->fetch(PDO::FETCH_ASSOC);
