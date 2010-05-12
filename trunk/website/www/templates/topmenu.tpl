@@ -3,6 +3,7 @@
 				<li><a href="/" title="Home">Home</a></li>
 				<li><a href="/page/project.html" title="Project">Project</a></li>
 				<li><a href="/page/team.html" title="Team">Team</a></li>
+				<li><a href="/page/probe.html" title="Payload">Payload</a></li>
 			</ul>
 			<ul id="account_wrapper">
 {if $uid!=""}
@@ -10,6 +11,7 @@
     {if $action=='edit'}
 				<li><a href="{$uri}">Cancel</a></li>
     {else}
+				<li><a onclick="return(confirm('Do you wan\'t to delete this page?'));" href="{$uri}?delete&rand={$rand}">Delete</a></li>
 				<li><a href="{$uri}?edit&rand={$rand}">Edit</a></li>
     {/if}
   {/if}

@@ -117,14 +117,28 @@ class Spacebits_Homepage {
           header("Location: /page/".$id); 
           }
         break;
+      case "delete":
+        if($this->uid=="") return;
+        if($db = new PDO($this->db)) {
+          $sql="DELETE FROM articles WHERE id=".$db->quote($id);
+          $q = $db->exec($sql);
+          header("Location: /"); 
+          }
+        break;
       default:
         if($db = new PDO('sqlite:../db/site.db')) {
           $sql="SELECT body,title FROM articles WHERE id=".$db->quote($id);
           $q = $db->prepare($sql);
           $q->execute();
-          $r=$q->fetch(PDO::FETCH_ASSOC);
-          $this->smarty->assign('title',stripslashes($r['title']));
-          $this->smarty->assign('body',stripslashes($r['body']));
+          if($r=$q->fetch(PDO::FETCH_ASSOC)) {
+            $this->smarty->assign('title',stripslashes($r['title']));
+            $this->smarty->assign('body',stripslashes($r['body']));
+            }
+            else
+            {
+            $this->smarty->assign('title','Not found');
+            $this->smarty->assign('body','This page doesn\'t exist');
+            }
           $this->smarty->display('page.tpl');
           }
         break;
