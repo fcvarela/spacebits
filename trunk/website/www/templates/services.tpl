@@ -12,7 +12,7 @@
 				</ul>
 				<ul class="serviceslist">
 					<li><a href="/live" title="Dashboard">Live Dashboard</a></li>
-					<li><a href="/photos" title="Photos">Photos & Videos</a></li>
+					<li><a href="/multimedia" title="Multimedia">Multimedia</a></li>
 					<li><a href="/page/references.html" title="Photos">References</a></li>
 				</ul>
 			</div>
