@@ -1,6 +1,6 @@
 <div id="article">
 {if $action=='edit'}
-<form method="POST" name="savearticle" action="{$uri}?save">
+<form method="POST" name="savearticle" action="{$page}?save">
 <input type="text" name="articletitle" value="{$title}" style="width:600px;"/>
 {else}
    <h2>{$title}<span></span></h2>

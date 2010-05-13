@@ -25,6 +25,9 @@ class Spacebits_Homepage {
     $this->smarty->force_compile = true; // good for testing
     $this->uid=$this->auth();
     $this->smarty->assign('uid',$this->uid);
+    list($uri)=explode("?",$_SERVER["REQUEST_URI"]);
+    list($uri)=explode("&",$uri);
+    $this->smarty->assign('uri',$uri);
     }
 
   function display() {
@@ -34,6 +37,16 @@ class Spacebits_Homepage {
     default:
       $this->smarty->assign('bigpic','bigpic'.rand(1,2).".jpg");
       $this->smarty->display('index.tpl');
+      break;
+      }
+    }
+
+  function multimedia() {
+    GLOBAL $sconfig;
+    header("Content-Type: text/html; charset=utf-8"); 
+    switch($_GET['action']) {
+    default:
+      $this->smarty->display('multimedia.tpl');
       break;
       }
     }
@@ -85,7 +98,7 @@ class Spacebits_Homepage {
     header("Expires: " . date("D, j M Y H:i:s", time() - (5 * 60)) . " UTC");
     header("Cache-Control: no-cache");
     header("Pragma: no-cache");
-    $this->smarty->assign('uri',$id);
+    $this->smarty->assign('page',$id);
     $this->smarty->assign('action',$action);
     $this->smarty->assign('rand',rand(0,10000));
     $this->smarty->assign('editable',true);

@@ -3,11 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Spacebits</title>
-<link href="/stylesheets/common.css" rel="stylesheet" type="text/css" />
-{if $action=='edit'}
+<link href="/stylesheets/common.css?v=2" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://js.sapo.pt/SAPO"></script>
+<script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Dumper"></script>
+{if $action=='edit' && $uid!=""}
 <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 {/if}
-{$action}
 {if $action=='browser'}
 {literal}
 <script type="text/javascript">
