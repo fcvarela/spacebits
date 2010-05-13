@@ -13,7 +13,7 @@
 				<ul class="serviceslist">
 					<li><a href="/live" title="Dashboard">Live Dashboard</a></li>
 					<li><a href="/photos" title="Photos">Photos & Videos</a></li>
-					<li><a href="/page/references.html" title="Photos">Other projects</a></li>
+					<li><a href="/page/references.html" title="Photos">References</a></li>
 				</ul>
 			</div>
 			<span class="bottom_rounded"></span><span class="bottom_pic"></span>
