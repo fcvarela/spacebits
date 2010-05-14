@@ -12,6 +12,9 @@ switch($_GET['action']) {
   case "multimedia":
     $hp->multimedia();
     break;
+  case "live":
+    $hp->live();
+    break;
   default:
     $hp->display();
     break;

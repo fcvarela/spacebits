@@ -51,6 +51,16 @@ class Spacebits_Homepage {
       }
     }
 
+  function live() {
+    GLOBAL $sconfig;
+    header("Content-Type: text/html; charset=utf-8"); 
+    switch($_GET['action']) {
+    default:
+      $this->smarty->display('live.tpl');
+      break;
+      }
+    }
+
   function auth() {
     list($id,$sha1,$ts,$hash)=explode("#",$_COOKIE['login'],4);
     if(md5($id.$sha1.$ts.getenv('REMOTE_ADDR').$this->secret)==$hash) {
