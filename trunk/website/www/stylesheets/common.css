@@ -171,7 +171,7 @@
 		overflow: hidden;
 		padding:10px 0 0 28px;
 	}
-
+	#multimedia_wrapper a, a:hover{color:#7c7c58;}
 /* =BANNER */
 	#banner_wrapper{
 		width: 874px;
@@ -179,6 +179,7 @@
 		padding:10px 0 0 28px;
 		clear: both;
 	}
+	#banner_wrapper a, a:hover{color:#7c7c58;}
 	.banner{
 		float: left;
 		width: 245px;

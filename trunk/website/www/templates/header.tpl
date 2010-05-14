@@ -3,7 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Spacebits</title>
-<link href="/stylesheets/common.css?v=2" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/common.css?v=3" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="Spacebits" href="http://friendfeed.com/spacebits?format=atom">
 <script type="text/javascript" src="http://js.sapo.pt/SAPO"></script>
 <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Dumper"></script>
 {if $uri=="/live"}
