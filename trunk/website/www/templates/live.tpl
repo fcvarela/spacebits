@@ -5,7 +5,7 @@
       {include file="topmenu.tpl"}
 
 <div id="articlecontent" style="background:#181b0d;">
-Live Dashboard
+This will be the Live Dashboard for the official launch of Spacebits which is scheduled for the 30th of May, 2010, 11AM. This page is still incomplete though. It'll have a real time map with the Balloon's position and live values from all sensors, and more.
 </div>
 {literal}
 <div id="map_wrapper" style="margin-left:30px;"><div id="map" style="width:840px;height:400px;"></div></div>
