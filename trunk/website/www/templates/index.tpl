@@ -6,6 +6,8 @@
 
       {include file="bigimage.tpl"}
 
+      {include file="message.tpl"}
+
       {include file="3banner.tpl"}
 
       {include file="services.tpl"}

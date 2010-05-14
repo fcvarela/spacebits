@@ -50,6 +50,32 @@
 		color: #7b8266;
 	}
 
+/* = MESSAGE */
+	#message_wrapper{
+		background: #363B28 url(/images/nav_bg.gif) 0 0 repeat-x;
+		height: 37px;
+		width: 861px;
+		margin: 20px auto 0 auto;
+	}
+	#message{
+		float: left;
+		padding-left:7px;
+		padding-top:6px;
+		height: 37px;
+		font-family: "Trebuchet MS";
+		font-size: 1.65em;
+		font-weight: bold;
+		letter-spacing:-0.03em;
+		color: #7c7c58;
+		background: url(/images/navigation_left.gif) left top no-repeat;
+	}
+	#message p{width:830px;text-align:center;}
+	#message_right{
+		float: right;
+		padding-right:7px;
+		height: 37px;
+		background: url(/images/navigation_right.gif) right top no-repeat;
+	}
 /* =TOP NAVIGATION and SEARCH */
 	/* top navigation */
 	#navigation_wrapper{
@@ -150,7 +176,8 @@
 	#banner_wrapper{
 		width: 874px;
 		overflow: hidden;
-		padding:20px 0 0 28px;
+		padding:10px 0 0 28px;
+		clear: both;
 	}
 	.banner{
 		float: left;
