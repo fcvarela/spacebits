@@ -8,6 +8,8 @@
 
       {include file="services.tpl"}
 
-  {include file="main_container_end.tpl"}
+      {include file="social.tpl"}
+
+ {include file="main_container_end.tpl"}
 
 {include file="footer.tpl"}
