@@ -28,6 +28,8 @@ int serial_port;
 broker_server_t *broker_server;
 sapo_broker_t *broker;
 
+void packet_to_xml(sensor_data_t *packet, char *xml);
+
 void catch_quit(int signal) {
 	#ifndef DEBUG
 	close(serial_port);
@@ -141,9 +143,22 @@ void packet_loop(void) {
         #endif
 
 		// push packet to telemetry topic
-		unsigned int retval = broker_publish(broker, TELEMETRY_TOPIC, (char *)&packet, sizeof(sensor_data_t));
+        char *xml = (char *)malloc(10000);
+        packet_to_xml(&packet, xml);
+		unsigned int retval = broker_publish(broker, TELEMETRY_TOPIC, xml, strlen(xml));
+        free(xml);
 		fprintf(stderr, "Published packet: %u\n", retval);
 	}
+}
+
+void packet_to_xml(sensor_data_t *packet, char *xml) {
+    char fmt[] = "<balloon><power><current>%u</current><voltage>%u</voltage></power><atmosphere><pressure>%u</pressure><temp>%u</temp><humidity>%u</humidity><dust_density>%u</dust_density></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%u</lat><lon>%u</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%u</gx><gy>%u</gy><ax>%u</ax><ay>%u</ay><az>%u</az></imu></balloon";
+    sprintf(xml, fmt,
+        packet->current, packet->voltage,
+        packet->scp.raw_pressure, packet->scp.raw_temperature, packet->humidity, packet->dust_density,
+        packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec,
+        0, 0, 0, packet->bearing,
+        packet->imu.gx, packet->imu.gy, packet->imu.ax, packet->imu.ay, packet->imu.az);
 }
 
 void command_loop(void) {
