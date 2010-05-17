@@ -1,30 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-typedef struct {
-    uint8_t tm_hour, tm_min, tm_sec;
-} rtc_data_t;
-
-typedef struct {
-    uint16_t gx, gy, ax, ay, az;
-} imu_data_t;
-
-typedef struct {
- uint32_t raw_pressure, raw_temperature;
-} scp1000_data_t;
-
-typedef struct 
-{
- rtc_data_t        rtc;
- imu_data_t        imu;
- scp1000_data_t    scp;
-
- uint16_t          voltage;
- uint16_t          current;
- uint16_t          bearing;
- uint16_t          humidity;
- uint16_t          dust_density;
-} sensor_data_t;
+#include "../telemetry.h"
 
 int dump_data(sensor_data_t *data);
 
@@ -51,9 +28,9 @@ int main(int argc, char **argv) {
     data.scp.raw_pressure = 2048;
     data.scp.raw_temperature = 2048;
     
-    fwrite(&head_foot[0], 1, 1, stdout);
+    fprintf(stdout, "%c", PACKET_HEADER);
     fwrite(&data, sizeof(sensor_data_t), 1, stdout);
-    fwrite(&head_foot[1], 1, 1, stdout);
+    fprintf(stdout, "%c", PACKET_FOOTER);
     
     fprintf(stderr, "Dumping sample packet...\n---\n");
     dump_data(&data);

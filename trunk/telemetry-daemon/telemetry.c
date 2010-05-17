@@ -12,7 +12,7 @@
 #include <pthread.h>
 
 #include "telemetry.h"
-#include "sapo_broker.h"
+#include "libsapo-broker2.h"
 
 #define SERIAL_PORT "/dev/cu.usbserial-A6007x6A"
 #define SERIAL_SPD 115200
@@ -86,12 +86,12 @@ int setup_port(void) {
 }
 
 void packet_loop(void) {
-	spacebits_telemetry_t packet;
+	sensor_data_t packet;
 	char c;
 	
 	while (1) {
 		pthread_mutex_lock(&serial_port_lock);
-		size_t len = read(serial_port, &c, 1);
+		read(serial_port, &c, 1);
 		if (c != 'A') {
 			pthread_mutex_unlock(&serial_port_lock);
 			continue;
@@ -106,21 +106,12 @@ void packet_loop(void) {
 		
 		pthread_mutex_unlock(&serial_port_lock);
 		// push packet to telemetry topic
-		char msg[1024];
-		char fmt[] = "<balloon><gps><lat>%f</lat><lon>%f</lon><altitude>%hd</altitude></gps><sensors><sensor idx=\"0\">%hd</sensor><sensor idx=\"1\">%hd</sensor><sensor idx=\"2\">%hd</sensor><sensor idx=\"3\">%hd</sensor><sensor idx=\"4\">%hd</sensor><sensor idx=\"5\">%hd</sensor><sensor idx=\"6\">%hd</sensor><sensor idx=\"7\">%hd</sensor><sensor idx=\"8\">%hd</sensor><sensor idx=\"9\">%hd</sensor><sensor idx=\"10\">%hd</sensor><sensor idx=\"11\">%hd</sensor><sensor idx=\"12\">%hd</sensor><sensor idx=\"13\">%hd</sensor><sensor idx=\"14\">%hd</sensor><sensor idx=\"15\">%hd</sensor></balloon>\n";
-		sprintf(msg, fmt, packet.latitude, packet.longitude, packet.gps_altitude,
-			packet.channel00, packet.channel01, packet.channel02, packet.channel03,
-			packet.channel04, packet.channel05, packet.channel06, packet.channel07,
-			packet.channel08, packet.channel09, packet.channel10, packet.channel11,
-			packet.channel12, packet.channel13, packet.channel14, packet.channel15);
-			
-		unsigned int retval = broker_publish(broker, TELEMETRY_TOPIC, msg, strlen(msg));
-		printf("Published packet: %u\n", retval);
+		unsigned int retval = broker_publish(broker, TELEMETRY_TOPIC, (char *)&packet, sizeof(sensor_data_t));
+		fprintf(stderr, "Published packet: %u\n", retval);
 	}
 }
 
 void command_loop(void) {
-	char hf[] = {'A','Z'};
 	printf("Command loop started...\n");
 	while (1) {
 		// read from command queue...
