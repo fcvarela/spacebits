@@ -1,7 +1,5 @@
 #include <stdint.h>
 
-// the telemetry packet: head/foot sparkfun-like
-// header+packet+footer = 256 bits (32 bytes)
 #define PACKET_HEADER 'A'
 
 typedef struct {
