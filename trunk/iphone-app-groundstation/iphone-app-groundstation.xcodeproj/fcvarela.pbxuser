@@ -1,0 +1,174 @@
+// !$*UTF8*$!
+{
+	1D3623240D0F684500981E51 /* iphone_app_groundstationAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {670, 474}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 587}";
+		};
+	};
+	1D3623250D0F684500981E51 /* iphone_app_groundstationAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {810, 474}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 687}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* iphone-app-groundstation */ = {
+		activeExec = 0;
+		executables = (
+			CA35D0FC11A1516F00E63E18 /* iphone-app-groundstation */,
+		);
+	};
+	28D7ACF60DDB3853001CB0EB /* iphone_app_groundstationViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {652, 474}}";
+			sepNavSelRange = "{360, 0}";
+			sepNavVisRange = "{0, 437}";
+		};
+	};
+	28D7ACF70DDB3853001CB0EB /* iphone_app_groundstationViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {663, 611}}";
+			sepNavSelRange = "{711, 0}";
+			sepNavVisRange = "{77, 757}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = CA35D0FC11A1516F00E63E18 /* iphone-app-groundstation */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* iphone-app-groundstation */;
+		codeSenseManager = CA35D10911A1517500E63E18 /* Code sense */;
+		executables = (
+			CA35D0FC11A1516F00E63E18 /* iphone-app-groundstation */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					474,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 295784815;
+			PBXWorkspaceStateSaveDate = 295784815;
+		};
+		perUserProjectItems = {
+			CA35D1B311A1589800E63E18 /* PBXTextBookmark */ = CA35D1B311A1589800E63E18 /* PBXTextBookmark */;
+			CA35D1B411A1589800E63E18 /* PBXTextBookmark */ = CA35D1B411A1589800E63E18 /* PBXTextBookmark */;
+			CA35D1B511A1589800E63E18 /* PBXTextBookmark */ = CA35D1B511A1589800E63E18 /* PBXTextBookmark */;
+			CA35D1B611A1589800E63E18 /* PBXTextBookmark */ = CA35D1B611A1589800E63E18 /* PBXTextBookmark */;
+			CA35D1BF11A1845100E63E18 /* PBXTextBookmark */ = CA35D1BF11A1845100E63E18 /* PBXTextBookmark */;
+		};
+		sourceControlManager = CA35D10811A1517500E63E18 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	CA35D0FC11A1516F00E63E18 /* iphone-app-groundstation */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = "iphone-app-groundstation";
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	CA35D10811A1517500E63E18 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	CA35D10911A1517500E63E18 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	CA35D1B311A1589800E63E18 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* iphone_app_groundstationAppDelegate.m */;
+		name = "iphone_app_groundstationAppDelegate.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 687;
+		vrLoc = 0;
+	};
+	CA35D1B411A1589800E63E18 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* iphone_app_groundstationAppDelegate.h */;
+		name = "iphone_app_groundstationAppDelegate.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 587;
+		vrLoc = 0;
+	};
+	CA35D1B511A1589800E63E18 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* iphone_app_groundstationViewController.m */;
+		name = "iphone_app_groundstationViewController.m: 32";
+		rLen = 0;
+		rLoc = 711;
+		rType = 0;
+		vrLen = 757;
+		vrLoc = 77;
+	};
+	CA35D1B611A1589800E63E18 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* iphone_app_groundstationViewController.h */;
+		name = "iphone_app_groundstationViewController.h: 16";
+		rLen = 0;
+		rLoc = 382;
+		rType = 0;
+		vrLen = 437;
+		vrLoc = 0;
+	};
+	CA35D1BF11A1845100E63E18 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* iphone_app_groundstationViewController.h */;
+		name = "iphone_app_groundstationViewController.h: 14";
+		rLen = 0;
+		rLoc = 360;
+		rType = 0;
+		vrLen = 437;
+		vrLoc = 0;
+	};
+}
