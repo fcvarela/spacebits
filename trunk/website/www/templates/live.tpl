@@ -23,7 +23,7 @@ init();
 <!--
 <input type="button" onclick="move();" value="Move" />
 -->
-
+<!--
     <div id='chart_div'></div>
 
     <script type='text/javascript' src='http://www.google.com/jsapi'></script>
@@ -48,6 +48,7 @@ init();
         chart.draw(data, options);
       }
     </script>
+-->
 {/literal}
 
       {include file="services.tpl"}

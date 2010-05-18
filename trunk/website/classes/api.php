@@ -18,25 +18,28 @@ class Spacebits_API {
     }
 
   function parsePayload($xml) {
-    $p=array();
-    $arr=simplexml_load_string($xml);
-    $p['power_current']=floatval($arr->power->current);
-    $p['power_voltage']=floatval($arr->power->voltage);
-    $p['pressure']=floatval($arr->atmosphere->pressure);
-    $p['temperature']=floatval($arr->atmosphere->temp);
-    $p['humidity']=floatval($arr->atmosphere->humidity);
-    $p['dust_density']=floatval($arr->atmosphere->dust_density);
-    $p['lat']=floatval($arr->geo->lat);
-    $p['lon']=floatval($arr->geo->lon);
-    $p['alt']=floatval($arr->geo->alt);
-    $p['bear']=floatval($arr->geo->bear);
-    $p['imu_gx']=floatval($arr->imu->gx);
-    $p['imu_gy']=floatval($arr->imu->gy);
-    $p['imu_ax']=floatval($arr->imu->ax);
-    $p['imu_ay']=floatval($arr->imu->ay);
-    $p['imu_az']=floatval($arr->imu->az);
-    $p['change']=strtotime($arr->rtc);
-    return($p);
+    if($arr=@simplexml_load_string($xml)) {
+      if($this->api_secret!=$arr->token) return(false);
+      $p=array();
+      $p['power_current']=floatval($arr->power->current);
+      $p['power_voltage']=floatval($arr->power->voltage);
+      $p['pressure']=floatval($arr->atmosphere->pressure);
+      $p['temperature']=floatval($arr->atmosphere->temp);
+      $p['humidity']=floatval($arr->atmosphere->humidity);
+      $p['dust_density']=floatval($arr->atmosphere->dust_density);
+      $p['lat']=floatval($arr->geo->lat);
+      $p['lon']=floatval($arr->geo->lon);
+      $p['alt']=floatval($arr->geo->alt);
+      $p['bear']=floatval($arr->geo->bear);
+      $p['imu_gx']=floatval($arr->imu->gx);
+      $p['imu_gy']=floatval($arr->imu->gy);
+      $p['imu_ax']=floatval($arr->imu->ax);
+      $p['imu_ay']=floatval($arr->imu->ay);
+      $p['imu_az']=floatval($arr->imu->az);
+      $p['change']=strtotime($arr->rtc);
+      return($p);
+      }
+    return(false);
     }
 
   function put($values=array()) {
@@ -47,4 +50,5 @@ class Spacebits_API {
       $q->execute();
       }
     }
+
 }
