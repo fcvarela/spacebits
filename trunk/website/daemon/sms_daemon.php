@@ -4,9 +4,14 @@ require_once 'classes/XMPPHP/XMPP.php';
 require_once 'classes/api.php';
 require_once 'config/site.php';
 
-$conn = new XMPPHP_XMPP(XMPP_SERVER, 5222, XMPP_USER, XMPP_PASSWORD, 'Balloon', XMPP_DOMAIN, $printlog=true, $loglevel=XMPPHP_Log::LEVEL_ERROR);
+set_time_limit(0);
+error_reporting(1); 
+
+list($uname)=explode(".local",php_uname('n'));
+$conn = new XMPPHP_XMPP(XMPP_SERVER, 5222, XMPP_USER, XMPP_PASSWORD, $uname, XMPP_DOMAIN, $printlog=true, $loglevel=XMPPHP_Log::LEVEL_ERROR);
 $conn->autoSubscribe();
 $api=new Spacebits_API;
+
 
 try {
   $conn->connect();
