@@ -14,7 +14,7 @@ class Spacebits_Homepage {
   function __construct() {
     $this->uploads="uploads";
     $this->secret=SECRET;
-    $this->db='sqlite:../db/site.db';
+    $this->db=DB_SITE;
     $this->smarty=new Smarty;
     $this->smarty->cache_lifetime = 60; // in seconds
     $this->smarty->compile_dir = '../cache/templates_c';
@@ -149,7 +149,7 @@ class Spacebits_Homepage {
           }
         break;
       default:
-        if($db = new PDO('sqlite:../db/site.db')) {
+        if($db = new PDO($this->db)) {
           $sql="SELECT body,title FROM articles WHERE id=".$db->quote($id);
           $q = $db->prepare($sql);
           $q->execute();

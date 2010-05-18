@@ -12,8 +12,8 @@ class Spacebits_API {
 
   function __construct() {
     $this->api_secret=API_SECRET;
-    $this->db='sqlite:../db/data.db';
-    $this->sms_db='sqlite:../db/sms.db';
+    $this->db=DB_DATA;
+    $this->sms_db=DB_SMS;
     list($uri)=explode("?",$_SERVER["REQUEST_URI"]);
     list($uri)=explode("&",$uri);
     }
