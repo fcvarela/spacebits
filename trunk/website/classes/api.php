@@ -12,7 +12,8 @@ class Spacebits_API {
 
   function __construct() {
     $this->api_secret=API_SECRET;
-    $this->db='sqlite:../db/site.db';
+    $this->db='sqlite:../db/data.db';
+    $this->sms_db='sqlite:../db/sms.db';
     list($uri)=explode("?",$_SERVER["REQUEST_URI"]);
     list($uri)=explode("&",$uri);
     }
@@ -46,6 +47,14 @@ class Spacebits_API {
     GLOBAL $sconfig;
     if($db = new PDO($this->db)) {
       $sql="INSERT INTO data (change,power_current,power_voltage,pressure,temperature,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az) VALUES(".$values['change'].",".$values['power_current'].",".$values['power_voltage'].",".$values['pressure'].",".$values['temperature'].",".$values['humidity'].",".$values['dust_density'].",".$values['lat'].",".$values['lon'].",".$values['alt'].",".$values['bear'].",".$values['imu_gx'].",".$values['imu_gy'].",".$values['imu_ax'].",".$values['imu_ay'].",".$values['imu_az'].")";
+      $q = $db->prepare($sql);
+      $q->execute();
+      }
+    }
+
+  function saveSMS($source,$message) {
+    if($db = new PDO($this->sms_db)) {
+      $sql="INSERT INTO sms (change,source,message) VALUES(".time().",".$db->quote($source).",".$db->quote($message).")";
       $q = $db->prepare($sql);
       $q->execute();
       }
