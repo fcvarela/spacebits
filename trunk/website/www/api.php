@@ -1,8 +1,11 @@
 <?php
+require_once('classes/api.php');
 
 $post=file_get_contents('php://input');
 
-file_put_contents("/tmp/spacepost.xml",print_r($post,true),FILE_APPEND);
+$api=new Spacebits_API;
+$payload=$api->parsePayload($post);
+$api->put($payload);
 
 echo "<result>ok</result>\n";
 
