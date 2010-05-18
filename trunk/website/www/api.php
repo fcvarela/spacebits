@@ -17,6 +17,9 @@ switch($_GET['action']) {
       echo "<result>fail</result>\n";
       }
     break;
+  case "get":
+    echo json_encode($api->get());
+    break;
   default:
     echo "<result>unknown method</result>\n";
     break;

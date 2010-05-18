@@ -51,4 +51,19 @@ class Spacebits_API {
       }
     }
 
+  function get() {
+    $p=array();
+    if($db = new PDO($this->db)) {
+      $sql="SELECT change,power_current,power_voltage,pressure,temperature,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data ORDER BY change DESC LIMIT 1";
+      $q = $db->prepare($sql);
+      $q->execute();
+      if($r=$q->fetch(PDO::FETCH_ASSOC)) {
+        foreach(array_keys($r) as $key) {
+          $p[$key]=$r[$key];
+          }
+        }
+      }
+    return($p);
+    }
+
 }
