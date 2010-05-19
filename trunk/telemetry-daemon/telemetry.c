@@ -6,6 +6,7 @@
 #include <sys/stat.h> 
 #include <sys/types.h>
 #include <sys/time.h>
+#include <time.h>
 #include <sys/select.h>
 #include <signal.h>
 #include <unistd.h>
@@ -124,14 +125,23 @@ void packet_loop(void) {
 
     		pthread_mutex_unlock(&serial_port_lock);
 		#else
+			struct timeval tv;
+			time_t curtime;
+			gettimeofday(&tv, NULL);
+			curtime=tv.tv_sec;
+			char t_hour[3], t_min[3], t_sec[3];
+			strftime(t_hour, 3,"%H", localtime(&curtime));
+			strftime(t_min, 3,"%M", localtime(&curtime));
+			strftime(t_sec, 3,"%S", localtime(&curtime));
+			
 		    packet.voltage = 1024;
             packet.current = 1024;
             packet.bearing = 1024;
             packet.humidity = 1024;
             packet.dust_density = 1024;
-            packet.rtc.tm_hour = 12;
-            packet.rtc.tm_min = 30;
-            packet.rtc.tm_sec = 59;
+            packet.rtc.tm_hour = atoi(t_hour);
+            packet.rtc.tm_min = atoi(t_min);
+            packet.rtc.tm_sec = atoi(t_sec);
             packet.imu.gx = 1024;
             packet.imu.gy = 1024;
             packet.imu.ax = 1024;
@@ -139,7 +149,7 @@ void packet_loop(void) {
             packet.imu.az = 1024;
             packet.scp.raw_pressure = 2048;
             packet.scp.raw_temperature = 2048;
-            sleep(1); //simulate a little locking delay (locking read on serial port)
+            sleep(2); //simulate a little locking delay (locking read on serial port)
         #endif
 
 		// push packet to telemetry topic
@@ -152,13 +162,14 @@ void packet_loop(void) {
 }
 
 void packet_to_xml(sensor_data_t *packet, char *xml) {
-    char fmt[] = "<balloon><power><current>%u</current><voltage>%u</voltage></power><atmosphere><pressure>%u</pressure><temp>%u</temp><humidity>%u</humidity><dust_density>%u</dust_density></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%u</lat><lon>%u</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%u</gx><gy>%u</gy><ax>%u</ax><ay>%u</ay><az>%u</az></imu></balloon";
+    char fmt[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><balloon><token>secret_here</token><power><current>%u</current><voltage>%u</voltage></power><atmosphere><pressure>%u</pressure><temp>%u</temp><humidity>%u</humidity><dust_density>%u</dust_density></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%u</lat><lon>%u</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%u</gx><gy>%u</gy><ax>%u</ax><ay>%u</ay><az>%u</az></imu></balloon>";
     sprintf(xml, fmt,
         packet->current, packet->voltage,
         packet->scp.raw_pressure, packet->scp.raw_temperature, packet->humidity, packet->dust_density,
         packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec,
         0, 0, 0, packet->bearing,
         packet->imu.gx, packet->imu.gy, packet->imu.ax, packet->imu.ay, packet->imu.az);
+	fprintf(stderr, "Time is: %d:%d:%d\n", packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec);
 }
 
 void command_loop(void) {

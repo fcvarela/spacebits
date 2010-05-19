@@ -13,7 +13,7 @@ while (1) {
 
 function post_msg($xml) {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "http://spacebits.eu/api");
+    curl_setopt($ch, CURLOPT_URL, "http://spacebits.eu/api/put");
     curl_setopt ($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/xml"));
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
