@@ -7,19 +7,70 @@
 //
 
 #import "iphone_app_groundstationViewController.h"
+#import "AltairAnnotation.h"
+#import "JSON.h"
 
 @implementation iphone_app_groundstationViewController
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	altitude = 0;
 	distanceToAltair = 0;
 	
+	CLLocationManager *locationManager=[[CLLocationManager alloc] init];
+	locationManager.delegate=self;
+	locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters;
+	[locationManager startUpdatingLocation];
+	
+	responseData = [[NSMutableData data] retain];
+	[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
 	[super viewDidLoad];
 }
 
--(IBAction)setMapType:(id)sender
+- (void)onTimer
+{
+	[self spawnTelemetryRequest];
+}
+
+
+
+- (void)spawnTelemetryRequest
+{
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://spacebits.eu/api/get"]];	
+	[[NSURLConnection alloc] initWithRequest:request delegate:self];
+	
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+	[responseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	[responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	[connection release];
+	
+	NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	NSDictionary *telemetry = [responseString JSONValue];
+	
+	AltairAnnotation *annot = [[[AltairAnnotation alloc] initWithLat:[[telemetry valueForKey:@"lat"] floatValue] lon:[[telemetry valueForKey:@"lon"] floatValue]] autorelease];
+	
+	[mapView addAnnotation:annot];
+	NSArray *annotations = [mapView annotations];
+	if ([annotations count] > 3) {
+		NSArray *del = [annotations subarrayWithRange:NSMakeRange(0, [annotations count]-3)];
+		[mapView removeAnnotations: del];
+	}
+}
+
+
+- (IBAction)setMapType:(id)sender
 {
 	switch (((UISegmentedControl *)sender).selectedSegmentIndex) {
 	case 0:

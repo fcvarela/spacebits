@@ -12,11 +12,12 @@
 @interface iphone_app_groundstationViewController : UIViewController {
 	NSNumber *altitude;
 	NSNumber *distanceToAltair;
-	
+	NSMutableData *responseData;
 	IBOutlet MKMapView *mapView;
 }
 
--(IBAction)setMapType:(id)sender;
+- (IBAction)setMapType:(id)sender;
+- (void)spawnTelemetryRequest;
 
 @end
 
