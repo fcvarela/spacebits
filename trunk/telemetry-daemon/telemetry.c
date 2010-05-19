@@ -167,7 +167,7 @@ void packet_to_xml(sensor_data_t *packet, char *xml) {
         packet->current, packet->voltage,
         packet->scp.raw_pressure, packet->scp.raw_temperature, packet->humidity, packet->dust_density,
         packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec,
-        0, 0, 0, packet->bearing,
+        37.761933, -8.091904, 30000, packet->bearing,
         packet->imu.gx, packet->imu.gy, packet->imu.ax, packet->imu.ay, packet->imu.az);
 	fprintf(stderr, "Time is: %d:%d:%d\n", packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec);
 }
