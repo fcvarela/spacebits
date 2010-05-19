@@ -9,46 +9,75 @@ This will be the Live Dashboard for the official launch of Spacebits which is sc
 </div>
 {literal}
 <div id="map_wrapper" style="margin-left:30px;"><div id="map" style="width:840px;height:400px;"></div></div>
+
+<div id="sensors" style="margin-left:25px;height:100px;">
+    <div id='sensors_alt' style="float:left;"></div>
+    <div id='sensors_pressure' style="float:left;"></div>
+    <div id='sensors_temperature' style="float:left;"></div>
+    <div id='sensors_humidity' style="float:left;"></div>
+    <div id='sensors_dust' style="float:left;"></div>
+</div>
+
 <script type='text/javascript'>
   var map = false;
-  function init(){
-    map = new SAPO.Maps.Map('map');
-    }
-			
-  function move(){
-    map.pan(-100, 100, {animate: true, dragging: true});
-    }
-init();
-</script>
-<!--
-<input type="button" onclick="move();" value="Move" />
--->
-<!--
-    <div id='chart_div'></div>
+  var marker = false;
+  var polyline = false;
+  var start=new OpenLayers.LonLat(-8.0919,37.7616);
+  var img={markerImage: '/images/balloon.png', markerAnchor: new OpenLayers.Pixel(-8, -49), size: new OpenLayers.Size(32, 42)};
+  map = new SAPO.Maps.Map('map');
+  map.setMapCenter(start,10);
 
-    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
-    <script type='text/javascript'>
-      google.load('visualization', '1', {packages:['gauge']});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Label');
-        data.addColumn('number', 'Value');
-        data.addRows(3);
-        data.setValue(0, 0, 'Memory');
-        data.setValue(0, 1, 80);
-        data.setValue(1, 0, 'CPU');
-        data.setValue(1, 1, 55);
-        data.setValue(2, 0, 'Network');
-        data.setValue(2, 1, 68);
+  google.load('visualization', '1', {packages:['gauge']});
 
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-        var options = {width: 400, height: 120, redFrom: 90, redTo: 100,
-            yellowFrom:75, yellowTo: 90, minorTicks: 5};
-        chart.draw(data, options);
+  function drawGauge(n,v,d,o) {
+    var params = Object.extend({ width: 400, height: 120, redTo: o.max, yellowTo: o.redFrom, minorTicks: 5},o || {});
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Label');
+    data.addColumn('number', 'Value');
+    data.addRows(1);
+    data.setValue(0, 0, n);
+    data.setValue(0, 1, parseInt(Math.floor(Math.random()*v)));
+    var chart = new google.visualization.Gauge(document.getElementById(d));
+    chart.draw(data, params);
+    }
+
+  function printBalloon(t) {
+    var r=t.responseText.evalJSON();
+//    SAPO.Utility.Dumper.alertDump(r);
+    map.setMapCenter(new OpenLayers.LonLat(r.lon,r.lat),10);
+    if(marker) map.removeOverlay(marker);
+    marker = new SAPO.Maps.Marker(new OpenLayers.LonLat(r.lon,r.lat), {draggable: false}, img);
+    map.addOverlay(marker);
+    // s$('coords').innerHTML=r.lon+','+r.lat;
+    drawGauge('Altitude',10000,'sensors_alt',{max:40000,redFrom:30000,yellowFrom:20000});
+    drawGauge('Pressure',10000,'sensors_pressure',{max:40000,redFrom:30000,yellowFrom:20000});
+    drawGauge('Temp',10000,'sensors_temperature',{max:40000,redFrom:30000,yellowFrom:20000});
+    drawGauge('Humidity',10000,'sensors_humidity',{max:40000,redFrom:30000,yellowFrom:20000});
+    drawGauge('Dust Density',10000,'sensors_dust',{max:40000,redFrom:30000,yellowFrom:20000});
+    }
+
+  function printTrack(t) {
+    var r=t.responseText.evalJSON();
+    var pols=[];
+    pols[0]=start;
+    for(var i=0;i<r.length;i++) {
+      pols[i+1]=new OpenLayers.LonLat(r[i][1],r[i][0]);
       }
-    </script>
--->
+    if(polyline) map.removeOverlay(polyline);
+    polyline = new SAPO.Maps.Polyline(pols, { strokeColor: '#ff0000', strokeOpacity: 1, strokeWidth: 5, strokeDashstyle: 'dot' });
+    map.removeOverlay(polyline);
+    map.addOverlay(polyline);
+    }
+
+  function getData() {
+    var s=new Ajax.Request('/api/get',{method: 'post',onSuccess:printBalloon});
+    var s=new Ajax.Request('/api/track',{method: 'post',onSuccess:printTrack});
+    setTimeout (getData, 3000);
+    }
+
+  window.onload = getData();
+</script>
+
 {/literal}
 
       {include file="services.tpl"}

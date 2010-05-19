@@ -14,6 +14,7 @@
 					<li><a href="/live" title="Dashboard">Live Dashboard</a></li>
 					<li><a href="/multimedia" title="Multimedia">Multimedia</a></li>
 					<li><a href="/page/references.html" title="Photos">References</a></li>
+					<li><a href="http://softwarelivre.sapo.pt/projects/spacebits/browser" title="Source code">Source code</a></li>
 				</ul>
 			</div>
 			<span class="bottom_rounded"></span><span class="bottom_pic"></span>

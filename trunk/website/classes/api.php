@@ -6,7 +6,7 @@
  */
 include('config/site.php');
 
-setlocale(LC_ALL, 'pt_PT');
+setlocale(LC_ALL, 'en_US');
 
 class Spacebits_API {
 
@@ -73,6 +73,20 @@ class Spacebits_API {
         }
       }
     return($p);
+    }
+
+  function track() {
+    $p=array();
+    if($db = new PDO($this->db)) {
+      $sql="select distinct lat,lon  from data where lat>20 and lat<60 and lon<-1 and lon>-12 order by change desc,lat,lon limit 100";
+      $q = $db->prepare($sql);
+      $q->execute();
+      $t=array(); 
+      while($r=$q->fetch(PDO::FETCH_ASSOC)) {
+        array_push($t,array($r['lat'],$r['lon']));
+        }
+      }
+    return($t);
     }
 
 }

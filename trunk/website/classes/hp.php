@@ -7,7 +7,7 @@
 include('classes/smarty/Smarty.class.php');
 include('config/site.php');
 
-setlocale(LC_ALL, 'pt_PT');
+setlocale(LC_ALL, 'en_US');
 
 class Spacebits_Homepage {
 

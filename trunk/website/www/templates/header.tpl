@@ -8,7 +8,9 @@
 <script type="text/javascript" src="http://js.sapo.pt/SAPO"></script>
 <script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Dumper"></script>
 {if $uri=="/live"}
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
 <script type="text/javascript" src="http://js.sapo.pt/Bundles/SAPOMapsAPI.js"></script>
+<script type="text/javascript" src="http://js.sapo.pt/Prototype/"></script>
 {/if}
 {if $action=='edit' && $uid!=""}
 <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
