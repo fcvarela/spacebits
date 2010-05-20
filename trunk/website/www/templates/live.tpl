@@ -20,12 +20,22 @@ This will be the Live Dashboard for the official launch of Spacebits which is sc
 
 <script type='text/javascript'>
   var map = false;
-  var marker = false;
+  var usePolyline = false;
   var polyline = false;
+  var polyline2 = false;
+  var markerslayer = false;
   var start=new OpenLayers.LonLat(-8.0919,37.7616);
   var img={markerImage: '/images/balloon.png', markerAnchor: new OpenLayers.Pixel(-8, -49), size: new OpenLayers.Size(32, 42)};
   map = new SAPO.Maps.Map('map');
+  map.addControl(new SAPO.Maps.Control.MapType());
+  map.addControl(new SAPO.Maps.Control.Navigation());
   map.setMapCenter(start,10);
+
+  markerslayer = new SAPO.Maps.Markers('trackpoints');
+  map.addMarkers(markerslayer);
+
+  balloon = new SAPO.Maps.Marker(start, {draggable: false}, img);
+  map.addOverlay(balloon);
 
   google.load('visualization', '1', {packages:['gauge']});
 
@@ -41,37 +51,45 @@ This will be the Live Dashboard for the official launch of Spacebits which is sc
     chart.draw(data, params);
     }
 
-  function printBalloon(t) {
+  function refreshDashboard(t) {
     var r=t.responseText.evalJSON();
 //    SAPO.Utility.Dumper.alertDump(r);
-    map.setMapCenter(new OpenLayers.LonLat(r.lon,r.lat),10);
-    if(marker) map.removeOverlay(marker);
-    marker = new SAPO.Maps.Marker(new OpenLayers.LonLat(r.lon,r.lat), {draggable: false}, img);
-    map.addOverlay(marker);
     // s$('coords').innerHTML=r.lon+','+r.lat;
     drawGauge('Altitude',10000,'sensors_alt',{max:40000,redFrom:30000,yellowFrom:20000});
     drawGauge('Pressure',10000,'sensors_pressure',{max:40000,redFrom:30000,yellowFrom:20000});
     drawGauge('Temp',10000,'sensors_temperature',{max:40000,redFrom:30000,yellowFrom:20000});
     drawGauge('Humidity',10000,'sensors_humidity',{max:40000,redFrom:30000,yellowFrom:20000});
-    drawGauge('Dust Density',10000,'sensors_dust',{max:40000,redFrom:30000,yellowFrom:20000});
-    }
+    drawGauge('Dust',10000,'sensors_dust',{max:40000,redFrom:30000,yellowFrom:20000});
+    // Track
+      //map.removeMarkers();
+      markerslayer.removeMarkers();
 
-  function printTrack(t) {
-    var r=t.responseText.evalJSON();
-    var pols=[];
-    pols[0]=start;
-    for(var i=0;i<r.length;i++) {
-      pols[i+1]=new OpenLayers.LonLat(r[i][1],r[i][0]);
-      }
-    if(polyline) map.removeOverlay(polyline);
-    polyline = new SAPO.Maps.Polyline(pols, { strokeColor: '#ff0000', strokeOpacity: 1, strokeWidth: 5, strokeDashstyle: 'dot' });
-    map.removeOverlay(polyline);
-    map.addOverlay(polyline);
+      var size=new OpenLayers.Size(16, 16)
+
+      var shift=new OpenLayers.Pixel(-8,-8);
+
+      var green = { markerImage: '/images/green.png', size: size, markerOpacity: 1,markerAnchor: shift };
+      var red = { markerImage: '/images/red.png', size: size, markerOpacity: 1,markerAnchor: shift };
+
+      for(var i=0;i<r['track']['radio'].length;i++) {
+        var m=new SAPO.Maps.Marker(new OpenLayers.LonLat(r['track']['radio'][i][1],r['track']['radio'][i][0]), {draggable: false});
+        m.setStyle(red);
+        markerslayer.addMarker(m);
+        }
+      for(var i=0;i<r['track']['sms'].length;i++) {
+        var m=new SAPO.Maps.Marker(new OpenLayers.LonLat(r['track']['sms'][i][1],r['track']['sms'][i][0]), {draggable: false});
+        m.setStyle(green);
+        markerslayer.addMarker(m);
+        }
+
+    // Balloon
+    var pos=new OpenLayers.LonLat(r['last'].lon,r['last'].lat);
+    // map.setMapCenter(pos,10);
+    balloon.setLonLat(pos);
     }
 
   function getData() {
-    var s=new Ajax.Request('/api/get',{method: 'post',onSuccess:printBalloon});
-    var s=new Ajax.Request('/api/track',{method: 'post',onSuccess:printTrack});
+    var s=new Ajax.Request('/api/all',{method: 'post',onSuccess:refreshDashboard});
     setTimeout (getData, 3000);
     }
 

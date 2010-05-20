@@ -29,6 +29,10 @@ switch($_GET['action']) {
     header("Content-Type: application/json; charset=utf-8");
     echo json_encode($api->track());
     break;
+  case "all":
+    header("Content-Type: application/json; charset=utf-8");
+    echo json_encode(array('last'=>$api->get(),'track'=>$api->track()));
+    break;
   default:
     header("Content-Type: text/xml; charset=utf-8");
     echo "<result>unknown method</result>\n";

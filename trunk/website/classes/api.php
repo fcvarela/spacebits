@@ -60,6 +60,20 @@ class Spacebits_API {
       }
     }
 
+  function lastSMS() {
+    $p=array();
+    if($db = new PDO($this->sms_db)) {
+      $sql="select change,message from sms order by change desc limit 1";
+      $q = $db->prepare($sql);
+      $q->execute();
+      if($r=$q->fetch(PDO::FETCH_ASSOC)) {
+        $p['change']=$r['change'];
+        list($p['lat'],$p['lon'],$p['alt'],$p['nsats'])=split(",",$r['message']);
+        }
+      }
+    return($p);
+    }
+
   function get() {
     $p=array();
     if($db = new PDO($this->db)) {
@@ -70,6 +84,8 @@ class Spacebits_API {
         foreach(array_keys($r) as $key) {
           $p[$key]=$r[$key];
           }
+        $sms=$this->lastSMS();
+        if(intval($sms['change'])>intval($p['change'])) {$p['lat']=$sms['lat']; $p['lon']=$sms['lon'];}
         }
       }
     return($p);
@@ -86,7 +102,19 @@ class Spacebits_API {
         array_push($t,array($r['lat'],$r['lon']));
         }
       }
-    return($t);
+    if($db = new PDO($this->sms_db)) {
+      $sql="select message,change from sms order by change desc limit 100";
+      $q = $db->prepare($sql);
+      $q->execute();
+      $t2=array(); 
+      while($r=$q->fetch(PDO::FETCH_ASSOC)) {
+        list($lat,$lon)=split(",",$r['message']);
+        if($lat>20&&$lat<60&&$lon<-1&&$lon>-12) {
+          array_push($t2,array($lat,$lon));
+          }
+        }
+      }
+    return(array('radio'=>$t,'sms'=>$t2));
     }
 
 }
