@@ -13,7 +13,7 @@
 <script type="text/javascript" src="/js/prototype.js"></script>
 <script src="/js/scriptaculous.js" type="text/javascript"></script>
 <script src="/js/iphone-style-checkboxes.js" type="text/javascript"></script>
-<link rel="stylesheet" href="/stylesheets/buttons.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/stylesheets/buttons.css?v2" type="text/css" media="screen" />
 {/if}
 {if $action=='edit' && $uid!=""}
 <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>

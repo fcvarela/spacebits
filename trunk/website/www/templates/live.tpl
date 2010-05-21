@@ -5,38 +5,10 @@
       {include file="topmenu.tpl"}
 
 <div id="articlecontent" style="background:#181b0d;">
-This will be the Live Dashboard for the official launch of Spacebits which is scheduled for the 30th of May, 2010, 11AM. Now in demo mode.
+This will be the Live Dashboard for the official launch of Spacebits which is scheduled for the 30th of May, 2010, 11AM GMT. Now in demo mode.
 </div>
 {literal}
 <div id="map_wrapper" style="margin-left:30px;"><div id="map" style="width:840px;height:400px;"></div></div>
-
-  <style type="text/css">
-    label.left {
-      float: left;
-      padding: 4px;
-      padding-right: 15px;
-    }
-    .css_sized_container .iPhoneCheckContainer {
-      width: 250px;
-    }
-    ol {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-    ol li {
-      float:right;
-      padding: 3px;
-      margin: 0;
-    }
-    .onchange input {
-      opacity: 1 !important;
-      left: 100px;
-    }
-    .onchange .iPhoneCheckContainer {
-      overflow: visible;
-    }
-  </style>
 
 <div id="sensors" style="margin-right:27px;margin-left:25px;height:100px;">
     <div id='sensors_alt' style="float:left;"></div>

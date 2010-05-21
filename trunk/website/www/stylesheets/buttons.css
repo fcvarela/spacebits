@@ -77,4 +77,29 @@
     width: 100%;
     background: url(/images/slider_center.png); }
 
-.on_off li {font-size:17px;color:rgb(221, 221, 221);}
+    #buttons label.left {
+      float: left;
+      padding: 4px;
+      padding-right: 15px;
+    }
+    .css_sized_container .iPhoneCheckContainer {
+      width: 250px;
+    }
+    #buttons ol {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    #buttons ol li {
+      font-size:17px;color:rgb(221, 221, 221);
+      padding: 3px;
+      margin: 0;
+    }
+    .onchange input {
+      opacity: 1 !important;
+      left: 100px;
+    }
+    .onchange .iPhoneCheckContainer {
+      overflow: visible;
+    }
+
