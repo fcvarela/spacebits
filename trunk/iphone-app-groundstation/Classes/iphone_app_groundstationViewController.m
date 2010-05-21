@@ -14,6 +14,8 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	[super viewDidLoad];
+	
 	altitude = 0;
 	distanceToAltair = 0;
 	
@@ -24,7 +26,7 @@
 	
 	responseData = [[NSMutableData data] retain];
 	[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
-	[super viewDidLoad];
+	
 }
 
 - (void)onTimer
@@ -59,7 +61,7 @@
 	NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	NSDictionary *telemetry = [responseString JSONValue];
 	
-	AltairAnnotation *annot = [[[AltairAnnotation alloc] initWithLat:[[telemetry valueForKey:@"lat"] floatValue] lon:[[telemetry valueForKey:@"lon"] floatValue]] autorelease];
+	return;AltairAnnotation *annot = [[[AltairAnnotation alloc] initWithLat:[[telemetry valueForKey:@"lat"] floatValue] lon:[[telemetry valueForKey:@"lon"] floatValue]] autorelease];
 	
 	[mapView addAnnotation:annot];
 	NSArray *annotations = [mapView annotations];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface iphone_app_groundstationViewController : UIViewController {
+@interface iphone_app_groundstationViewController : UIViewController <CLLocationManagerDelegate> {
 	NSNumber *altitude;
 	NSNumber *distanceToAltair;
 	NSMutableData *responseData;
