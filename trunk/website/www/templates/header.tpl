@@ -10,7 +10,10 @@
 {if $uri=="/live"}
 <script type='text/javascript' src='http://www.google.com/jsapi'></script>
 <script type="text/javascript" src="http://js.sapo.pt/Bundles/SAPOMapsAPI.js"></script>
-<script type="text/javascript" src="http://js.sapo.pt/Prototype/"></script>
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script src="/js/scriptaculous.js" type="text/javascript"></script>
+<script src="/js/iphone-style-checkboxes.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/stylesheets/buttons.css" type="text/css" media="screen" />
 {/if}
 {if $action=='edit' && $uid!=""}
 <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
