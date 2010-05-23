@@ -16,7 +16,9 @@
   position: relative;
   height: 27px;
   cursor: pointer;
-  overflow: hidden; }
+  overflow: hidden;
+	float: right;
+}
   .iPhoneCheckContainer input {
     position: absolute;
     top: 5px;
@@ -45,7 +47,8 @@
     background: url(/images/on.png) no-repeat;
     text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
     left: 0;
-    padding-top: 5px; }
+    padding-top: 5px;
+}
     label.iPhoneCheckLabelOn span {
       padding-left: 8px; }
   label.iPhoneCheckLabelOff {
@@ -89,17 +92,75 @@
       list-style-type: none;
       margin: 0;
       padding: 0;
-    }
+	float: right;
+}
+
+#buttons li {
+	float: right;
+}
     #buttons ol li {
       font-size:17px;color:rgb(221, 221, 221);
       padding: 3px;
       margin: 0;
-    }
+	clear: both;
+	width: 250px;
+}
     .onchange input {
       opacity: 1 !important;
       left: 100px;
     }
     .onchange .iPhoneCheckContainer {
       overflow: visible;
-    }
+}
 
+#values {
+  margin-left:25px;
+  margin-right:25px;
+  height:80px;
+  width:auto;
+  float:left;
+  }
+
+.measure {
+   background-color:rgb(17,17,17);
+   font-size:20px;color:#D49D47;
+   font-weight: bold;
+   float:left;
+   margin-right:5px;
+   margin-bottom:4px;
+   -moz-border-radius: 5px; -webkit-border-radius: 5px; border: 1px solid #000; padding: 3px 3px 3px 5px;
+   }
+
+.measure img {
+   vertical-align:bottom;
+   }
+
+#tt {
+ position:absolute;
+ display:block;
+ z-index:9999999;
+ font-size:13px;
+ font-color:white;
+ background:url(/images/tt_left.gif) top left no-repeat;
+ }
+ #tttop {
+ display:block;
+ height:5px;
+ margin-left:5px;
+ background:url(/images/tt_top.gif) top right no-repeat;
+ overflow:hidden;
+ }
+ #ttcont {
+ display:block;
+ padding:2px 6px 3px 6px;
+ margin-left:5px;
+ background:#666;
+ color:#fff;
+ }
+#ttbot {
+display:block;
+height:5px;
+margin-left:5px;
+background:url(/images/tt_bottom.gif) top right no-repeat;
+overflow:hidden;
+}

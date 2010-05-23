@@ -1,3 +1,4 @@
+{if $ipad==""}
 	<div id="footer_wrapper">
 		<div id="footer">
 			<div class="logo"><span></span></div>
@@ -8,6 +9,7 @@
 			</ul>
 		</div>
 	</div>
+{/if}
 
 </body>
 </html>

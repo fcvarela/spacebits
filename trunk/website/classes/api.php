@@ -74,20 +74,41 @@ class Spacebits_API {
     return($p);
     }
 
-  function get() {
+  function get($demo=false) {
     $p=array();
-    if($db = new PDO($this->db)) {
-      $sql="SELECT change,power_current,power_voltage,pressure,temperature,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data ORDER BY change DESC LIMIT 1";
-      $q = $db->prepare($sql);
-      $q->execute();
-      if($r=$q->fetch(PDO::FETCH_ASSOC)) {
-        foreach(array_keys($r) as $key) {
-          $p[$key]=$r[$key];
+    if($demo) {
+      $p['change']=time();
+      $p['power_voltage']=sprintf("%.1f",(float)(rand(0,50)/10));
+      $p['power_current']=sprintf("%.1f",(float)(rand(0,20)/10));
+      $p['imu_ax']=sprintf("%.1f",(float)(rand(0,10)/10));
+      $p['imu_ay']=sprintf("%.1f",(float)(rand(0,10)/10));
+      $p['imu_az']=sprintf("%.1f",(float)(rand(0,10)/10));
+      $p['imu_gx']=rand(0,90);
+      $p['imu_gy']=rand(0,90);
+      $p['temperature']=rand(-50,10);
+      $p['alt']=rand(0,40000);
+      $p['humidity']=rand(0,100);
+      $p['dust_density']=rand(0,100);
+      $p['pressure']=rand(10,1000);
+      $p['lon']=-8.0919+(float)(rand(-500,500)/1000);
+      $p['lat']=37.7616+(float)(rand(-500,500)/1000);
+    }
+    else
+    {
+      if($db = new PDO($this->db)) {
+        $sql="SELECT change,power_current,power_voltage,pressure,temperature,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data ORDER BY change DESC LIMIT 1";
+        $q = $db->prepare($sql);
+        $q->execute();
+        if($r=$q->fetch(PDO::FETCH_ASSOC)) {
+          foreach(array_keys($r) as $key) {
+            $p[$key]=$r[$key];
+            }
+          $sms=$this->lastSMS();
+          if(intval($sms['change'])>intval($p['change'])) {$p['lat']=$sms['lat']; $p['lon']=$sms['lon'];}
           }
-        $sms=$this->lastSMS();
-        if(intval($sms['change'])>intval($p['change'])) {$p['lat']=$sms['lat']; $p['lon']=$sms['lon'];}
-        }
-      }
+       }
+    }
+    $p['elapsed']='00:00:01';
     return($p);
     }
 
