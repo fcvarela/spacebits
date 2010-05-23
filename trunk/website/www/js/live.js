@@ -30,8 +30,10 @@ function analogNumber(msg,n,divid,alt,asis) {
   for(i=0;i<n.length;i++) {
     if(n[i]=='.') c='p';
       else if(n[i]==':') c='c';
+      else if(n[i]=='-') c='h';
       else c=n[i];
-    o+='<img src="/images/dg'+c+'.gif">';
+    if(n[i]!==' ') o+='<img src="/images/dg'+c+'.gif">';
+      else o+='&nbsp;&nbsp;';
     }
   $(divid).innerHTML=o;
   setTooltip(divid,alt);
@@ -138,12 +140,13 @@ function refreshDashboard(t) {
   if(sw_follow_cb) map.setMapCenter(pos);
   balloon.setLonLat(pos);
   // Other measures
+  analogNumber('Bear',r['last'].bear,'bear','Number of GPS satelites<br/>(integer)');
   analogNumber('Ax',r['last'].imu_ax,'ax','Acceleration X axis<br/>(in Gs)');
   analogNumber('Ay',r['last'].imu_ay,'ay','Acceleration Y axis<br/>(in Gs)');
   analogNumber('Az',r['last'].imu_az,'az','Acceleration Z axis<br/>(in Gs)');
   analogNumber('Gx',r['last'].imu_gx,'gx','Angular Speed X axis<br/>(in rad/sec)');
   analogNumber('Gy',r['last'].imu_gy,'gy','Angular Speed Y axis<br/>(in rad/sec)');
-  analogNumber('Time elapsed',r['last'].elapsed,'time','Time elapsed from flight start',true);
+  analogNumber('Elapsed Now Last',r['last'].elapsed,'time','Time elapsed from flight start<br/>Current time<br/>Last measurement',true);
   analogNumber('Current',r['last'].power_current,'amps','Power current<br/>(in amps)');
   analogNumber('Voltage',r['last'].power_voltage,'volts','Power voltage<br/>(in volts)');
   }

@@ -11,7 +11,7 @@ This will be the Live Dashboard for the official launch of Spacebits which is sc
 {/if}
 
 {if $ipad}
-<div id="map_wrapper" style="margin-left:30px;"><div id="map" style="width:840px;height:550px;"></div></div>
+<div id="map_wrapper" style="margin-left:30px;"><div id="map" style="width:840px;height:530px;"></div></div>
 {literal}
 <script type="text/javascript">
 useGauges = false;
@@ -44,12 +44,16 @@ useGauges = false;
     <div id='sensors_temperature' style="float:left;"></div>
     <div id='sensors_humidity' style="float:left;"></div>
     <div id='sensors_dust' style="float:left;"></div>
+    <div id='bear' style="float:left;"></div>
+    <br clear="all"/>
     <div id="ax" style="float:left;"></div>
     <div id="ay" style="float:left;"></div>
     <div id="az" style="float:left;"></div>
     <div id="gx" style="float:left;"></div>
     <div id="gy" style="float:left;"></div>
+    <br clear="all"/>
     <div id="time" style="float:left;"></div>
+    <br clear="all"/>
     <div id="volts" style="float:left;"></div>
     <div id="amps" style="float:left;"></div>
   </div>
@@ -89,8 +93,10 @@ useGauges = false;
   <div class="measure" id="gy"></div>
   <br clear="all"/>
   <div class="measure" id="time"></div>
+  <br clear="all"/>
   <div id="volts" style="float:left;"></div>
   <div id="amps" style="float:left;"></div>
+  <div id='bear' style="float:left;"></div>
 </div>
 {/if}
 

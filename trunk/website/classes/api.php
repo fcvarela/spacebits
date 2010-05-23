@@ -16,6 +16,7 @@ class Spacebits_API {
     $this->sms_db=DB_SMS;
     list($uri)=explode("?",$_SERVER["REQUEST_URI"]);
     list($uri)=explode("&",$uri);
+    date_default_timezone_set('Europe/Lisbon');
     }
 
   function parsePayload($xml) {
@@ -88,6 +89,7 @@ class Spacebits_API {
       $p['temperature']=rand(-50,10);
       $p['alt']=rand(0,40000);
       $p['humidity']=rand(0,100);
+      $p['bear']=rand(1,50);
       $p['dust_density']=rand(0,100);
       $p['pressure']=rand(10,1000);
       $p['lon']=-8.0919+(float)(rand(-500,500)/1000);
@@ -108,7 +110,7 @@ class Spacebits_API {
           }
        }
     }
-    $p['elapsed']='00:00:01';
+    $p['elapsed']='00:00:01 '.date("H:i:s").' '.date("H:i:s",$p['change']);
     return($p);
     }
 
