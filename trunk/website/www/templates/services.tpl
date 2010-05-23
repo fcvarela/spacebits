@@ -13,6 +13,7 @@
 				<ul class="serviceslist">
 					<li><a href="/live" title="Dashboard">Live Dashboard</a></li>
 					<li><a href="/multimedia" title="Multimedia">Multimedia</a></li>
+					<li><a href="/page/spacebits1live.html" title="Spacebits 1 Launch">Spacebits 1 Launch</a></li>
 					<li><a href="/page/references.html" title="Photos">References</a></li>
 					<li><a href="http://softwarelivre.sapo.pt/projects/spacebits/browser" title="Source code">Source code</a></li>
 				</ul>

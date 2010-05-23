@@ -136,7 +136,7 @@ class Spacebits_Homepage {
       case "save":
         if($this->uid=="") return;
         if($db = new PDO($this->db)) {
-          $sql="REPLACE INTO articles VALUES(".$db->quote($id).",".$db->quote($_POST['articlecontent']).",".$db->quote($_POST['articletitle']).",".time().",'".$this->uid."');";
+          $sql="REPLACE INTO articles VALUES(".$db->quote($id).",".$db->quote($_POST['articlecontent']).",".$db->quote($_POST['articletitle']).",".time().",'".$this->uid."',".$db->quote($_POST['articletags']).");";
           $q = $db->exec($sql);
           header("Location: /page/".$id); 
           }
@@ -151,11 +151,12 @@ class Spacebits_Homepage {
         break;
       default:
         if($db = new PDO($this->db)) {
-          $sql="SELECT body,title FROM articles WHERE id=".$db->quote($id);
+          $sql="SELECT body,title,tags FROM articles WHERE id=".$db->quote($id);
           $q = $db->prepare($sql);
           $q->execute();
           if($r=$q->fetch(PDO::FETCH_ASSOC)) {
             $this->smarty->assign('title',stripslashes($r['title']));
+            $this->smarty->assign('tags',stripslashes($r['tags']));
             $this->smarty->assign('body',stripslashes($r['body']));
             }
             else

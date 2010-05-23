@@ -9,7 +9,8 @@ create table articles (
   body blob,
   title char(80),
   change int,
-  user char(20), PRIMARY KEY(id)
+  user char(20),
+  tags char(140), PRIMARY KEY(id)
   );
 
 create table users (
