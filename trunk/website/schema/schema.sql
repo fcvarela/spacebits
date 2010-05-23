@@ -1,3 +1,9 @@
+create table twits (
+  change int,
+  description char(160),
+  link char(100), PRIMARY KEY(change)
+  );
+
 create table articles (
   id char(60),
   body blob,

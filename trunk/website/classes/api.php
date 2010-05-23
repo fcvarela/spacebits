@@ -14,6 +14,7 @@ class Spacebits_API {
     $this->api_secret=API_SECRET;
     $this->db=DB_DATA;
     $this->sms_db=DB_SMS;
+    $this->twitter_db=DB_TWITTER;
     list($uri)=explode("?",$_SERVER["REQUEST_URI"]);
     list($uri)=explode("&",$uri);
     date_default_timezone_set('Europe/Lisbon');
@@ -42,6 +43,15 @@ class Spacebits_API {
       return($p);
       }
     return(false);
+    }
+
+  function putTwit($values=array()) {
+    GLOBAL $sconfig;
+    if($db = new PDO($this->twitter_db)) {
+      $sql="INSERT INTO twits (change,description,link) VALUES(".intval($values['change']).",".$db->quote($values['description']).",".$db->quote($values['link']).")";
+      $q = $db->prepare($sql);
+      $q->execute();
+      }
     }
 
   function put($values=array()) {
