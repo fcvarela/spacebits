@@ -54,6 +54,40 @@ class Spacebits_API {
       }
     }
 
+  function getTwits() {
+    $t=array();
+    if($db = new PDO($this->twitter_db)) {
+      $sql="SELECT change,description,link FROM twits ORDER BY change DESC LIMIT 20";
+      $q = $db->prepare($sql);
+      $q->execute();
+      while($r=$q->fetch(PDO::FETCH_ASSOC)) {
+        list(,$d)=explode(": ",$r['description']);
+        foreach($this->yfrog($d) as $l) {
+          $d=str_replace($l,'',$d);
+          $d.='<br/><a href="'.$l.'" target="_blank"><img src="'.$l.'.th.jpg"></a>';
+          }
+        $d=$this->clickable($d);
+        array_push($t,array('change'=>$r['change'],'description'=>$d,'link'=>$r['link']));
+        }
+     }
+    return($t);
+    }
+
+  function clickable($text) { 
+    $text = preg_replace('#(script|about|applet|activex|chrome):#is', "\\1:", $text); 
+    $ret = ' ' . $text; 
+    $ret = preg_replace("#(^|[\n ])([\w]+?://[\w\#$%&~/.\-;:=,?@\[\]+]*)#is", "\\1<a href=\"\\2\" target=\"_blank\">\\2</a>", $ret); 
+    $ret = preg_replace("#(^|[\n ])((www|ftp)\.[\w\#$%&~/.\-;:=,?@\[\]+]*)#is", "\\1<a href=\"http://\\2\" target=\"_blank\">\\2</a>", $ret); 
+    $ret = preg_replace("#(^|[\n ])([a-z0-9&\-_.]+?)@([\w\-]+\.([\w\-\.]+\.)*[\w]+)#i", "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>", $ret); 
+    $ret = substr($ret, 1); 
+    return $ret; 
+    } 
+
+  function yfrog($text) {
+    preg_match_all("/http:\/\/yfrog\.com\/[0-9a-zA-Z]+/",$text,$out);
+    return($out[0]);
+    }
+
   function put($values=array()) {
     GLOBAL $sconfig;
     if($db = new PDO($this->db)) {
@@ -99,7 +133,7 @@ class Spacebits_API {
       $p['temperature']=rand(-50,10);
       $p['alt']=rand(0,40000);
       $p['humidity']=rand(0,100);
-      $p['bear']=rand(1,50);
+      $p['bear']=rand(0,360);
       $p['dust_density']=rand(0,100);
       $p['pressure']=rand(10,1000);
       $p['lon']=-8.0919+(float)(rand(-500,500)/1000);

@@ -29,9 +29,13 @@ switch($_GET['action']) {
     header("Content-Type: application/json; charset=utf-8");
     echo json_encode($api->track());
     break;
+  case "twits":
+    header("Content-Type: application/json; charset=utf-8");
+    echo json_encode($api->getTwits());
+    break;
   case "all":
     header("Content-Type: application/json; charset=utf-8");
-    echo json_encode(array('last'=>$api->get($_POST['demo']),'track'=>$api->track()));
+    echo json_encode(array('last'=>$api->get($_POST['demo']),'track'=>$api->track(),'twitter'=>$api->getTwits()));
     break;
   default:
     header("Content-Type: text/xml; charset=utf-8");

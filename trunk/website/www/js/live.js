@@ -1,4 +1,4 @@
-var refreshRate=3*1000;
+var refreshRate=10*1000;
 var map = false;
 var markerslayer = false;
 var start=false;
@@ -7,13 +7,33 @@ var sw_follow_cb = false;
 var sw_sms_cb = false;
 var sw_radio_cb = false;
 var sw_demo_cb = false;
+var sw_twitter_cb = false;
 var useGauges = true;
+var twitter_width = 250;
+var twitter_last = false;
+var dg=[];
+dg['0']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAANgCLrc/i8UQ2sljJRpqWYTMYwkYRSggTUhQw3O6xpCTC8BFTS5sSsCimMgXBBXjB5jgOQ1B7WHALaY/BjBpqyxBfSuii9OxyMriIZh8bw2tkOk0glk6pwKzbr9BIb4/wwJADs=';
+dg['1']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAAM5CLrc/jACIZkoVQmDczFEBhjGIJJUFZBBNpDiaohAEIqCmW13ReoSWUvFcsGMswyBQyP0MkOalJEAADs=';
+dg['2']='data:image/gif;base64,R0lGODlhEAAYALMAAAgICBISEjMzAGYzAGZmAJlmAMyZAP/MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkKAAgALAAAAAAQABgAAARSMMhJq70XmMN7L5XmfYYFEGhaHCVGbaA7cYQ8H4MdCJygExxTahikiEaHQkxCWCEPvtdhmIpSaDoeNNv7FW3Agy4AoxIAFoNzZEBT1sj2eI6JAAA7';
+dg['3']='data:image/gif;base64,R0lGODlhEAAYALMAAAgICBISEjMzAGYzAGZmAJlmAMyZAP/MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkKAAgALAAAAAAQABgAAARPMMhJq70XmMN7L5XmfYYFEGhaHCVGbaA7cYQ8H4MdCJygExxTahikiEaHQmzCQyZrFcEQtVrKaLqmz6b9FW3Ag0U6XbWYToPB2kxvdXBMBAA7';
+dg['4']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAANXCLrc/i9AJRghUBRWDG6CsS3dx3mMYQyOyi5q1cRLoEqMbeBAaDgDFSNYGBiPwd9iUOionh6TQgdVEV45pJGAmsBW3uktDNDxJkkyIE3mjtrS8FlNZyQAADs=';
+dg['5']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAANOCLrc/i8UQ2sNjJRpKWYTMYzkBxoE1FCDylCCqwSeDAiUDQxGQZaOwaYDc9CIqFYj8BsRUDqW7WhSUW08gy5rbA6ehSVyk1ocx1WdmpEAADs=';
+dg['6']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAANZCLrc/i8UQ2sNjJRpKWYTMYzkBxoE1FCDylCCqwSeDAiUDQxGQZaOwaYDawwIRIro9CMhUwuWQzqrMWgGE9ZUzS54hmDuO2aAT6ImsgBCEjdQhTtZ4OrujAQAOw==';
+dg['7']='data:image/gif;base64,R0lGODlhEAAYALMAAAgICBISEjMzAGYzAGZmAJlmAMyZAP/MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkKAAgALAAAAAAQABgAAAREMMhJq70XmMN7L5XmfYYFEGhaHCVGbaA7cYQ8H4MdCJygExzdLigUxHSDGvJwlNF0vIPPFp3KgAchVrhq6QpNqnCMiQAAOw==';
+dg['8']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAANiCLrc/i8UQ2sljJRpqWYTMYwkYRSggTUhQw3O6xpCTC8BFTS5sSsCimMgXBALpGRRMdh0PCum6amCLSbJkmpm5eJ0PLCi9/v6jEu0gUFcN9opUdaEuk47myjg/iyUIYCBDQkAOw==';
+dg['9']='data:image/gif;base64,R0lGODlhEAAYALMAAAAAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkKAAgALAAAAAAQABgAAARoMMhJq71XmMN7L1RhbB4nUltBrGxxGOhRAHSdUhxR1zl+DDtAgDOYCDiC4PEgmAw4gSABOpkaWFiqhDAqmUCUpVdlEWBXLjBm0ltLlk13AC4PTA91u9Z4JrhgYV4vBmpzghwGcXmLFhEAOw==';
+dg['am']='data:image/gif;base64,R0lGODlhEAAYAKIAAAAAABISEsyZAP/MAAAAAAAAAAAAAAAAACH5BAkKAAQALAAAAAAQABgAAAMpGLrc/jDKSau9OOvNu/9DE4YiQAZCEKaLALzsqDJDXSvnOeN875M5TQIAOw==';
+dg['c']='data:image/gif;base64,R0lGODlhCAAYAKIAABISEjMzAJlmAP/MAAAAAAAAAAAAAAAAACH5BAkKAAQALAAAAAAIABgAAAMdCLrc/hAKF8ZcYuircnBcJEqUxWTbOXxNOL7wmwAAOw==';
+dg['h']='data:image/gif;base64,R0lGODlhEAAYAKIAAAgICBISEjMzAGZmAMyZAP/MAAAAAAAAACH5BAkKAAYALAAAAAAQABgAAAMkGLrc/jDKSau9OE8wuh+CAxBFaZYhI5wnATjC571abd94rl8JADs=';
+dg['p']='data:image/gif;base64,R0lGODlhCAAYAKIAABISEjMzAJlmAP/MAAAAAAAAAAAAAAAAACH5BAkKAAQALAAAAAAIABgAAAMXCLrc/jDKSau9eAoXxl7CIH5KGDhklAAAOw==';
+dg['pm']='data:image/gif;base64,R0lGODlhEAAYAKIAAAAAABISEsyZAP/MAAAAAAAAAAAAAAAAACH5BAkKAAQALAAAAAAQABgAAAMsGLrc/jDKSau9OOvNu+/CMAgMSTIDoJ7kEJxKqrqBa6MifNOxw/M13wJoSQAAOw==';
+
 var gauges={
   altitude:{max:40000,redFrom:30000,yellowFrom:20000,alt:'Balloon altitude<br/>(in meters)'},
   pressure:{min:10,max:1100,redFrom:10,redTo:100,yellowFrom:100,yellowTo:200,alt:'Pressure<br/>(in hPa)'},
   temp:{min:-60,max:20,redFrom:-60,redTo:-40,yellowFrom:-40,yellowTo:-20,alt:'External temperature<br/>(in ºC)'},
   humidity:{max:100,redFrom:50,yellowFrom:30,alt:'Humidity<br/>(% of water in air)'},
-  dust:{max:100,redFrom:50,yellowFrom:30,alt:'Dust<br/>(whatever?)'}
+  dust:{max:100,redFrom:50,yellowFrom:30,alt:'Dust density<br/>(in mg/m3)'}
   };
 
 if(useGauges===true) {
@@ -32,7 +52,7 @@ function analogNumber(msg,n,divid,alt,asis) {
       else if(n[i]==':') c='c';
       else if(n[i]=='-') c='h';
       else c=n[i];
-    if(n[i]!==' ') o+='<img src="/images/dg'+c+'.gif">';
+    if(n[i]!==' ') o+='<img src="'+dg[c]+'">';
       else o+='&nbsp;&nbsp;';
     }
   $(divid).innerHTML=o;
@@ -40,7 +60,7 @@ function analogNumber(msg,n,divid,alt,asis) {
   }
 
 function setTooltip(divid,alt) {
-  $(divid).onmouseover=function() {tooltip.show(alt, 200);setTimeout(function(){tooltip.hide();},5000);};
+  $(divid).onmouseover=function() {tooltip.show(alt, 200);setTimeout(function(){tooltip.hide();},10000);};
   $(divid).onmouseout=function () {tooltip.hide();};
   }
 
@@ -51,9 +71,34 @@ function initSwitches() {
       sw_follow_cb = $$('.on_off input[type=checkbox]')[0].checked;
       sw_sms_cb = $$('.on_off input[type=checkbox]')[1].checked;
       sw_radio_cb = $$('.on_off input[type=checkbox]')[2].checked;
-      sw_demo_cb = $$('.on_off input[type=checkbox]')[3].checked;
+      sw_twitter_cb = $$('.on_off input[type=checkbox]')[3].checked;
+      sw_demo_cb = $$('.on_off input[type=checkbox]')[4].checked;
+      if(twitter_last!==sw_twitter_cb) {
+        if(sw_twitter_cb) {
+          $('map_wrapper').style.width=(840-twitter_width-10).toString()+"px";
+          $('twitter_wrapper').style.width=twitter_width.toString()+"px";
+          $('twitter_wrapper').style.display="block";
+          if(map) map.zoomOut();
+          }
+          else
+          {
+          $('twitter_wrapper').style.display="none";
+          $('map_wrapper').style.width="840px";
+          if(map) map.zoomIn();
+          }
+        }
+      twitter_last = sw_twitter_cb;
       }, 1000);
+    changeSwitch(0);
+    changeSwitch(3);
+    changeSwitch(4);
     });
+  }
+
+function changeSwitch(i) {
+  var checkbox = $$('.on_off input[type=checkbox]')[i];
+  checkbox.writeAttribute('checked', !checkbox.checked);
+  checkbox.change();
   }
 
 function initMap() {
@@ -140,7 +185,7 @@ function refreshDashboard(t) {
   if(sw_follow_cb) map.setMapCenter(pos);
   balloon.setLonLat(pos);
   // Other measures
-  analogNumber('Bear',r['last'].bear,'bear','Number of GPS satelites<br/>(integer)');
+  analogNumber('Bear',r['last'].bear,'bear','Compass Heading or Bearing<br/>(in degrees)');
   analogNumber('Ax',r['last'].imu_ax,'ax','Acceleration X axis<br/>(in Gs)');
   analogNumber('Ay',r['last'].imu_ay,'ay','Acceleration Y axis<br/>(in Gs)');
   analogNumber('Az',r['last'].imu_az,'az','Acceleration Z axis<br/>(in Gs)');
@@ -149,6 +194,12 @@ function refreshDashboard(t) {
   analogNumber('Elapsed Now Last',r['last'].elapsed,'time','Time elapsed from flight start<br/>Current time<br/>Last measurement',true);
   analogNumber('Current',r['last'].power_current,'amps','Power current<br/>(in amps)');
   analogNumber('Voltage',r['last'].power_voltage,'volts','Power voltage<br/>(in volts)');
+  // Twitter
+  $o='<h1>Twitter feed</h1>';
+  for(i=0;i<r['twitter'].length;i++) {
+    $o+='<div class="twit">'+r['twitter'][i].description+" <a href=\""+r['twitter'][i].link+"\" target=\"_blank\">[+]</a></div>";
+    }
+  $('twitter_wrapper').innerHTML=$o;
   }
 
 function getData() {
