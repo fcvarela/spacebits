@@ -11,5 +11,8 @@
 	</div>
 {/if}
 
+<script type="text/javascript" src="http://js.sapo.pt/SAPOWebAnalytics/"></script>        
+<script> SAPO.WebAnalytics.track({swakt:"305CBF64-3BE3-4DAB-B2C2-DB0001ACA942"}); </script>
+
 </body>
 </html>
