@@ -32,12 +32,21 @@ self.close();
 {/if}
 {if $ipad}
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="/images/spacebits.png"/>
+<meta name="viewport" content="user-scalable=no, width=device-width" />
+<link rel="apple-touch-startup-image" href="/images/spacesplash.png" />
+{literal}
+<script>
+ function BlockMove(event) {
+  event.preventDefault() ;
+ }
+</script>
+{/literal}
 {/if}
 </head>
 {if $uri=="/live"}
-<body onload="initDashboard();">
+<body onload="initDashboard();" {if $ipad}ontouchmove="BlockMove(event);"{/if}>
 {else}
 <body>
 {/if}
