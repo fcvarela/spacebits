@@ -18,6 +18,6 @@
 					<li><a href="http://softwarelivre.sapo.pt/projects/spacebits/browser" title="Source code">Source code</a></li>
 				</ul>
 			</div>
-			<span class="bottom_rounded"></span><span class="bottom_pic"></span>
+			<span class="bottom_rounded"></span><span class="bottom_pic"><img src="/images/spaceship.png"></span>
 			<hr />
 		</div>

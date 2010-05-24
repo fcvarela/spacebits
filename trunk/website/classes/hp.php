@@ -27,6 +27,7 @@ class Spacebits_Homepage {
     $this->smarty->assign('uid',$this->uid);
     list($uri)=explode("?",$_SERVER["REQUEST_URI"]);
     list($uri)=explode("&",$uri);
+    if($uri[strlen($uri)-1]=='/') $uri=substr($uri,0,-1);
     $this->smarty->assign('uri',$uri);
     if(strstr($_SERVER['HTTP_USER_AGENT'],'iPad')) $this->smarty->assign('ipad',true);
     }

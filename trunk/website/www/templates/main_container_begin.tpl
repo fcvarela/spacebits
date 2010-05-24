@@ -1,8 +1,7 @@
         <div id="container">
                 <div id="containertop"></div>
 {if $ipad==""}
-                <!-- Header -->
-                <h1><a href="/" title="Home">Spacebits Project</a></h1>
+                <a href="/"><img style="margin-left:10px;" src="/images/spacebits_top_image.png"/></a>
                 <hr />
                 <hr />
 {/if}

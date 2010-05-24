@@ -310,7 +310,7 @@
 		width: 287px;
 		height: 224px;
 		margin-bottom:-2px;
-		background: url(/images/services_bg_pic2.jpg) left top no-repeat;
+		background: #39442B url(/images/services_bg.jpg) bottom repeat-x;
 	}
 	/* list of services */
 	.serviceslist{
