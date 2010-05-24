@@ -13,7 +13,7 @@
 <script type="text/javascript" src="/js/prototype.js"></script>
 <script src="/js/scriptaculous.js" type="text/javascript"></script>
 <script src="/js/iphone-style-checkboxes.js" type="text/javascript"></script>
-<script src="/js/live.js?v4" type="text/javascript"></script>
+<script src="/js/live.js?v5" type="text/javascript"></script>
 <link rel="stylesheet" href="/stylesheets/buttons.css?v4" type="text/css" media="screen"/>
 {/if}
 {if $action=='edit' && $uid!=""}
@@ -36,5 +36,8 @@ self.close();
 <link rel="apple-touch-icon" href="/images/spacebits.png"/>
 {/if}
 </head>
+{if $uri=="/live"}
+<body onload="initDashboard();">
+{else}
 <body>
-
+{/if}

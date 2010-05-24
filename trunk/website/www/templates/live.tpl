@@ -116,8 +116,4 @@ useGauges = false;
 
   {include file="main_container_end.tpl"}
 
-<script type='text/javascript'>
-  window.onload = initDashboard();
-</script>
-
 {include file="footer.tpl"}

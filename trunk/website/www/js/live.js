@@ -65,34 +65,32 @@ function setTooltip(divid,alt) {
   }
 
 function initSwitches() {
-  document.observe("dom:loaded", function() {
     new iPhoneStyle('.on_off input[type=checkbox]',{checkedLabel: 'YES', uncheckedLabel: 'NO'});
     setInterval(function checkSwitches() {
-      sw_follow_cb = $$('.on_off input[type=checkbox]')[0].checked;
-      sw_sms_cb = $$('.on_off input[type=checkbox]')[1].checked;
-      sw_radio_cb = $$('.on_off input[type=checkbox]')[2].checked;
-      sw_twitter_cb = $$('.on_off input[type=checkbox]')[3].checked;
-      sw_demo_cb = $$('.on_off input[type=checkbox]')[4].checked;
-      if(twitter_last!==sw_twitter_cb) {
-        if(sw_twitter_cb) {
-          $('map_wrapper').style.width=(840-twitter_width-10).toString()+"px";
-          $('twitter_wrapper').style.width=twitter_width.toString()+"px";
-          $('twitter_wrapper').style.display="block";
-          if(map) map.zoomOut();
-          }
-          else
-          {
-          $('twitter_wrapper').style.display="none";
-          $('map_wrapper').style.width="840px";
-          if(map) map.zoomIn();
-          }
+    sw_follow_cb = $$('.on_off input[type=checkbox]')[0].checked;
+    sw_sms_cb = $$('.on_off input[type=checkbox]')[1].checked;
+    sw_radio_cb = $$('.on_off input[type=checkbox]')[2].checked;
+    sw_twitter_cb = $$('.on_off input[type=checkbox]')[3].checked;
+    sw_demo_cb = $$('.on_off input[type=checkbox]')[4].checked;
+    if(twitter_last!==sw_twitter_cb) {
+      if(sw_twitter_cb) {
+        $('map_wrapper').style.width=(840-twitter_width-10).toString()+"px";
+        $('twitter_wrapper').style.width=twitter_width.toString()+"px";
+        $('twitter_wrapper').style.display="block";
+        if(map) map.zoomOut();
         }
-      twitter_last = sw_twitter_cb;
-      }, 1000);
-    changeSwitch(0);
-    changeSwitch(3);
-    changeSwitch(4);
-    });
+        else
+        {
+        $('twitter_wrapper').style.display="none";
+        $('map_wrapper').style.width="840px";
+        if(map) map.zoomIn();
+        }
+      }
+    twitter_last = sw_twitter_cb;
+    }, 1000);
+  changeSwitch(0);
+  changeSwitch(3);
+  changeSwitch(4);
   }
 
 function changeSwitch(i) {
@@ -210,12 +208,6 @@ function getData() {
   }
 
 function initDashboard() {
-  initMap();
-  if(useGauges) {
-    initGauges();
-    }
-  initSwitches();
-  getData();
   switch(BrowserDetect.browser+parseInt(BrowserDetect.version)) {
     case "Safari4":
     case "Safari5":
@@ -227,10 +219,21 @@ function initDashboard() {
     case "Chrome5":
     case "Chrome6":
       break;
+    case "Explorer8":
+    case "Explorer9":
+      alert(BrowserDetect.browser+parseInt(BrowserDetect.version)+" will work with this page\nbut some elements have been degraded.\n\nPlease use one of these browsers for the best experience:\nSafari 4, Firefox 3, Opera 9, Chrome 5");
+      useGauges=false;
+      break;
     default:
       alert("Your browser "+BrowserDetect.browser+parseInt(BrowserDetect.version)+"\nis not supported for this page.\nSome elements may fail to render.\n\nPlease use one of these browsers for the best experience:\nSafari 4, Firefox 3, Opera 9, Chrome 5");
       break;
     }
+  initMap();
+  if(useGauges) {
+    initGauges();
+    }
+  initSwitches();
+  getData();
   }
 
 var tooltip=function(){
@@ -424,4 +427,3 @@ var BrowserDetect = {
 
 };
 BrowserDetect.init();
-
