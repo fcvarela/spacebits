@@ -219,6 +219,7 @@ function initDashboard() {
   switch(BrowserDetect.browser+parseInt(BrowserDetect.version)) {
     case "Safari4":
     case "Safari5":
+    case "SafariNaN":
     case "Firefox3":
     case "Firefox4":
     case "Opera9":
@@ -227,7 +228,7 @@ function initDashboard() {
     case "Chrome6":
       break;
     default:
-      alert("Your browser "+BrowserDetect.browser+", version "+BrowserDetect.version+"\nis not supported for this page.\nSome elements may fail to render.\n\nPlease use one of these browsers for the best experience:\nSafari 4, Firefox 3, Opera 9, Chrome 5");
+      alert("Your browser "+BrowserDetect.browser+parseInt(BrowserDetect.version)+"\nis not supported for this page.\nSome elements may fail to render.\n\nPlease use one of these browsers for the best experience:\nSafari 4, Firefox 3, Opera 9, Chrome 5");
       break;
     }
   }
