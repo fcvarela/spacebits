@@ -1,0 +1,16 @@
+CACHE MANIFEST
+
+# Bump this with each release:
+# Serial number 1
+
+/images/spacebits.png
+/images/spacesplash.png
+http://js.sapo.pt/Bundles/SAPOMapsAPI.js
+http://www.google.com/jsapi
+http://js.sapo.pt/Bundles/SAPOMapsAPI.js
+/js/prototype.js
+/js/scriptaculous.js
+/js/iphone-style-checkboxes.js
+
+NETWORK:
+/live
