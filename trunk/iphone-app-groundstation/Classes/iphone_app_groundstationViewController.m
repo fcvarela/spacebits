@@ -19,6 +19,8 @@
 	altitude = 0;
 	distanceToAltair = 0;
 	
+	predictor = [[AltairForwardPredictor alloc] init];
+	
 	CLLocationManager *locationManager=[[CLLocationManager alloc] init];
 	locationManager.delegate=self;
 	locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters;
@@ -27,14 +29,34 @@
 	responseData = [[NSMutableData data] retain];
 	[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
 	
+	mapView.delegate = self;
 }
 
 - (void)onTimer
 {
+	NSLog(@"Spawning request");
 	[self spawnTelemetryRequest];
 }
 
-
+- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation
+{
+	if ([annotation isKindOfClass:[MKUserLocation class]])
+		return nil;
+	
+	MKPinAnnotationView *newAnnotation;
+	NSLog(@"%@", annotation);
+	if (annotation == predictor) {
+		newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"green"];
+		newAnnotation.pinColor = MKPinAnnotationColorGreen;
+	} else {
+		newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"redpin"];
+		newAnnotation.pinColor = MKPinAnnotationColorRed;
+	}
+	newAnnotation.animatesDrop = NO;
+	newAnnotation.canShowCallout = NO;
+	
+    return newAnnotation;
+}
 
 - (void)spawnTelemetryRequest
 {
@@ -61,14 +83,20 @@
 	NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	NSDictionary *telemetry = [responseString JSONValue];
 	
-	return;AltairAnnotation *annot = [[[AltairAnnotation alloc] initWithLat:[[telemetry valueForKey:@"lat"] floatValue] lon:[[telemetry valueForKey:@"lon"] floatValue]] autorelease];
+	AltairAnnotation *annot = [[[AltairAnnotation alloc] initWithLat:[[telemetry valueForKey:@"lat"] floatValue] lon:[[telemetry valueForKey:@"lon"] floatValue]] autorelease];
+	[predictor didChangeCoordinates:annot.coordinate];
 	
-	[mapView addAnnotation:annot];
-	NSArray *annotations = [mapView annotations];
-	if ([annotations count] > 3) {
-		NSArray *del = [annotations subarrayWithRange:NSMakeRange(0, [annotations count]-3)];
-		[mapView removeAnnotations: del];
+	NSArray *annotations = [[NSArray alloc] initWithArray:[mapView annotations]];
+	NSMutableArray *delete = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	for (id annot in annotations) {
+		if ([annot isKindOfClass:[AltairAnnotation class]] || [annot isKindOfClass:[AltairForwardPredictor class]])
+			[delete addObject: annot];
 	}
+
+	[mapView removeAnnotations:delete];
+	[mapView addAnnotation:annot];
+	[mapView addAnnotation:predictor];
 }
 
 

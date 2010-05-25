@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "AltairForwardPredictor.h"
 
-@interface iphone_app_groundstationViewController : UIViewController <CLLocationManagerDelegate> {
+@interface iphone_app_groundstationViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate> {
 	NSNumber *altitude;
 	NSNumber *distanceToAltair;
 	NSMutableData *responseData;
+	AltairForwardPredictor *predictor;
+	
 	IBOutlet MKMapView *mapView;
 }
 

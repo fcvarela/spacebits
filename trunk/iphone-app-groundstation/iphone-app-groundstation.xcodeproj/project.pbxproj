@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11D660C111AC1B5C0098744C /* AltairForwardPredictor.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D660C011AC1B5C0098744C /* AltairForwardPredictor.m */; };
 		1D3623260D0F684500981E51 /* iphone_app_groundstationAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* iphone_app_groundstationAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11D660BF11AC1B5C0098744C /* AltairForwardPredictor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltairForwardPredictor.h; sourceTree = "<group>"; };
+		11D660C011AC1B5C0098744C /* AltairForwardPredictor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltairForwardPredictor.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* iphone_app_groundstationAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iphone_app_groundstationAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iphone_app_groundstationAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iphone_app_groundstationAppDelegate.m; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 				28D7ACF70DDB3853001CB0EB /* iphone_app_groundstationViewController.m */,
 				CAC905A211A46ECF0037A42E /* AltairAnnotation.h */,
 				CAC905A311A46ECF0037A42E /* AltairAnnotation.m */,
+				11D660BF11AC1B5C0098744C /* AltairForwardPredictor.h */,
+				11D660C011AC1B5C0098744C /* AltairForwardPredictor.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				CAC904F011A460D10037A42E /* SBJsonParser.m in Sources */,
 				CAC904F111A460D10037A42E /* SBJsonWriter.m in Sources */,
 				CAC905A411A46ECF0037A42E /* AltairAnnotation.m in Sources */,
+				11D660C111AC1B5C0098744C /* AltairForwardPredictor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
