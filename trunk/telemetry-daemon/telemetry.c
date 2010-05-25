@@ -75,66 +75,66 @@ int main(int argc, char **argv) {
 
 #ifndef DEBUG
 int setup_port(void) {
-	int fd;
-	struct termios newtio;
-	
-	fd = open(SERIAL_PORT, O_RDWR | O_NOCTTY);
-	if (fd == -1)
-		return fd;
-	
-	tcgetattr(fd, &newtio);
-	cfsetspeed(&newtio, SERIAL_SPD);
-	
-	newtio.c_cflag |= (CLOCAL | CREAD);
-	newtio.c_cflag &= ~PARENB;
-	newtio.c_cflag &= ~CSTOPB;
-	newtio.c_cflag &= ~CSIZE;
-	newtio.c_cflag |= CS8;
-	newtio.c_iflag |= (IGNPAR | IGNBRK);
-	newtio.c_oflag = 0;
-	newtio.c_iflag &= ~(IXON | IXOFF | IXANY);
-	newtio.c_lflag = 0;
-	tcflush(fd, TCIOFLUSH);
-	tcsetattr(fd, TCSANOW, &newtio);
-	
-	return(fd);
+    int fd;
+    struct termios newtio;
+
+    fd = open(SERIAL_PORT, O_RDWR | O_NOCTTY);
+    if (fd == -1)
+        return fd;
+
+    tcgetattr(fd, &newtio);
+    cfsetspeed(&newtio, SERIAL_SPD);
+
+    newtio.c_cflag |= (CLOCAL | CREAD);
+    newtio.c_cflag &= ~PARENB;
+    newtio.c_cflag &= ~CSTOPB;
+    newtio.c_cflag &= ~CSIZE;
+    newtio.c_cflag |= CS8;
+    newtio.c_iflag |= (IGNPAR | IGNBRK);
+    newtio.c_oflag = 0;
+    newtio.c_iflag &= ~(IXON | IXOFF | IXANY);
+    newtio.c_lflag = 0;
+    tcflush(fd, TCIOFLUSH);
+    tcsetattr(fd, TCSANOW, &newtio);
+
+    return(fd);
 }
 #endif
 
 void packet_loop(void) {
-	sensor_data_t packet;
-	#ifndef DEBUG
-	char c;
-	#endif
-	
-	while (1) {
-		#ifndef DEBUG
-		    pthread_mutex_lock(&serial_port_lock);
-		    read(serial_port, &c, 1);
-		    if (c != 'A') {
-			    pthread_mutex_unlock(&serial_port_lock);
-			    continue;
-		    }
-		    
-		    read(serial_port, &packet, sizeof(packet));
-    		read(serial_port, &c, 1);
-    		if (c != 'Z') {
-    			pthread_mutex_unlock(&serial_port_lock);
-    			continue;
-    		}
+    sensor_data_t packet;
+    #ifndef DEBUG
+    char c;
+    #endif
 
-    		pthread_mutex_unlock(&serial_port_lock);
-		#else
-			struct timeval tv;
-			time_t curtime;
-			gettimeofday(&tv, NULL);
-			curtime=tv.tv_sec;
-			char t_hour[3], t_min[3], t_sec[3];
-			strftime(t_hour, 3,"%H", localtime(&curtime));
-			strftime(t_min, 3,"%M", localtime(&curtime));
-			strftime(t_sec, 3,"%S", localtime(&curtime));
-			
-		    packet.voltage = 1024;
+    while (1) {
+        #ifndef DEBUG
+        pthread_mutex_lock(&serial_port_lock);
+            read(serial_port, &c, 1);
+            if (c != 'A') {
+                pthread_mutex_unlock(&serial_port_lock);
+                continue;
+            }
+
+            read(serial_port, &packet, sizeof(packet));
+            read(serial_port, &c, 1);
+            if (c != 'Z') {
+                pthread_mutex_unlock(&serial_port_lock);
+                continue;
+            }
+
+            pthread_mutex_unlock(&serial_port_lock);
+        #else
+            struct timeval tv;
+            time_t curtime;
+            gettimeofday(&tv, NULL);
+            curtime=tv.tv_sec;
+            char t_hour[3], t_min[3], t_sec[3];
+            strftime(t_hour, 3,"%H", localtime(&curtime));
+            strftime(t_min, 3,"%M", localtime(&curtime));
+            strftime(t_sec, 3,"%S", localtime(&curtime));
+
+            packet.voltage = 1024;
             packet.current = 1024;
             packet.bearing = 1024;
             packet.humidity = 1024;
@@ -152,39 +152,58 @@ void packet_loop(void) {
             sleep(2); //simulate a little locking delay (locking read on serial port)
         #endif
 
-		// push packet to telemetry topic
+        // push packet to telemetry topic
         char *xml = (char *)malloc(10000);
         packet_to_xml(&packet, xml);
-		unsigned int retval = broker_publish(broker, TELEMETRY_TOPIC, xml, strlen(xml));
+        unsigned int retval = broker_publish(broker, TELEMETRY_TOPIC, xml, strlen(xml));
         free(xml);
-		fprintf(stderr, "Published packet: %u\n", retval);
-	}
+        fprintf(stderr, "Published packet: %u\n", retval);
+    }
 }
 
 void packet_to_xml(sensor_data_t *packet, char *xml) {
-    char fmt[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><balloon><token>secret_here</token><power><current>%u</current><voltage>%u</voltage></power><atmosphere><pressure>%u</pressure><temp>%u</temp><humidity>%u</humidity><dust_density>%u</dust_density></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%u</lat><lon>%u</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%u</gx><gy>%u</gy><ax>%u</ax><ay>%u</ay><az>%u</az></imu></balloon>";
+    static float latitude = 37.761933;
+    static float longitude = -8.091904;
+    static int altitude = 0;
+    static uint8_t counter = 0;
+    
+    latitude += 0.001;
+    longitude += 0.001;
+    altitude += 1000;
+    
+    counter++;
+    
+    if (counter == 50) {
+        latitude = 37.761933;
+        longitude = -8.091904;
+        altitude = 0;
+        counter = 0;
+    }
+
+    char fmt[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><balloon><token>29v856792b29##/++9</token><power><current>%u</current><voltage>%u</voltage></power><atmosphere><pressure>%u</pressure><temp>%u</temp><humidity>%u</humidity><dust_density>%u</dust_density></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%f</lat><lon>%f</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%u</gx><gy>%u</gy><ax>%u</ax><ay>%u</ay><az>%u</az></imu></balloon>";
     sprintf(xml, fmt,
         packet->current, packet->voltage,
         packet->scp.raw_pressure, packet->scp.raw_temperature, packet->humidity, packet->dust_density,
         packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec,
-        37.761933, -8.091904, 30000, packet->bearing,
+        latitude, longitude, altitude, packet->bearing,
         packet->imu.gx, packet->imu.gy, packet->imu.ax, packet->imu.ay, packet->imu.az);
-	fprintf(stderr, "Time is: %d:%d:%d\n", packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec);
+    fprintf(stderr, "Time is: %d:%d:%d\n", packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec);
+    fprintf(stderr, "XML msg:\n---\n%s\n---\n", xml);
 }
 
 void command_loop(void) {
-	printf("Command loop started...\n");
-	while (1) {
-		// read from command queue...
-		sleep(1);
-		continue;
-		// got cmd? write to queue
-		/*
-		pthread_mutex_lock(&serial_port_lock);
-		write(serial_port, &hf[0], 1);
-		write(serial_port, (char)COMMAND_RESET, 1);
-		write(serial_port, &hf[1], 1);
-		pthread_mutex_unlock(&serial_port_lock);
-		*/
-	}
+    printf("Command loop started...\n");
+    while (1) {
+        // read from command queue...
+        sleep(1);
+        continue;
+        // got cmd? write to queue
+        /*
+        pthread_mutex_lock(&serial_port_lock);
+        write(serial_port, &hf[0], 1);
+        write(serial_port, (char)COMMAND_RESET, 1);
+        write(serial_port, &hf[1], 1);
+        pthread_mutex_unlock(&serial_port_lock);
+        */
+    }
 }
