@@ -277,8 +277,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>24</integer>
-									<integer>23</integer>
+									<integer>9</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -317,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>iphone_app_groundstationAppDelegate.m</string>
+								<string>AltairForwardPredictor.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>iphone_app_groundstationAppDelegate.m</string>
+										<string>AltairForwardPredictor.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>CAA4BB4311A6E2AE00A0FADC</string>
+										<string>CAEA653811AC90870077706A</string>
 										<key>history</key>
 										<array>
 											<string>CAC905E311A471190037A42E</string>
@@ -340,7 +341,8 @@
 											<string>CA6D578811A47BD700B15AE9</string>
 											<string>CA6D578911A47BD700B15AE9</string>
 											<string>CA6D578A11A47BD700B15AE9</string>
-											<string>CA6D57B611A47C2200B15AE9</string>
+											<string>CA3039C411AC308D006A7EB8</string>
+											<string>CAEA652F11AC90190077706A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -398,9 +400,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>CAA4BB3311A6E28D00A0FADC</string>
+				<string>CAEA653111AC90190077706A</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>CAA4BB3411A6E28D00A0FADC</string>
+				<string>CAEA653211AC90190077706A</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -538,12 +540,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>CAA4BB4411A6E2AE00A0FADC</string>
-		<string>CAA4BB3E11A6E28D00A0FADC</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>CA35D10611A1517500E63E18</string>
 		<string>/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone-app-groundstation.xcodeproj</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 59 1280 719 0 0 1280 778 </string>
@@ -623,7 +621,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>CA35D10611A1517500E63E18</string>
-				<string>CAA4BB3511A6E28D00A0FADC</string>
+				<string>CAEA653311AC90190077706A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -667,8 +665,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {316, 201}}</string>
-											<string>{{316, 0}, {378, 201}}</string>
+											<string>{{0, 0}, {316, 202}}</string>
+											<string>{{316, 0}, {378, 202}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -683,8 +681,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {694, 201}}</string>
-											<string>{{0, 201}, {694, 180}}</string>
+											<string>{{0, 0}, {694, 202}}</string>
+											<string>{{0, 202}, {694, 179}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -717,7 +715,7 @@
 										<real>148</real>
 									</array>
 									<key>Frame</key>
-									<string>{{316, 0}, {378, 201}}</string>
+									<string>{{316, 0}, {378, 202}}</string>
 									<key>RubberWindowFrame</key>
 									<string>42 310 694 422 0 0 1280 778 </string>
 								</dict>
@@ -745,13 +743,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>CAA4BB3611A6E28D00A0FADC</string>
+				<string>CA3039B211AC2E4C006A7EB8</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>CAA4BB3711A6E28D00A0FADC</string>
-				<string>CAA4BB3811A6E28D00A0FADC</string>
-				<string>CAA4BB3911A6E28D00A0FADC</string>
-				<string>CAA4BB3A11A6E28D00A0FADC</string>
-				<string>CAA4BB3B11A6E28D00A0FADC</string>
+				<string>CA3039B311AC2E4C006A7EB8</string>
+				<string>CA3039B411AC2E4C006A7EB8</string>
+				<string>CA3039B511AC2E4C006A7EB8</string>
+				<string>CA3039B611AC2E4C006A7EB8</string>
+				<string>CA3039B711AC2E4C006A7EB8</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -760,7 +758,7 @@
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -913,7 +911,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>CAA4BB3C11A6E28D00A0FADC</string>
+				<string>CA3039C911AC308D006A7EB8</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

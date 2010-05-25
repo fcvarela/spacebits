@@ -1,0 +1,717 @@
+Tiphone-app-groundstation
+v7
+r0
+t296496722.073683
+cCheck dependencies
+cProcessInfoPlistFile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/Info.plist iphone_app_groundstation-Info.plist
+cCompileXIB /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/MainWindow.xib
+cCompileXIB /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstationViewController.xib
+cProcessPCH /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch.gch iphone_app_groundstation_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/main.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationAppDelegate.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationViewController.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSObject+SBJSON.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSObject+SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSString+SBJSON.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSString+SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJSON.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonBase.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonBase.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonParser.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonParser.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonWriter.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonWriter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairAnnotation.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairAnnotation.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairForwardPredictor.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairForwardPredictor.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation normal i386
+cGenerateDSYMFile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app.dSYM /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation
+cTouch /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk
+c000000004B994DE000000000000000EE
+t1268338144
+s238
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004A0BAA26000000000026EE80
+t1242278438
+s2551424
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/CoreLocation.framework/CoreLocation
+c000000004A0CD38B00000000000423F0
+t1242354571
+s271344
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004A0BAB370000000000261F90
+t1242278711
+s2498448
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004A0BAB250000000000001355
+t1242278693
+s4949
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/MapKit.framework/Headers/MapKit.h
+c000000004A0BC0FF000000000000017D
+t1242284287
+s381
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/MapKit.framework/MapKit
+c000000004A0BC11200000000000F36E0
+t1242284306
+s997088
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004A0CBEBB000000000000075E
+t1242349243
+s1886
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004A0CBF5F0000000001434100
+t1242349407
+s21184768
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk
+c000000004B99753100000000000000EE
+t1268348209
+s238
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004B2B4CC3000000000026DB60
+t1261128899
+s2546528
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk/System/Library/Frameworks/CoreLocation.framework/CoreLocation
+c000000004B2B61C30000000000049D50
+t1261134275
+s302416
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004B2B4DC8000000000027D5E0
+t1261129160
+s2610656
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004B2B4DAE0000000000001355
+t1261129134
+s4949
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk/System/Library/Frameworks/MapKit.framework/Headers/MapKit.h
+c000000004B2B634C000000000000017D
+t1261134668
+s381
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk/System/Library/Frameworks/MapKit.framework/MapKit
+c000000004B2B6372000000000010D890
+t1261134706
+s1104016
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004B2B61620000000000000788
+t1261134178
+s1928
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004B2B62B50000000001670F70
+t1261134517
+s23531376
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk
+c000000004BB0E9C90000000000000110
+t1269885385
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004BA03AB3000000000026F020
+t1268791987
+s2551840
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/CoreLocation.framework/CoreLocation
+c000000004BA18C610000000000060DB0
+t1268878433
+s396720
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004B9F1DE40000000000289C20
+t1268719076
+s2661408
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004B9F1DD60000000000001355
+t1268719062
+s4949
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/MapKit.framework/Headers/MapKit.h
+c000000004B9F322B000000000000017D
+t1268724267
+s381
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/MapKit.framework/MapKit
+c000000004B9F323B0000000000160170
+t1268724283
+s1442160
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004BA6CAEC000000000000098F
+t1269222124
+s2447
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004BA6CB31000000000214E400
+t1269222193
+s34923520
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk
+c000000004BBF0FF80000000000000110
+t1270812664
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004BB70A760000000000279720
+t1270286966
+s2594592
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/CoreLocation.framework/CoreLocation
+c000000004BB7279900000000000664D0
+t1270294425
+s419024
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004BB70A830000000000277510
+t1270286979
+s2585872
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004BB70A5F0000000000001466
+t1270286943
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/MapKit.framework/Headers/MapKit.h
+c000000004BB7D7C700000000000002F9
+t1270339527
+s761
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/MapKit.framework/MapKit
+c000000004BB7D7F50000000000138040
+t1270339573
+s1278016
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004BB9113C00000000000009CD
+t1270419772
+s2509
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004BB9124900000000022C20B0
+t1270420041
+s36446384
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairAnnotation.h
+c000000004BF4387500000000000001DE
+t1274296437
+s478
+i<Foundation/Foundation.h>
+i<MapKit/MapKit.h>
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairAnnotation.m
+c000000004BF4388E0000000000000199
+t1274296462
+s409
+i"AltairAnnotation.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairForwardPredictor.h
+c000000004BFBF65300000000000001F7
+t1274803795
+s503
+i<Foundation/Foundation.h>
+i<MapKit/MapKit.h>
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairForwardPredictor.m
+c000000004BFBF653000000000000040E
+t1274803795
+s1038
+i"AltairForwardPredictor.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationAppDelegate.h
+c000000004BF119EF000000000000024C
+t1274092015
+s588
+i<UIKit/UIKit.h>
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationAppDelegate.m
+c000000004BFBF653000000000000029D
+t1274803795
+s669
+i"iphone_app_groundstationAppDelegate.h"
+i"iphone_app_groundstationViewController.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationViewController.h
+c000000004BFBF653000000000000026A
+t1274803795
+s618
+i<UIKit/UIKit.h>
+i<MapKit/MapKit.h>
+i"AltairForwardPredictor.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationViewController.m
+c000000004BFBF6530000000000000E4C
+t1274803795
+s3660
+i"iphone_app_groundstationViewController.h"
+i"AltairAnnotation.h"
+i"JSON.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/JSON.h
+c000000004B93BE5E00000000000008F9
+t1267973726
+s2297
+i"SBJSON.h"
+i"NSObject+SBJSON.h"
+i"NSString+SBJSON.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSObject+SBJSON.h
+c000000004B93BE5E0000000000000A01
+t1267973726
+s2561
+i<Foundation/Foundation.h>
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSObject+SBJSON.m
+c000000004B93BE5E000000000000089E
+t1267973726
+s2206
+i"NSObject+SBJSON.h"
+i"SBJsonWriter.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSString+SBJSON.h
+c000000004B93BE5E0000000000000916
+t1267973726
+s2326
+i<Foundation/Foundation.h>
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSString+SBJSON.m
+c000000004B93BE5E000000000000087D
+t1267973726
+s2173
+i"NSString+SBJSON.h"
+i"SBJsonParser.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJSON.h
+c000000004B93BE5E0000000000000AED
+t1267973726
+s2797
+i<Foundation/Foundation.h>
+i"SBJsonParser.h"
+i"SBJsonWriter.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJSON.m
+c000000004B93BE5E0000000000001ABC
+t1267973726
+s6844
+i"SBJSON.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonBase.h
+c000000004B93BE5E0000000000000B82
+t1267973726
+s2946
+i<Foundation/Foundation.h>
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonBase.m
+c000000004B93BE5E0000000000000AC1
+t1267973726
+s2753
+i"SBJsonBase.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonParser.h
+c000000004B93BE5E0000000000000C0B
+t1267973726
+s3083
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonParser.m
+c000000004B93C6A300000000000036D0
+t1267975843
+s14032
+i"SBJsonParser.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonWriter.h
+c000000004B93BE5E0000000000001140
+t1267973726
+s4416
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonWriter.m
+c000000004B93BE5E0000000000001F26
+t1267973726
+s7974
+i"SBJsonWriter.h"
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/MainWindow.xib
+c000000004BFBF6530000000000005485
+t1274803795
+s21637
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app
+t1274803922
+s238
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app.dSYM
+t1274803922
+s102
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/Info.plist
+t1274299521
+s653
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/MainWindow.nib
+t1274803920
+s1735
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/PkgInfo
+t1274299521
+s8
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation
+t1274803921
+s64516
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone_app_groundstationViewController.nib
+t1274299522
+s3463
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairAnnotation.o
+t1274299523
+s10020
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairForwardPredictor.o
+t1274803921
+s11148
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSObject+SBJSON.o
+t1274299523
+s7804
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSString+SBJSON.o
+t1274299523
+s7824
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJSON.o
+t1274299523
+s16824
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonBase.o
+t1274299523
+s12168
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonParser.o
+t1274299523
+s29916
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonWriter.o
+t1274299523
+s22620
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone-app-groundstation.LinkFileList
+c000000004BFBF6CD00000000000008E3
+t1274803917
+s2275
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationAppDelegate.o
+t1274803921
+s39252
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationViewController.o
+t1274803921
+s47648
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/main.o
+t1274299522
+s6020
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstationViewController.xib
+c000000004BF11F790000000000005641
+t1274093433
+s22081
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation_Prefix.pch
+c000000004BF119EF00000000000000D9
+t1274092015
+s217
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/main.m
+c000000004BF119EF0000000000000181
+t1274092015
+s385
+i<UIKit/UIKit.h>
+
+N/var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-bhwyziyelfqbccfmhxyihwymiomt/iphone_app_groundstation_Prefix.pch.gch
+t1274296625
+s15154192
+
+N/var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch.gch
+t1274299522
+s12952976
+
+N/var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-czilbiklqcgakncatfcbfqnvqvnd/iphone_app_groundstation_Prefix.pch.gch
+t1274299145
+s13805456
+
+N/var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-gfueqwidxwjfhzhbbulvfnphxixo/iphone_app_groundstation_Prefix.pch.gch
+t1274299107
+s13026768
+
+Niphone_app_groundstation-Info.plist
+c000000004BF444790000000000000378
+t1274299513
+s888
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies296496717#296496717#0(0"0(0#1#0"7957693898596316160#0"0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairAnnotation.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairAnnotation.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s295992323.369020
+e295992323.444230
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairAnnotation.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairAnnotation.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@111"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairAnnotation.m295992323#295992323#0(0"0(0#0#103"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairAnnotation.m4300739032#2647"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairAnnotation.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairAnnotation.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairForwardPredictor.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairForwardPredictor.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s296496721.406702
+e296496721.509620
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairForwardPredictor.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairForwardPredictor.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@117"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairForwardPredictor.m296496721#296496721#0(0"0(0#0#109"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairForwardPredictor.m4300739032#2659"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/AltairForwardPredictor.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/AltairForwardPredictor.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSObject+SBJSON.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSObject+SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s295992323.010567
+e295992323.079227
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSObject+SBJSON.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSObject+SBJSON.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@107"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSObject+SBJSON.m295992323#295992323#0(0"0(0#0#99"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSObject+SBJSON.m4300739032#2642"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSObject+SBJSON.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSObject+SBJSON.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSString+SBJSON.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSString+SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s295992323.079358
+e295992323.161188
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSString+SBJSON.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSString+SBJSON.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@107"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSString+SBJSON.m295992323#295992323#0(0"0(0#0#99"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSString+SBJSON.m4300739032#2642"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/NSString+SBJSON.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/NSString+SBJSON.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJSON.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJSON.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s295992323.121805
+e295992323.263335
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJSON.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJSON.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@98"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJSON.m295992323#295992323#0(0"0(0#0#90"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJSON.m4300739032#2624"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJSON.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJSON.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonBase.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonBase.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s295992323.161331
+e295992323.242837
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonBase.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonBase.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@102"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonBase.m295992323#295992323#0(0"0(0#0#94"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonBase.m4300739032#2632"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonBase.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonBase.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonParser.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonParser.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s295992323.243079
+e295992323.401927
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonParser.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonParser.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@104"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonParser.m295992323#295992323#0(0"0(0#0#96"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonParser.m4300739032#2636"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonParser.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonParser.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonWriter.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonWriter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s295992323.263474
+e295992323.368881
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonWriter.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonWriter.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@104"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonWriter.m295992323#295992323#0(0"0(0#0#96"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonWriter.m4300739032#2636"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/JSON/SBJsonWriter.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/SBJsonWriter.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationAppDelegate.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s296496720.794440
+e296496721.405882
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationAppDelegate.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@130"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationAppDelegate.m296496720#296496721#0(0"0(0#0#122"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationAppDelegate.m4300739032#2685"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationAppDelegate.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationAppDelegate.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationViewController.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s296496720.795762
+e296496721.416107
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationViewController.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@133"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationViewController.m296496720#296496721#0(0"0(0#0#125"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationViewController.m4300739032#2691"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/Classes/iphone_app_groundstationViewController.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone_app_groundstationViewController.o0#
+
+CCompileC build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/main.o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s295992322.913864
+e295992322.996842
+r1
+xCompileC
+xbuild/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/main.o
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@91"Compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/main.m295992322#295992322#0(0"0(0#0#83"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/main.m4300739032#2615"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -include /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/main.m -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/main.o0#
+
+CCompileXIB /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/MainWindow.xib
+s296496717.419440
+e296496720.793927
+r1
+xCompileXIB
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib296496717#296496720#0(0"0(0#0#91"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/MainWindow.xib3419199087778818560#611"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/MainWindow.nib /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/MainWindow.xib0#
+
+CCompileXIB /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstationViewController.xib
+s295992321.741130
+e295992322.266770
+r1
+xCompileXIB
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstationViewController.xib
+lSLF07#2@53"CompileXIB iphone_app_groundstationViewController.xib295992321#295992322#0(0"0(0#0#119"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstationViewController.xib4300739032#667"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone_app_groundstationViewController.nib /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstationViewController.xib0#
+
+CGenerateDSYMFile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app.dSYM /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation
+s296496721.998124
+e296496722.068633
+r1
+xGenerateDSYMFile
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app.dSYM
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation
+lSLF07#2@160"GenerateDSYMFile build/Debug-iphonesimulator/iphone-app-groundstation.app.dSYM build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation296496721#296496722#0(0"0(0#0#158"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation4300739032#548"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app.dSYM0#
+
+CLd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation normal i386
+s296496721.509726
+e296496721.998007
+r1
+xLd
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation
+xnormal
+xi386
+lSLF07#2@163"Link /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation296496721#296496722#0(0"0(0#0#0"4300739032#1179"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -L/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -filelist /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/Objects-normal/i386/iphone-app-groundstation.LinkFileList -mmacosx-version-min=10.5 -framework Foundation -framework UIKit -framework CoreGraphics -framework MapKit -framework CoreLocation -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/iphone-app-groundstation0#
+
+CProcessInfoPlistFile /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/Info.plist iphone_app_groundstation-Info.plist
+s295992321.715181
+e295992321.737478
+r1
+xProcessInfoPlistFile
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/Info.plist
+xiphone_app_groundstation-Info.plist
+lSLF07#2@43"Process iphone_app_groundstation-Info.plist295992321#295992321#0(0"0(0#0#112"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation-Info.plist4300739032#644"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility iphone_app_groundstation-Info.plist -genpkginfo /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app/Info.plist0#
+
+CProcessPCH /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-bhwyziyelfqbccfmhxyihwymiomt/iphone_app_groundstation_Prefix.pch.gch iphone_app_groundstation_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s295989423.846335
+e295989425.387791
+r1
+xProcessPCH
+x/var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-bhwyziyelfqbccfmhxyihwymiomt/iphone_app_groundstation_Prefix.pch.gch
+xiphone_app_groundstation_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@46"Precompile iphone_app_groundstation_Prefix.pch295989423#295989425#0(0"0(0#0#112"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation_Prefix.pch4300739032#2452"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=40000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation_Prefix.pch -o /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-bhwyziyelfqbccfmhxyihwymiomt/iphone_app_groundstation_Prefix.pch.gch0#
+
+CProcessPCH /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch.gch iphone_app_groundstation_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s295992322.266910
+e295992322.913738
+r1
+xProcessPCH
+x/var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch.gch
+xiphone_app_groundstation_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@46"Precompile iphone_app_groundstation_Prefix.pch295992322#295992322#0(0"0(0#0#112"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation_Prefix.pch4300739032#2452"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation_Prefix.pch -o /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-cenlztcmfcwwdagaeoeyimclyrxq/iphone_app_groundstation_Prefix.pch.gch0#
+
+CProcessPCH /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-czilbiklqcgakncatfcbfqnvqvnd/iphone_app_groundstation_Prefix.pch.gch iphone_app_groundstation_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s295991944.591441
+e295991945.583199
+r1
+xProcessPCH
+x/var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-czilbiklqcgakncatfcbfqnvqvnd/iphone_app_groundstation_Prefix.pch.gch
+xiphone_app_groundstation_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@46"Precompile iphone_app_groundstation_Prefix.pch295991944#295991945#0(0"0(0#0#112"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation_Prefix.pch4300739032#2452"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation_Prefix.pch -o /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-czilbiklqcgakncatfcbfqnvqvnd/iphone_app_groundstation_Prefix.pch.gch0#
+
+CProcessPCH /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-gfueqwidxwjfhzhbbulvfnphxixo/iphone_app_groundstation_Prefix.pch.gch iphone_app_groundstation_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s295991906.081339
+e295991907.462704
+r1
+xProcessPCH
+x/var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-gfueqwidxwjfhzhbbulvfnphxixo/iphone_app_groundstation_Prefix.pch.gch
+xiphone_app_groundstation_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@46"Precompile iphone_app_groundstation_Prefix.pch295991906#295991907#0(0"0(0#0#112"/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation_Prefix.pch4300739032#2454"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.3.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-generated-files.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-own-target-headers.hmap -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-all-target-headers.hmap -iquote /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/iphone-app-groundstation-project-headers.hmap -F/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/include -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources/i386 -I/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/iphone-app-groundstation.build/Debug-iphonesimulator/iphone-app-groundstation.build/DerivedSources -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/iphone_app_groundstation_Prefix.pch -o /var/folders/ux/uxumO23OFVedscJCs90Ckk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iphone_app_groundstation_Prefix-gfueqwidxwjfhzhbbulvfnphxixo/iphone_app_groundstation_Prefix.pch.gch0#
+
+CTouch /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app
+s296496722.068735
+e296496722.073611
+r1
+xTouch
+x/Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app
+lSLF07#2@139"Touch /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app296496722#296496722#0(0"0(0#0#0"4300739032#371"    cd /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/fcvarela/Documents/Projectos/spacebits/trunk/iphone-app-groundstation/build/Debug-iphonesimulator/iphone-app-groundstation.app0#
+
