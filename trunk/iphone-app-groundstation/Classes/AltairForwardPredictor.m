@@ -12,10 +12,14 @@
 @implementation AltairForwardPredictor
 
 @synthesize coordinate;
+@synthesize title;
+@synthesize subtitle;
 
 - (id)init
 {
 	self = [super init];
+	title = @"Predicted next position";
+	subtitle = @"";
 	return self;
 }
 

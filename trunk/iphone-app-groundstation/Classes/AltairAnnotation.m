@@ -12,6 +12,8 @@
 @implementation AltairAnnotation
 
 @synthesize coordinate;
+@synthesize title;
+@synthesize subtitle;
 
 - (id)initWithLat:(float)lat lon:(float)lon
 {
@@ -19,6 +21,9 @@
 	
 	coordinate.latitude = lat;
 	coordinate.longitude = lon;
+	
+	title = @"Current position";
+    subtitle = @"Altitude";
 	
 	return self;
 }

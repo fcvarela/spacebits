@@ -27,7 +27,7 @@
 	[locationManager startUpdatingLocation];
 	
 	responseData = [[NSMutableData data] retain];
-	[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+	[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
 	
 	mapView.delegate = self;
 }
@@ -44,7 +44,6 @@
 		return nil;
 	
 	MKPinAnnotationView *newAnnotation;
-	NSLog(@"%@", annotation);
 	if (annotation == predictor) {
 		newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"green"];
 		newAnnotation.pinColor = MKPinAnnotationColorGreen;
@@ -52,8 +51,8 @@
 		newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"redpin"];
 		newAnnotation.pinColor = MKPinAnnotationColorRed;
 	}
-	newAnnotation.animatesDrop = NO;
-	newAnnotation.canShowCallout = NO;
+	newAnnotation.animatesDrop = YES;
+	newAnnotation.canShowCallout = YES;
 	
     return newAnnotation;
 }

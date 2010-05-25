@@ -17,6 +17,8 @@
 }
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *subtitle;
 
 - (id)initWithLat:(float)lat lon:(float)lon;
 
