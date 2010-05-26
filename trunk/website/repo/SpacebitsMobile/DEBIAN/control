@@ -1,0 +1,14 @@
+Package: com.sapo.spacebits
+Name: SpacebitsMobile
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Spacebits iPhone App
+ User this app to track the
+ Spacebits Balloon launches
+ Check the website for more info
+Homepage: http://spacebits.eu/
+Depiction: http://spacebits.eu/
+Maintainer: Spacebits Team <spacebits@sapo.pt>
+Author: Filipe Varela <fcvarela@gmail.com>
+Sponsor: SAPO <http://sapo.pt/>
+Section: Utilities
