@@ -48,7 +48,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* iphone-app-groundstation */;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = "iphone-app-groundstation";
 		};
 /* End PBXContainerItemProxy section */
@@ -256,7 +256,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/rm -rf $CONFIGURATION_BUILD_DIR/Payload\n/bin/mkdir $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iphone-app-groundstation.app $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp spacebits.png $CONFIGURATION_BUILD_DIR/iTunesArtwork\ncd $CONFIGURATION_BUILD_DIR\n/usr/bin/zip -r iphone-app-groundstation.ipa Payload iTunesArtwork\n";
+			shellScript = "/bin/rm -rf $CONFIGURATION_BUILD_DIR/Payload\n/bin/mkdir $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iphone-app-groundstation.app $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp spacebits.png $CONFIGURATION_BUILD_DIR/iTunesArtwork\ncd $CONFIGURATION_BUILD_DIR\n/usr/bin/zip -r iphone-app-groundstation.ipa Payload iTunesArtwork\n/bin/cp -R iphone-app-groundstation.ipa ../../";
 		};
 /* End PBXShellScriptBuildPhase section */
 
