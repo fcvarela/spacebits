@@ -16,3 +16,4 @@ bzip2 Packages
 cd ..
 rm -fr /servers/spacebits/www/repo
 mv repo /servers/spacebits/www/repo
+cp /servers/spacebits/repo/index.hmtl /servers/spacebits/www/repo
