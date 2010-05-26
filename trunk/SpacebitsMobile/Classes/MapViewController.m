@@ -8,10 +8,9 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	CLLocationManager *locationManager=[[CLLocationManager alloc] init];
-	locationManager.delegate=self;
-	locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters;
-	[locationManager startUpdatingLocation];
+	locationController = [[LocationController alloc] init];
+	locationController.delegate = self;
+	[locationController.locationManager startUpdatingLocation];	
 	
 	[[[UIApplication sharedApplication] delegate] addObserver:self forKeyPath:@"telemetry" options:NSKeyValueObservingOptionNew context:nil];
 	
@@ -38,6 +37,13 @@
 	return result;
 }
 
+- (void)locationUpdate:(CLLocation *)location {
+	NSLog(@"\n\n1\n\n");
+}
+
+- (void)locationError:(NSError *)error {
+	NSLog(@"\n\n%@\n\n", error);
+}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -50,9 +56,7 @@
 		newCoords.latitude = [[telemetry valueForKey:@"lat"] floatValue];
 		newCoords.longitude = [[telemetry valueForKey:@"lon"] floatValue];
 		
-		[altairAnnotation changeCoordinate:newCoords];
-		
-		///altairAnnotation.coordinate = newCoords;
+		altairAnnotation.coordinate = newCoords;
 		[altairForwardPredictorAnnotation didChangeCoordinates:newCoords];
 		altairForwardPredictorAnnotation.coordinate = altairForwardPredictorAnnotation.coordinate;
 	}

@@ -32,6 +32,8 @@
 	
 	if (section == 2)
 		secName = @"Sensor Array";
+	
+	return secName;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

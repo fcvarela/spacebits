@@ -35,6 +35,7 @@
 		112A124211AD4C06000A3B69 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 112A123B11AD4C06000A3B69 /* SBJsonParser.m */; };
 		112A124311AD4C06000A3B69 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 112A123D11AD4C06000A3B69 /* SBJsonWriter.m */; };
 		112A124D11AD4C3C000A3B69 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 112A124C11AD4C3C000A3B69 /* CoreLocation.framework */; };
+		117954B911AD763C00C6160C /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 117954B811AD763C00C6160C /* LocationController.m */; };
 		1D3623260D0F684500981E51 /* SpacebitsMobileAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SpacebitsMobileAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -79,6 +80,8 @@
 		112A123C11AD4C06000A3B69 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		112A123D11AD4C06000A3B69 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		112A124C11AD4C3C000A3B69 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		117954B711AD763C00C6160C /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		117954B811AD763C00C6160C /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SpacebitsMobileAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpacebitsMobileAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SpacebitsMobileAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpacebitsMobileAppDelegate.m; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 				1D3623250D0F684500981E51 /* SpacebitsMobileAppDelegate.m */,
 				110E1D2911AD5A78008F84A1 /* TelemetryViewController.h */,
 				110E1D2A11AD5A78008F84A1 /* TelemetryViewController.m */,
+				117954B711AD763C00C6160C /* LocationController.h */,
+				117954B811AD763C00C6160C /* LocationController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				112A124211AD4C06000A3B69 /* SBJsonParser.m in Sources */,
 				112A124311AD4C06000A3B69 /* SBJsonWriter.m in Sources */,
 				110E1D2C11AD5A78008F84A1 /* TelemetryViewController.m in Sources */,
+				117954B911AD763C00C6160C /* LocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
