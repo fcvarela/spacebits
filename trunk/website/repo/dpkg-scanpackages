@@ -125,7 +125,7 @@ FILE:
     while (<$find_h>) {
 	chomp;
 	my $fn = $_;
-	my $control = `dpkg-deb -I $fn control`;
+	my $control = `/servers/spacebits/repo/dpkg-deb-fat -I $fn control`;
 	if ($control eq "") {
 	    warn sprintf(_g("Couldn't call dpkg-deb on %s: %s, skipping package"), $fn, $!)."\n";
 	    next;
@@ -173,7 +173,7 @@ FILE:
 	
 	$tv{'Filename'}= "$pathprefix$fn";
 	
-	open(C,"md5sum <$fn |") || die "$fn $!";
+	open(C,"md5 <$fn |") || die "$fn $!";
 	chop($_=<C>); close(C); $? and die sprintf(_g("\`md5sum < %s' exited with %d"), $fn, $?)."\n";
 	/^([0-9a-f]{32})\s*-?\s*$/ or die sprintf(_g("Strange text from \`md5sum < %s': \`%s'"), $fn, $_)."\n";
 	$tv{'MD5sum'}= $1;
