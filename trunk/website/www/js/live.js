@@ -193,7 +193,7 @@ function refreshDashboard(t) {
   analogNumber('Current',r['last'].power_current,'amps','Power current<br/>(in amps)');
   analogNumber('Voltage',r['last'].power_voltage,'volts','Power voltage<br/>(in volts)');
   // Twitter
-  $o='<h1>Twitter feed</h1>';
+  $o='<h1><a href="http://twitter.com/flyspacebits" target="_blank">Twitter feed</a></h1>';
   for(i=0;i<r['twitter'].length;i++) {
     $o+='<div class="twit">'+r['twitter'][i].description+" <a href=\""+r['twitter'][i].link+"\" target=\"_blank\">[+]</a></div>";
     }

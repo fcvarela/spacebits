@@ -16,6 +16,7 @@
 					<li><a href="/page/spacebits1live.html" title="Spacebits 1 Launch">Spacebits 1 Launch</a></li>
 					<li><a href="/page/references.html" title="Photos">References</a></li>
 					<li><a href="http://softwarelivre.sapo.pt/projects/spacebits/browser" title="Source code">Source code</a></li>
+					<li><a href="/page/wallpapers.html" title="Wallpapers">Wallpapers</a></li>
 				</ul>
 			</div>
 			<span class="bottom_rounded"></span><span class="bottom_pic"><img src="/images/spaceship.png"></span>

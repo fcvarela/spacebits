@@ -14,6 +14,10 @@ This is our Multimedia archive. Here you can find photos and videos of our team 
 	  {include last="1" file="banner.tpl" title="3rd meeting photos" icon="3rdmeet.jpg" link="/page/3rdmeet.html"}
 	</div>
 
+	<div id="multimedia_wrapper">
+	  {include file="banner.tpl" title="Videos" icon="meetvideos.png" link="/page/meetvideos.html"}
+	</div>
+
 
       {include file="services.tpl"}
 

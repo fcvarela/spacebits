@@ -121,7 +121,7 @@ class Spacebits_Homepage {
         if (is_dir($this->uploads)) {
           if ($dh = opendir($this->uploads)) {
             while (($file = readdir($dh)) !== false) {
-              if(preg_match("/\.jpg$/i",$file)) {
+              if(preg_match("/\.(jpg|gif|png)$/i",$file)) {
                 array_push($files,$file);
                 }
               }
@@ -132,6 +132,7 @@ class Spacebits_Homepage {
         $this->smarty->assign('offset',$id);
         $this->smarty->assign('files',$files);
         $this->smarty->assign('func',$_GET['CKEditorFuncNum']);
+        $this->smarty->assign('suffix','CKEditor=articlecontent&CKEditorFuncNum='.$_GET['CKEditorFuncNum'].'&langCode=en');
         $this->smarty->display('browser.tpl');
         break;
       case "save":

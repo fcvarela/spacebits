@@ -15,8 +15,6 @@
 
     <br/>
 
-    {assign var="suffix" value="CKEditor=articlecontent&CKEditorFuncNum=$func&langCode=en"}
-
     {if $offset>0}
       <a href="/page/0?browser&{$suffix}">|<</a>
       <a href="/page/{$offset-10}?browser&{$suffix}"> << </a>
