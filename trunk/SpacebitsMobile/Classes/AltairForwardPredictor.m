@@ -6,12 +6,18 @@
 @synthesize coordinate;
 @synthesize title;
 @synthesize subtitle;
+@synthesize view;
 
 - (id)init
 {
 	self = [super init];
 	title = @"Predicted next position";
 	subtitle = @"";
+	
+	view = [[MKPinAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"green"];
+	view.pinColor = MKPinAnnotationColorGreen;
+	view.canShowCallout = YES;
+	
 	return self;
 }
 

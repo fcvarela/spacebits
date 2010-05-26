@@ -8,17 +8,18 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	altitude = 0;
-	distanceToAltair = 0;
-	
-	predictor = [[AltairForwardPredictor alloc] init];
-	
 	CLLocationManager *locationManager=[[CLLocationManager alloc] init];
 	locationManager.delegate=self;
 	locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters;
 	[locationManager startUpdatingLocation];
 	
 	[[[UIApplication sharedApplication] delegate] addObserver:self forKeyPath:@"telemetry" options:NSKeyValueObservingOptionNew context:nil];
+	
+	altairAnnotation = [[AltairAnnotation alloc] init];
+	altairForwardPredictorAnnotation = [[AltairForwardPredictor alloc] init];
+	
+	[mapView addAnnotation:altairAnnotation];
+	[mapView addAnnotation:altairForwardPredictorAnnotation];
 	
 	mapView.delegate = self;
 }
@@ -28,18 +29,13 @@
 	if ([annotation isKindOfClass:[MKUserLocation class]])
 		return nil;
 	
-	MKPinAnnotationView *newAnnotation;
-	if (annotation == predictor) {
-		newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"green"];
-		newAnnotation.pinColor = MKPinAnnotationColorGreen;
-	} else {
-		newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"redpin"];
-		newAnnotation.pinColor = MKPinAnnotationColorRed;
-	}
-	newAnnotation.animatesDrop = YES;
-	newAnnotation.canShowCallout = YES;
+	MKAnnotationView *result;
+	if (annotation == altairAnnotation)
+		result = altairAnnotation.view;
+	else
+		result = altairForwardPredictorAnnotation.view;
 	
-    return newAnnotation;
+	return result;
 }
 
 
@@ -50,20 +46,15 @@
 		SpacebitsMobileAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 		NSDictionary *telemetry = appDelegate.telemetry;
 	
-		AltairAnnotation *annot = [[[AltairAnnotation alloc] initWithLat:[[telemetry valueForKey:@"lat"] floatValue] lon:[[telemetry valueForKey:@"lon"] floatValue]] autorelease];
-		[predictor didChangeCoordinates:annot.coordinate];
-	
-		NSArray *annotations = [[NSArray alloc] initWithArray:[mapView annotations]];
-		NSMutableArray *delete = [[NSMutableArray alloc] initWithCapacity:1];
-	
-		for (id annot in annotations) {
-			if ([annot isKindOfClass:[AltairAnnotation class]] || [annot isKindOfClass:[AltairForwardPredictor class]])
-				[delete addObject: annot];
-		}
-	
-		[mapView removeAnnotations:delete];
-		[mapView addAnnotation:annot];
-		[mapView addAnnotation:predictor];
+		CLLocationCoordinate2D newCoords;
+		newCoords.latitude = [[telemetry valueForKey:@"lat"] floatValue];
+		newCoords.longitude = [[telemetry valueForKey:@"lon"] floatValue];
+		
+		[altairAnnotation changeCoordinate:newCoords];
+		
+		///altairAnnotation.coordinate = newCoords;
+		[altairForwardPredictorAnnotation didChangeCoordinates:newCoords];
+		altairForwardPredictorAnnotation.coordinate = altairForwardPredictorAnnotation.coordinate;
 	}
 	
 	if ([keyPath isEqualToString:@"mapType"]) {

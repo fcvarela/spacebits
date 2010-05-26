@@ -1,13 +1,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "AltairAnnotation.h"
 #import "AltairForwardPredictor.h"
 
 @interface MapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate> {
-	NSNumber *altitude;
-	NSNumber *distanceToAltair;
-	AltairForwardPredictor *predictor;
 	IBOutlet MKMapView *mapView;
+	AltairAnnotation *altairAnnotation;
+	AltairForwardPredictor *altairForwardPredictorAnnotation;
 }
 
 

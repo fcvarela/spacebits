@@ -6,16 +6,17 @@
 @synthesize coordinate;
 @synthesize title;
 @synthesize subtitle;
+@synthesize view;
 
-- (id)initWithLat:(float)lat lon:(float)lon
+- (id)init
 {
 	self = [super init];
+	title = @"Current Position";
+	subtitle = @"";
 	
-	coordinate.latitude = lat;
-	coordinate.longitude = lon;
-	
-	title = @"Current position";
-    subtitle = @"Altitude";
+	view = [[MKPinAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"red"];
+	view.pinColor = MKPinAnnotationColorRed;
+	view.canShowCallout = YES;
 	
 	return self;
 }
