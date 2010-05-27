@@ -1,0 +1,154 @@
+// !$*UTF8*$!
+{
+	112A11DA11AD489A000A3B69 /* spacebits.png */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 99}, {826, 674}}";
+		};
+	};
+	112A11E211AD48B5000A3B69 /* IPA */ = {
+		activeExec = 0;
+	};
+	1D6058900D05DD3D006BFB54 /* SpacebitsMobile */ = {
+		activeExec = 0;
+		executables = (
+			CAA9F9D511ADB6F3009750FB /* SpacebitsMobile */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = CAA9F9D511ADB6F3009750FB /* SpacebitsMobile */;
+		activeSDKPreference = iphoneos3.0;
+		activeTarget = 112A11E211AD48B5000A3B69 /* IPA */;
+		codeSenseManager = CAA9F9E911ADB6F8009750FB /* Code sense */;
+		executables = (
+			CAA9F9D511ADB6F3009750FB /* SpacebitsMobile */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					301,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 296614369;
+			PBXWorkspaceStateSaveDate = 296614369;
+		};
+		perUserProjectItems = {
+			CA262ECF11ADE5FB00829989 /* PlistBookmark */ = CA262ECF11ADE5FB00829989 /* PlistBookmark */;
+			CAB92D3511ADDADD005641E0 /* PBXBookmark */ = CAB92D3511ADDADD005641E0 /* PBXBookmark */;
+			CADBCD9C11ADF9FA00F21BA1 /* PlistBookmark */ = CADBCD9C11ADF9FA00F21BA1 /* PlistBookmark */;
+		};
+		sourceControlManager = CAA9F9E811ADB6F8009750FB /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	CA262ECF11ADE5FB00829989 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* SpacebitsMobile-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSMainNibFile,
+		);
+		name = "/Users/fcvarela/Documents/Projectos/spacebits/trunk/SpacebitsMobile/SpacebitsMobile-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	CAA9F9D511ADB6F3009750FB /* SpacebitsMobile */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = SpacebitsMobile;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	CAA9F9E811ADB6F8009750FB /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	CAA9F9E911ADB6F8009750FB /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	CAB92D3511ADDADD005641E0 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 112A11DA11AD489A000A3B69 /* spacebits.png */;
+	};
+	CADBCD9C11ADF9FA00F21BA1 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* SpacebitsMobile-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSMainNibFile,
+		);
+		name = "/Users/fcvarela/Documents/Projectos/spacebits/trunk/SpacebitsMobile/SpacebitsMobile-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+}
