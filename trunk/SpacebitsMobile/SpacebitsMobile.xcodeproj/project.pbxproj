@@ -23,6 +23,11 @@
 
 /* Begin PBXBuildFile section */
 		110E1D2C11AD5A78008F84A1 /* TelemetryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E1D2A11AD5A78008F84A1 /* TelemetryViewController.m */; };
+		1127F42411ADED21002C3EA0 /* preferences.png in Resources */ = {isa = PBXBuildFile; fileRef = 1127F42211ADED21002C3EA0 /* preferences.png */; };
+		1127F42511ADED21002C3EA0 /* world.png in Resources */ = {isa = PBXBuildFile; fileRef = 1127F42311ADED21002C3EA0 /* world.png */; };
+		1127F42711ADED6B002C3EA0 /* connections.png in Resources */ = {isa = PBXBuildFile; fileRef = 1127F42611ADED6B002C3EA0 /* connections.png */; };
+		1127F42E11ADED9F002C3EA0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1127F42C11ADED9F002C3EA0 /* SettingsViewController.m */; };
+		1127F43111ADEDB8002C3EA0 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1127F43011ADEDB8002C3EA0 /* SettingsView.xib */; };
 		112A11DB11AD489A000A3B69 /* spacebits.png in Resources */ = {isa = PBXBuildFile; fileRef = 112A11DA11AD489A000A3B69 /* spacebits.png */; };
 		112A11E011AD48A9000A3B69 /* AltairAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 112A11DD11AD48A9000A3B69 /* AltairAnnotation.m */; };
 		112A11E111AD48A9000A3B69 /* AltairForwardPredictor.m in Sources */ = {isa = PBXBuildFile; fileRef = 112A11DF11AD48A9000A3B69 /* AltairForwardPredictor.m */; };
@@ -59,6 +64,12 @@
 /* Begin PBXFileReference section */
 		110E1D2911AD5A78008F84A1 /* TelemetryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TelemetryViewController.h; sourceTree = "<group>"; };
 		110E1D2A11AD5A78008F84A1 /* TelemetryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TelemetryViewController.m; sourceTree = "<group>"; };
+		1127F42211ADED21002C3EA0 /* preferences.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferences.png; sourceTree = "<group>"; };
+		1127F42311ADED21002C3EA0 /* world.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = world.png; sourceTree = "<group>"; };
+		1127F42611ADED6B002C3EA0 /* connections.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connections.png; sourceTree = "<group>"; };
+		1127F42B11ADED9F002C3EA0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		1127F42C11ADED9F002C3EA0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		1127F43011ADEDB8002C3EA0 /* SettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
 		112A11DA11AD489A000A3B69 /* spacebits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spacebits.png; sourceTree = "<group>"; };
 		112A11DC11AD48A9000A3B69 /* AltairAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltairAnnotation.h; sourceTree = "<group>"; };
 		112A11DD11AD48A9000A3B69 /* AltairAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltairAnnotation.m; sourceTree = "<group>"; };
@@ -125,6 +136,8 @@
 				110E1D2A11AD5A78008F84A1 /* TelemetryViewController.m */,
 				117954B711AD763C00C6160C /* LocationController.h */,
 				117954B811AD763C00C6160C /* LocationController.m */,
+				1127F42B11ADED9F002C3EA0 /* SettingsViewController.h */,
+				1127F42C11ADED9F002C3EA0 /* SettingsViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -193,10 +206,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				112A11FD11AD4973000A3B69 /* MapView.xib */,
-				112A11DA11AD489A000A3B69 /* spacebits.png */,
-				282CCBFD0DB6C98000C4EA27 /* TelemetryView.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
+				1127F43011ADEDB8002C3EA0 /* SettingsView.xib */,
+				112A11FD11AD4973000A3B69 /* MapView.xib */,
+				282CCBFD0DB6C98000C4EA27 /* TelemetryView.xib */,
+				1127F42211ADED21002C3EA0 /* preferences.png */,
+				1127F42611ADED6B002C3EA0 /* connections.png */,
+				1127F42311ADED21002C3EA0 /* world.png */,
+				112A11DA11AD489A000A3B69 /* spacebits.png */,
 				8D1107310486CEB800E47090 /* SpacebitsMobile-Info.plist */,
 			);
 			name = Resources;
@@ -261,6 +278,10 @@
 				282CCBFE0DB6C98000C4EA27 /* TelemetryView.xib in Resources */,
 				112A11DB11AD489A000A3B69 /* spacebits.png in Resources */,
 				112A11FE11AD4973000A3B69 /* MapView.xib in Resources */,
+				1127F42411ADED21002C3EA0 /* preferences.png in Resources */,
+				1127F42511ADED21002C3EA0 /* world.png in Resources */,
+				1127F42711ADED6B002C3EA0 /* connections.png in Resources */,
+				1127F43111ADEDB8002C3EA0 /* SettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +321,7 @@
 				112A124311AD4C06000A3B69 /* SBJsonWriter.m in Sources */,
 				110E1D2C11AD5A78008F84A1 /* TelemetryViewController.m in Sources */,
 				117954B911AD763C00C6160C /* LocationController.m in Sources */,
+				1127F42E11ADED9F002C3EA0 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

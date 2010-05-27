@@ -1,11 +1,3 @@
-//
-//  TelemetryViewController.m
-//  SpacebitsMobile
-//
-//  Created by Filipe Varela on 10/05/26.
-//  Copyright 2010 Caixa Mágica Software. All rights reserved.
-//
-
 #import "SpacebitsMobileAppDelegate.h"
 #import "TelemetryViewController.h"
 

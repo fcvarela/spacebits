@@ -13,6 +13,7 @@
 	[locationController.locationManager startUpdatingLocation];	
 	
 	[[[UIApplication sharedApplication] delegate] addObserver:self forKeyPath:@"telemetry" options:NSKeyValueObservingOptionNew context:nil];
+	[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"mapType" options:NSKeyValueObservingOptionNew context:nil];
 	
 	altairAnnotation = [[AltairAnnotation alloc] init];
 	altairForwardPredictorAnnotation = [[AltairForwardPredictor alloc] init];

@@ -1,12 +1,10 @@
 #import "SpacebitsMobileAppDelegate.h"
 
-
 @implementation SpacebitsMobileAppDelegate
 
 @synthesize window;
 @synthesize tabBarController;
 @synthesize telemetry;
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
@@ -15,7 +13,9 @@
     [window makeKeyAndVisible];
 	
 	responseData = [[NSMutableData data] retain];
-	[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+	NSInteger rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"telemetryRate"];
+	if (rate == 0) rate = 2;
+	[NSTimer scheduledTimerWithTimeInterval:rate target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
 	
 	return YES;
 }
@@ -51,7 +51,6 @@
 	NSDictionary *d_telemetry = [responseString JSONValue];
 	
 	self.telemetry = d_telemetry;
-	NSLog(@"%@", self.telemetry);
 }
 
 - (void)dealloc {
