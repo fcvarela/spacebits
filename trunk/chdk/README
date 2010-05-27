@@ -1,0 +1,22 @@
+1. Open Disk Utility.
+2. Select the card reader from the list of devices on the left.
+3. Click the "Partition" tab in the right pane.
+4. Select "2 Partitions" from the drop down list under "Volume Scheme"
+5. Select and resize the first partition to 4 MB if you only intend to mainly use the CHDK partition.
+6. Format this first partition as MS-DOS.
+7. Select the second partition and format it as MS-DOS. The size will be set automatically.
+8. Click "Apply", then click "Partition" if prompted.
+10. Select the first partition from the list on the left.
+11. Get Info ( Apple+I ), and note the Disk Identifier, i.e. ( /dev/disk2s1 ).
+12. Unmount the first partition. Do not eject.
+13. You may also need to unmount the second partition. Do not eject.
+14. Open the Terminal
+15. Type: sudo newfs_msdos -F 16 -v BOOT -b 4096 -c 128 /dev/rdiskXsX. If you get the error "fdisk: /dev/diskX is not a character device or a regular file", you may need to instead refer to the disk as /dev/rdiskX
+16. Type: fdisk -e /dev/diskX ie.( fdisk -e /dev/rdisk2 )
+17. Ignore the error "fdisk: could not open MBR file ..."
+18. Type: setpid 1
+19. Enter 1 when prompted for new partition id.
+20. Type: write
+21. If you get the error "fdisk: /dev/diskX: Resource busy", you will need to go back to Disk Utility and unmount (but not eject) the second partition. Then redo the steps pertaining to the Terminal
+22. Enter y if prompted
+23. Type: exit
