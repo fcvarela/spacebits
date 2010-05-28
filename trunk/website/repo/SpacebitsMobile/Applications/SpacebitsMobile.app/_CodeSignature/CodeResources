@@ -6,23 +6,43 @@
 	<dict>
 		<key>MainWindow.nib</key>
 		<data>
-		8q7LoIcaDplaHHHlybBghyLYMBg=
+		TVrr0FtYnUQC9YgY/jrcpSg87H0=
 		</data>
 		<key>MapView.nib</key>
 		<data>
-		MuZU2m4y7rWFLJKPEsmgw/Zru2U=
+		aDJtou/YTZydMp+7J/U32sb9nnY=
 		</data>
 		<key>PkgInfo</key>
 		<data>
 		n57qDP4tZfLD1rCS43W0B4LQjzE=
 		</data>
+		<key>SettingsView.nib</key>
+		<data>
+		GmoQHy1HDn7dZ4k9dqejDBimSa4=
+		</data>
 		<key>TelemetryView.nib</key>
 		<data>
 		ZLJtKJ8ZSbVv4lQa6P07Dc0Bkik=
 		</data>
+		<key>connections.png</key>
+		<data>
+		fh+8sVVxL2R6w3wBWOcGwDostgY=
+		</data>
+		<key>embedded.mobileprovision</key>
+		<data>
+		aWH+A6xz5fMgm2lDjm+tq1be9Z8=
+		</data>
+		<key>preferences.png</key>
+		<data>
+		r0CDbzETy0sWcImKTbGfUMSzlpM=
+		</data>
 		<key>spacebits.png</key>
 		<data>
 		oyHFfq+7MZUm9Acn0lxChULC9no=
+		</data>
+		<key>world.png</key>
+		<data>
+		E+CIiZN1JP1xYi/6zu8K47yraMI=
 		</data>
 	</dict>
 	<key>rules</key>
