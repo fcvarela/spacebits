@@ -28,6 +28,7 @@ class Spacebits_API {
       $p['power_voltage']=floatval($arr->power->voltage);
       $p['pressure']=floatval($arr->atmosphere->pressure);
       $p['temperature']=floatval($arr->atmosphere->temp);
+      $p['temperature_ext']=floatval($arr->atmosphere->temp_ext);
       $p['humidity']=floatval($arr->atmosphere->humidity);
       $p['dust_density']=floatval($arr->atmosphere->dust_density);
       $p['lat']=floatval($arr->geo->lat);
@@ -91,7 +92,7 @@ class Spacebits_API {
   function put($values=array()) {
     GLOBAL $sconfig;
     if($db = new PDO($this->db)) {
-      $sql="INSERT INTO data (change,power_current,power_voltage,pressure,temperature,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az) VALUES(".$values['change'].",".$values['power_current'].",".$values['power_voltage'].",".$values['pressure'].",".$values['temperature'].",".$values['humidity'].",".$values['dust_density'].",".$values['lat'].",".$values['lon'].",".$values['alt'].",".$values['bear'].",".$values['imu_gx'].",".$values['imu_gy'].",".$values['imu_ax'].",".$values['imu_ay'].",".$values['imu_az'].")";
+      $sql="INSERT INTO data (change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az) VALUES(".$values['change'].",".$values['power_current'].",".$values['power_voltage'].",".$values['pressure'].",".$values['temperature'].",".$values['temperature_ext'].",".$values['humidity'].",".$values['dust_density'].",".$values['lat'].",".$values['lon'].",".$values['alt'].",".$values['bear'].",".$values['imu_gx'].",".$values['imu_gy'].",".$values['imu_ax'].",".$values['imu_ay'].",".$values['imu_az'].")";
       $q = $db->prepare($sql);
       $q->execute();
       }
@@ -131,6 +132,7 @@ class Spacebits_API {
       $p['imu_gx']=rand(0,90);
       $p['imu_gy']=rand(0,90);
       $p['temperature']=rand(-50,10);
+      $p['temperature_ext']=rand(-50,10);
       $p['alt']=rand(0,40000);
       $p['humidity']=rand(0,100);
       $p['bear']=rand(0,360);
@@ -142,7 +144,7 @@ class Spacebits_API {
     else
     {
       if($db = new PDO($this->db)) {
-        $sql="SELECT change,power_current,power_voltage,pressure,temperature,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data ORDER BY change DESC LIMIT 1";
+        $sql="SELECT change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data ORDER BY change DESC LIMIT 1";
         $q = $db->prepare($sql);
         $q->execute();
         if($r=$q->fetch(PDO::FETCH_ASSOC)) {

@@ -4,6 +4,7 @@ cd /servers/spacebits/repo
 export COPYFILE_DISABLE
 export COPY_EXTENDED_ATTRIBUTES_DISABLE
 export PERL5LIB=/Library/Perl
+chmod 755 SpacebitsMobile/Applications/SpacebitsMobile.app/SpacebitsMobile
 ./dpkg-deb-fat -b SpacebitsMobile
 rm -fr /tmp/repo
 mkdir /tmp/repo

@@ -24,6 +24,7 @@ create table data (
   power_voltage real,
   pressure real,
   temperature real,
+  temperature_ext real,
   humidity real,
   dust_density real,
   lat real,
