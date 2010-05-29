@@ -18,6 +18,7 @@
 					<li><a href="http://softwarelivre.sapo.pt/projects/spacebits/browser" title="Source code">Source code</a></li>
 					<li><a href="/page/wallpapers.html" title="Wallpapers">Wallpapers</a></li>
 					<li><a href="/page/iphonepad.html" title="Mobile apps">Mobile apps</a></li>
+					<li><a href="/page/api.html" title="Spacebits API">API</a></li>
 				</ul>
 			</div>
 			<span class="bottom_rounded"></span><span class="bottom_pic"><img src="/images/spaceship.png"></span>

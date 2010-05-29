@@ -210,6 +210,7 @@
 		margin:26px auto 0 auto;
 		position: relative;
 		border: 2px solid #3B3F2D;
+		clear:both;
 	}
 	#articlecontent a{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(97, 172, 0); font-weight: bold; text-decoration: none; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: initial;}
 	#articlecontent img{border: 3px solid #181B0F;margin-left:10px;margin-right:10px;}
@@ -224,6 +225,7 @@
 		width: 838px;
 		margin: 0 auto;
 		overflow: hidden;
+		clear:both;
                 color: #dddddd;
 		font:1.5em "Lucida Grande", "Trebuchet MS", Arial, Helvetica, sans-serif;
 		background: #39442B url(/images/services_bg.jpg) bottom repeat-x;

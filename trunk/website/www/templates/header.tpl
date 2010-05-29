@@ -3,14 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Spacebits</title>
-<link href="/stylesheets/common.css?v=5" rel="stylesheet" type="text/css"/>
+<link href="/stylesheets/common.css?v=6" rel="stylesheet" type="text/css"/>
 <link rel="alternate" type="application/rss+xml" title="Spacebits" href="http://friendfeed.com/spacebits?format=atom"/>
-<script type="text/javascript" src="http://js.sapo.pt/SAPO"></script>
-<script type="text/javascript" src="http://js.sapo.pt/SAPO/Utility/Dumper"></script>
+<script type="text/javascript" src="/js/base.js"></script>
+<script type="text/javascript" src="/js/prototype.js"></script>
 {if $uri=="/live"}
 <script type='text/javascript' src='http://www.google.com/jsapi'></script>
 <script type="text/javascript" src="http://js.sapo.pt/Bundles/SAPOMapsAPI.js"></script>
-<script type="text/javascript" src="/js/prototype.js"></script>
 <script src="/js/scriptaculous.js" type="text/javascript"></script>
 <script src="/js/iphone-style-checkboxes.js" type="text/javascript"></script>
 <script src="/js/live.js?v6" type="text/javascript"></script>

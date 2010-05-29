@@ -29,6 +29,10 @@ class Spacebits_Homepage {
     list($uri)=explode("&",$uri);
     if($uri[strlen($uri)-1]=='/') $uri=substr($uri,0,-1);
     $this->smarty->assign('uri',$uri);
+    $launch=strtotime("2010-05-30 11:00:00");
+    $this->smarty->assign('now',time());
+    $this->smarty->assign('launch',$launch);
+    $this->smarty->assign('left',$launch-time());
     if(strstr($_SERVER['HTTP_USER_AGENT'],'iPad')) $this->smarty->assign('ipad',true);
     }
 
