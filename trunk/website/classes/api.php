@@ -100,7 +100,7 @@ class Spacebits_API {
 
   function saveSMS($source,$message) {
     if($db = new PDO($this->sms_db)) {
-      $sql="INSERT INTO sms (change,source,message) VALUES(".time().",".$db->quote($source).",".$db->quote($message).")";
+      $sql="INSERT INTO sms (change,source,message,broadcast) VALUES(".time().",".$db->quote($source).",".$db->quote($message).",0)";
       $q = $db->prepare($sql);
       $q->execute();
       }
@@ -152,7 +152,11 @@ class Spacebits_API {
             $p[$key]=$r[$key];
             }
           $sms=$this->lastSMS();
-          if(intval($sms['change'])>intval($p['change'])) {$p['lat']=$sms['lat']; $p['lon']=$sms['lon'];}
+          if(intval($sms['change'])>intval($p['change'])) {
+            $p['lat']=$sms['lat'];
+            $p['lon']=$sms['lon'];
+            $p['alt']=$sms['alt'];
+            }
           }
        }
     }

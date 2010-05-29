@@ -23,6 +23,8 @@ try {
         case 'message': 
           echo "Message from: {$pl['from']}\n";
           $api->saveSMS($pl['from'],$pl['body']);
+          echo "Body: ".$pl['body']."\n\n";
+          flush();
           break;
         case 'session_start':
           print "Session Start\n";

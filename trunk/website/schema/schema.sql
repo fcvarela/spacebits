@@ -41,6 +41,7 @@ create table data (
 create table sms (
   change int,
   source char(80),
-  message char(160), PRIMARY KEY(change)
+  message char(160),
+  broadcast int, PRIMARY KEY(change)
   );
 
