@@ -8,6 +8,7 @@ include('classes/smarty/Smarty.class.php');
 include('config/site.php');
 
 setlocale(LC_ALL, 'en_US');
+date_default_timezone_set('Europe/Lisbon');
 
 class Spacebits_Homepage {
 
