@@ -15,8 +15,8 @@ end
 
 function spacebits()
         while 1 do
-          take_movie(30)
-          take_photo(10)
+          take_movie(60)
+          take_photo(5)
           end
 	-- need this to see display if we switched back to play
 	sleep(1000)
