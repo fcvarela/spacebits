@@ -12,7 +12,7 @@
 <script type="text/javascript" src="http://js.sapo.pt/Bundles/SAPOMapsAPI.js"></script>
 <script src="/js/scriptaculous.js" type="text/javascript"></script>
 <script src="/js/iphone-style-checkboxes.js" type="text/javascript"></script>
-<script src="/js/live.js?v6" type="text/javascript"></script>
+<script src="/js/live.js?v7" type="text/javascript"></script>
 <link rel="stylesheet" href="/stylesheets/buttons.css?v4" type="text/css" media="screen"/>
 {/if}
 {if $action=='edit' && $uid!=""}

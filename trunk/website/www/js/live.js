@@ -31,9 +31,9 @@ dg['pm']='data:image/gif;base64,R0lGODlhEAAYAKIAAAAAABISEsyZAP/MAAAAAAAAAAAAAAAA
 var gauges={
   altitude:{max:40000,redFrom:30000,yellowFrom:20000,alt:'Balloon altitude<br/>(in meters)'},
   pressure:{min:10,max:1100,redFrom:10,redTo:100,yellowFrom:100,yellowTo:200,alt:'Pressure<br/>(in hPa)'},
-  temp:{min:-60,max:20,redFrom:-60,redTo:-40,yellowFrom:-40,yellowTo:-20,alt:'External temperature<br/>(in ºC)'},
+  temp:{min:-60,max:20,redFrom:-60,redTo:-40,yellowFrom:-40,yellowTo:-20,alt:'Internal temperature<br/>(in ºC)'},
+  temp_ext:{min:-60,max:20,redFrom:-60,redTo:-40,yellowFrom:-40,yellowTo:-20,alt:'External temperature<br/>(in ºC)'},
   humidity:{max:100,redFrom:50,yellowFrom:30,alt:'Humidity<br/>(% of water in air)'},
-  dust:{max:100,redFrom:50,yellowFrom:30,alt:'Dust density<br/>(in mg/m3)'}
   };
 
 if(useGauges===true) {
@@ -117,9 +117,9 @@ function initMap() {
 function initGauges() {
   drawGauge('Altitude',0,'sensors_alt',gauges.altitude);
   drawGauge('Pressure',0,'sensors_pressure',gauges.pressure);
-  drawGauge('Temp',0,'sensors_temperature',gauges.temp);
+  drawGauge('Int Temp',0,'sensors_temperature',gauges.temp);
+  drawGauge('Ext Temp',0,'sensors_temperature_ext',gauges.temp_ext);
   drawGauge('Humidity',0,'sensors_humidity',gauges.humidity);
-  drawGauge('Dust',0,'sensors_dust',gauges.dust);
   }
 
 function drawGauge(n,v,d,o,alt) {
@@ -142,17 +142,17 @@ function refreshDashboard(t) {
   if(useGauges) {
     drawGauge('Altitude',r['last'].alt,'sensors_alt',gauges.altitude);
     drawGauge('Pressure',r['last'].pressure,'sensors_pressure',gauges.pressure);
-    drawGauge('Temp',r['last'].temperature,'sensors_temperature',gauges.temp);
+    drawGauge('Int Temp',r['last'].temperature,'sensors_temperature',gauges.temp);
+    drawGauge('Ext Temp',r['last'].temperature_ext,'sensors_temperature_ext',gauges.temp_ext);
     drawGauge('Humidity',r['last'].humidity,'sensors_humidity',gauges.humidity);
-    drawGauge('Dust',r['last'].dust_density,'sensors_dust',gauges.dust);
     }
     else
     {
     analogNumber('Altitude',r['last'].alt,'sensors_alt',gauges.altitude.alt);
     analogNumber('Pressure',r['last'].pressure,'sensors_pressure',gauges.pressure.alt);
-    analogNumber('Temperature',r['last'].temperature,'sensors_temperature',gauges.temp.alt);
+    analogNumber('Int Temperature',r['last'].temperature,'sensors_temperature',gauges.temp.alt);
+    analogNumber('Ext Temperature',r['last'].temperature_ext,'sensors_temperature_ext',gauges.temp_ext.alt);
     analogNumber('Humidity',r['last'].humidity,'sensors_humidity',gauges.humidity.alt);
-    analogNumber('Dust',r['last'].dust_density,'sensors_dust',gauges.dust.alt);
     }
   // Track
   markerslayer.removeMarkers();

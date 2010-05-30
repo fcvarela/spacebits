@@ -49,8 +49,8 @@ useGauges = false;
     <div id='sensors_alt' style="float:left;"></div>
     <div id='sensors_pressure' style="float:left;"></div>
     <div id='sensors_temperature' style="float:left;"></div>
+    <div id='sensors_temperature_ext' style="float:left;"></div>
     <div id='sensors_humidity' style="float:left;"></div>
-    <div id='sensors_dust' style="float:left;"></div>
     <div id='bear' style="float:left;"></div>
     <br clear="all"/>
     <div id="ax" style="float:left;"></div>
@@ -97,8 +97,8 @@ useGauges = false;
   <div id='sensors_alt' style="float:left;"></div>
   <div id='sensors_pressure' style="float:left;"></div>
   <div id='sensors_temperature' style="float:left;"></div>
+  <div id='sensors_temperature_ext' style="float:left;"></div>
   <div id='sensors_humidity' style="float:left;"></div>
-  <div id='sensors_dust' style="float:left;"></div>
   <div class="measure" id="ax"></div>
   <div class="measure" id="ay"></div>
   <div class="measure" id="az"></div>
