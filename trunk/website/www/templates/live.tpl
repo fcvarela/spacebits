@@ -39,10 +39,12 @@ useGauges = false;
         <label class="left" for="sw_twitter">Twitter feed</label>
         <input type="checkbox" id="sw_twitter" />
       </li>
+<!--
       <li>
         <label class="left" for="sw_demo">Demo mode</label>
         <input type="checkbox" id="sw_demo" />
       </li>
+-->
       </ol>
   </div>
   <div id="ipads" style="float:left;width:600px;">
@@ -87,10 +89,12 @@ useGauges = false;
     <label class="left" for="sw_twitter">Twitter feed</label>
     <input type="checkbox" id="sw_twitter" />
   </li>
+<!--
    <li>
     <label class="left" for="sw_demo">Demo mode</label>
     <input type="checkbox" id="sw_demo" />
   </li>
+-->
   </ol>
 </div>
 <div id="sensors" style="float:left;width:600px;margin-left:25px;height:210px;">

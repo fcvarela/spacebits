@@ -7,6 +7,7 @@
 include('config/site.php');
 
 setlocale(LC_ALL, 'en_US');
+date_default_timezone_set('Europe/Lisbon');
 
 class Spacebits_API {
 
@@ -160,7 +161,7 @@ class Spacebits_API {
           }
        }
     }
-    $p['elapsed']='00:00:01 '.date("H:i:s").' '.date("H:i:s",$p['change']);
+    $p['elapsed']=date("H:i:s",time()-strtotime("2010-05-30 03:00:00 GMT")).' '.date("H:i:s").' '.date("H:i:s",$p['change']);
     return($p);
     }
 

@@ -71,7 +71,7 @@ function initSwitches() {
     sw_sms_cb = $$('.on_off input[type=checkbox]')[1].checked;
     sw_radio_cb = $$('.on_off input[type=checkbox]')[2].checked;
     sw_twitter_cb = $$('.on_off input[type=checkbox]')[3].checked;
-    sw_demo_cb = $$('.on_off input[type=checkbox]')[4].checked;
+    // sw_demo_cb = $$('.on_off input[type=checkbox]')[4].checked;
     if(twitter_last!==sw_twitter_cb) {
       if(sw_twitter_cb) {
         $('map_wrapper').style.width=(840-twitter_width-10).toString()+"px";
@@ -89,8 +89,10 @@ function initSwitches() {
     twitter_last = sw_twitter_cb;
     }, 1000);
   changeSwitch(0);
+  changeSwitch(1);
+  changeSwitch(2);
   changeSwitch(3);
-  changeSwitch(4);
+  // changeSwitch(4);
   }
 
 function changeSwitch(i) {
