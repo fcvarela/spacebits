@@ -107,6 +107,9 @@ function initMap() {
   map = new SAPO.Maps.Map('map');
   map.addControl(new SAPO.Maps.Control.MapType());
   map.addControl(new SAPO.Maps.Control.Navigation());
+  var ccoords = new SAPO.Maps.Control.MapCenter({isMinimized: false});
+  map.addControl(ccoords);
+
   map.setMapCenter(start,10);
 
   markerslayer = new SAPO.Maps.Markers('trackpoints');
@@ -428,4 +431,250 @@ var BrowserDetect = {
 	]
 
 };
+
+SAPO.Maps.Control.MapCenter = OpenLayers.Class(OpenLayers.Control, {
+    
+    /** 
+     * Property: element
+     * {DOMElement} 
+     */
+    element: null,
+    
+    /** 
+     * APIProperty: prefix
+     * {String}
+     */
+    prefix: '',
+    
+    /** 
+     * APIProperty: separator
+     * {String}
+     */
+    separator: ', ',
+    
+    /** 
+     * APIProperty: suffix
+     * {String}
+     */
+    suffix: '',
+    
+    /** 
+     * APIProperty: numDigits
+     * {Integer}
+     */
+    numDigits: 6,
+    
+    /** 
+     * APIProperty: granularity
+     * {Integer} 
+     */
+    granularity: 10,
+    
+    /** 
+     * Property: lastXy
+     * {<OpenLayers.LonLat>}
+     */
+    lastXy: null,
+
+    /**
+     * APIProperty: displayProjection
+     * {<OpenLayers.Projection>} A projection that the 
+     * mousecontrol will display.
+     */
+    displayProjection: null, 
+
+    /** 
+     * API Property: isMinimized
+     * Indicates if the control is or not minimized
+     */	
+	isMinimized: true,
+	
+	/**
+	 * Property: minRightPosition {Integer}
+	 */
+	minRightPosition: -135,
+
+	/**
+	 * Property: nrSteps {Integer}
+	 * The number of steps to minimize the element
+	 */	
+	nrSteps: 5,
+	
+    
+    /**
+     * Constructor: OpenLayers.Control.MousePosition
+     * 
+     * Parameters:
+     * options - {DOMElement} Options for control.
+     */
+    initialize: function(options) {
+		this.displayProjection = new OpenLayers.Projection('EPSG:4326');
+        OpenLayers.Control.prototype.initialize.apply(this, arguments);
+    },
+	
+	/**
+	 * API Method: toggle
+	 * @param {Boolean} minimize
+	 * @param {Boolean} amimation
+	 */
+	toggle: function(minimize, animation){
+		if(this.isMinimized === minimize){ return; }
+
+		this.isMinimized = minimize;
+		if(!animation){
+			this.div.style.right = (minimize? this.minRightPosition : 0) + 'px';
+			//return;
+		}else{
+		
+			var current_x = minimize? 0 : this.minRightPosition;
+			var dx = this.minRightPosition/this.nrSteps;
+			
+			if(!minimize){
+				dx *= -1;
+			}
+			var _this = this;
+			var interval = window.setInterval(function(){
+				
+				current_x += dx;
+				if((minimize && current_x <= _this.minRightPosition) || 
+					(!minimize && current_x >= 0)){
+						
+						_this.div.style.right = (minimize? _this.minRightPosition : 0) + 'px';
+						clearInterval(interval);
+				}else{
+				
+					_this.div.style.right = current_x + 'px';
+				}
+				
+			}, 5);
+		}
+		
+		if(minimize){
+			this.unregisterListeners();
+		}else{
+			this.registerListeners();
+		}
+		
+	},
+	
+	/**
+	 * Return type {Boolean}
+	 * Returns true if the coordinates control is opened, false otherwise
+	 */
+	isOpened: function(){
+		return !this.isMinimized;
+	},
+
+    /**
+     * Method: destroy
+     */
+     destroy: function() {
+         if (this.map) {
+             this.unregisterListeners();
+         }
+         OpenLayers.Control.prototype.destroy.apply(this, arguments);
+     },
+
+    /**
+     * Method: draw
+     * {DOMElement}
+     */    
+    draw: function(px) {
+        OpenLayers.Control.prototype.draw.apply(this, arguments);
+		
+		var holder = document.createElement('div');
+		this.element = document.createElement('p');
+		
+		OpenLayers.Event.observe(holder, 'click', 
+				OpenLayers.Function.bindAsEventListener(this.toggleControl,
+                                                        this));
+		OpenLayers.Event.observe(this.element, 'click', 
+				OpenLayers.Function.bindAsEventListener(this.stopBublingEvent,
+                                                        this));												
+		
+		//classNames
+		holder.className = 'coordinates';
+		if(SAPO.Maps.Utils.checkIE6()){
+			holder.className += ' coordinates_ie6';
+		}
+		
+		holder.appendChild(this.element);
+		this.div.appendChild(holder);
+        
+        this.redraw();
+		
+		if (!px) {
+			this.div.style.right = (this.isMinimized? this.minRightPosition : 0) + 'px';
+			this.div.style.bottom = '30px';
+		}else{
+			//this.div.style.left = px.x + 'px';
+			this.div.style.right = (this.isMinimized? this.minRightPosition : 0) + 'px';
+			this.div.style.top = px.y + 'px';
+		}
+		
+        return this.div;
+    },
+	
+	toggleControl: function(){
+		this.toggle(!this.isMinimized, true);
+	},
+	
+	stopBublingEvent: function(evt){
+		OpenLayers.Event.stop(evt);
+	},
+   
+    /**
+     * Method: redraw  
+     */
+    redraw: function(evt){
+		var lonLat;
+		
+		lonLat = this.map.getMapCenter();
+		
+		var newHtml = this.formatOutput(lonLat);
+		
+		if (newHtml != this.element.innerHTML) {
+			this.element.innerHTML = newHtml;
+		}
+	},
+
+    /**
+     * Method: formatOutput
+     * Override to provide custom display output
+     *
+     * Parameters:
+     * lonLat - {<OpenLayers.LonLat>} Location to display
+     */
+    formatOutput: function(lonLat) {
+        var digits = parseInt(this.numDigits, 10);
+        var newHtml =
+            this.prefix +
+			lonLat.lat.toFixed(digits) +
+            this.separator + 
+			lonLat.lon.toFixed(digits) +
+            this.suffix;
+        return newHtml;
+     },
+
+    /** 
+     * Method: setMap
+     */
+    setMap: function() {
+        OpenLayers.Control.prototype.setMap.apply(this, arguments);
+		if (!this.isMinimized) {
+			this.registerListeners();
+		}
+    },  
+	
+	registerListeners: function(){
+		this.map.events.register('move', this, this.redraw);
+	},
+	
+	unregisterListeners: function(){
+		this.map.events.unregister('move', this, this.redraw);
+	},
+
+    CLASS_NAME: "SAPO.Maps.Control.MapCenter"
+});
+
 BrowserDetect.init();
