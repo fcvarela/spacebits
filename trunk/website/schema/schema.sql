@@ -44,4 +44,5 @@ create table sms (
   message char(160),
   broadcast int, PRIMARY KEY(change)
   );
+CREATE INDEX message_idx on sms (message);
 

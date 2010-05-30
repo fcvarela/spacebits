@@ -110,7 +110,7 @@ class Spacebits_API {
   function lastSMS() {
     $p=array();
     if($db = new PDO($this->sms_db)) {
-      $sql="select change,message from sms order by change desc limit 1";
+      $sql="select change,message from sms WHERE message!='0.0000,0.0000,0,0' order by change desc limit 1";
       $q = $db->prepare($sql);
       $q->execute();
       if($r=$q->fetch(PDO::FETCH_ASSOC)) {
@@ -145,7 +145,7 @@ class Spacebits_API {
     else
     {
       if($db = new PDO($this->db)) {
-        $sql="SELECT change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data ORDER BY change DESC LIMIT 1";
+        $sql="SELECT change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data WHERE lat!=0 AND lon!=0 ORDER BY change DESC LIMIT 1";
         $q = $db->prepare($sql);
         $q->execute();
         if($r=$q->fetch(PDO::FETCH_ASSOC)) {
