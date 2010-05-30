@@ -20,3 +20,5 @@
 21. If you get the error "fdisk: /dev/diskX: Resource busy", you will need to go back to Disk Utility and unmount (but not eject) the second partition. Then redo the steps pertaining to the Terminal
 22. Enter y if prompted
 23. Type: exit
+24. Very important: xattr -d com.apple.quarantine DISKBOOT.BIN PS.FI2 (in the BOOT partition of you SD CARD, see http://chdk.wikia.com/wiki/FAQ/Mac)
+
