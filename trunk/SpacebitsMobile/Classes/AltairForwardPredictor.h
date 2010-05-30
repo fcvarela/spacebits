@@ -7,6 +7,8 @@
 	MKPinAnnotationView *view;
 	NSString *title;
 	NSString *subtitle;
+	
+	float distance, course;
 }
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;

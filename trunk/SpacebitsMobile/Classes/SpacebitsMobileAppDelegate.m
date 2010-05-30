@@ -14,7 +14,12 @@
 	
 	responseData = [[NSMutableData data] retain];
 	NSInteger rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"telemetryRate"];
-	if (rate == 0) rate = 2;
+	NSLog(@"Current rate is: %d", rate);
+	switch (rate) {
+	case 0: rate = 5; break;
+	case 1: rate = 10; break;
+	case 2: rate = 14; break;
+	}
 	[NSTimer scheduledTimerWithTimeInterval:rate target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
 	
 	return YES;

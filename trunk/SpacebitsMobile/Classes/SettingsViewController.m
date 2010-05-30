@@ -35,14 +35,14 @@
 		mapSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Map", @"Satellite", @"Hybrid", nil]];
 		mapSegmentedControl.frame = CGRectMake(-1, -1, 301, 47);
 		[mapSegmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-		mapSegmentedControl.selectedSegmentIndex = 0;
+		mapSegmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"mapType"];
 	}
 	
 	if (telemetrySegmentedControl == nil) {
-		telemetrySegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"2 Sec", @"5 Sec", @"10 Sec", nil]];
+		telemetrySegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"5 Sec", @"10 Sec", @"15 Sec", nil]];
 		telemetrySegmentedControl.frame = CGRectMake(-1, -1, 301, 47);
 		[telemetrySegmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-		telemetrySegmentedControl.selectedSegmentIndex = 0;
+		telemetrySegmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"telemetryRate"];
 	}
 	
 	if (indexPath.section == 0)
@@ -59,8 +59,7 @@
 		[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedSegmentIndex] forKey:@"mapType"];
 	
 	if (sender == telemetrySegmentedControl) {
-		NSInteger rate = (sender.selectedSegmentIndex == 0) ? 2 : (sender.selectedSegmentIndex == 1 ? 5 : 10);
-		[[NSUserDefaults standardUserDefaults] setInteger:rate forKey:@"telemetryRate"];
+		[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedSegmentIndex] forKey:@"telemetryRate"];
 	}
 }
 
