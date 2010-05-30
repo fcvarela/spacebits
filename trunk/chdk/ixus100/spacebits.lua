@@ -29,6 +29,8 @@ function take_photo(n)
         capmode.set(capmode.name_to_mode["LANDSCAPE"])
 	set_backlight(0)
         sleep(500)
+        -- ISO 100
+        set_iso 2
 	-- flash off
 	set_prop(143,2)
 	-- Picture Quality (0,1,2 = Superfine, Fine, Normal)

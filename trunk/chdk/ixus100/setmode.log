@@ -1,0 +1,19 @@
+ixus100_sd780 100c CHDK 0.9.9-885 Apr  4 2010 19:35:28 dryos 0x31c2
+START                        |                 AUTO   1 32768 STL
+TRY                 AUTO   1 |                 AUTO   1 32768 STL  440ms OK
+TRY                    P   2 |                    P   2 32772 STL  460ms OK
+TRY             PORTRAIT   6 |             PORTRAIT   6 32781 STL  360ms OK
+TRY            LANDSCAPE   8 |            LANDSCAPE   8 32780 STL  350ms OK
+TRY            VIDEO_STD   9 |            VIDEO_STD   9  2597 VID  680ms OK
+TRY          VIDEO_SPEED  10 |          VIDEO_SPEED  10  2598 VID  260ms OK
+TRY        VIDEO_COMPACT  11 |        VIDEO_COMPACT  11  2599 VID  370ms OK
+TRY             SCN_SNOW  22 |             SCN_SNOW  22 16403 STL  840ms OK
+TRY            SCN_BEACH  23 |            SCN_BEACH  23 16404 STL  340ms OK
+TRY         SCN_FIREWORK  24 |         SCN_FIREWORK  24 16405 STL  370ms OK
+TRY         SCN_AQUARIUM  28 |         SCN_AQUARIUM  28 16407 STL  320ms OK
+TRY      SCN_NIGHT_SCENE  30 |      SCN_NIGHT_SCENE  30 16398 STL  390ms OK
+TRY               INDOOR  34 |               INDOOR  34 32785 STL  340ms OK
+TRY            KIDS_PETS  35 |            KIDS_PETS  35 32784 STL  450ms OK
+TRY       NIGHT_SNAPSHOT  36 |       NIGHT_SNAPSHOT  36 32779 STL  420ms OK
+TRY          SCN_FOLIAGE  38 |          SCN_FOLIAGE  38 16402 STL  330ms OK
+TRY                 AUTO   1 |                 AUTO   1 32768 STL  470ms OK
