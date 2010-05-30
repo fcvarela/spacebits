@@ -1,0 +1,24 @@
+ixus80_sd1100 101a CHDK 0.9.9-894 May 22 2010 13:20:42 dryos 0x3184
+START                        |                 AUTO   1 32768 STL
+TRY                 AUTO   1 |                 AUTO   1 32768 STL  360ms OK
+TRY                    P   2 |                    P   2 32772 STL  340ms OK
+TRY             PORTRAIT   6 |             PORTRAIT   6 32781 STL  340ms OK
+TRY            VIDEO_STD   9 |            VIDEO_STD   9  2597 VID  560ms OK
+TRY        VIDEO_COMPACT  11 |        VIDEO_COMPACT  11  2599 VID  370ms OK
+TRY               STITCH  15 |               STITCH  15 33290 STL  650ms OK
+TRY       SCN_UNDERWATER  17 |       SCN_UNDERWATER  17 16406 STL  520ms OK
+TRY         LONG_SHUTTER  19 |         LONG_SHUTTER  19 32774 STL  310ms OK
+TRY           COLOR_SWAP  21 |           COLOR_SWAP  21 33308 STL  390ms OK
+TRY             SCN_SNOW  22 |             SCN_SNOW  22 16403 STL  340ms OK
+TRY            SCN_BEACH  23 |            SCN_BEACH  23 16404 STL  370ms OK
+TRY         SCN_FIREWORK  24 |         SCN_FIREWORK  24 16405 STL  340ms OK
+TRY         SCN_AQUARIUM  28 |         SCN_AQUARIUM  28 16407 STL  310ms OK
+TRY         COLOR_ACCENT  29 |         COLOR_ACCENT  29 33307 STL  370ms OK
+TRY        SCN_KIDS_PETS  33 |        SCN_KIDS_PETS  33 16400 STL  420ms OK
+TRY       NIGHT_SNAPSHOT  36 |       NIGHT_SNAPSHOT  36 32779 STL  360ms OK
+TRY        DIGITAL_MACRO  37 |        DIGITAL_MACRO  37 33288 STL  480ms OK
+TRY          SCN_FOLIAGE  38 |          SCN_FOLIAGE  38 16402 STL  540ms OK
+TRY     VIDEO_TIME_LAPSE  39 |     VIDEO_TIME_LAPSE  39  2601 VID  660ms OK
+TRY           SCN_INDOOR  40 |           SCN_INDOOR  40 16401 STL  550ms OK
+TRY           SCN_SUNSET  55 |           SCN_SUNSET  55 16408 STL  310ms OK
+TRY                 AUTO   1 |                 AUTO   1 32768 STL  320ms OK
