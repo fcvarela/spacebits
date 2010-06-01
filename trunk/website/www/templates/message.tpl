@@ -1,3 +1,4 @@
+{if $message}
 <div id="message_wrapper" style="text-align:center;">
   <div id="message"></div>
 <script type="text/javascript">
@@ -16,3 +17,4 @@ setInterval(showCounter,1000);
 {/literal}
  <div id="message_right">&nbsp;</div>
 </div>
+{/if}

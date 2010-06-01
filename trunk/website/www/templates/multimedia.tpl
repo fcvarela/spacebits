@@ -16,6 +16,7 @@ This is our Multimedia archive. Here you can find photos and videos of our team 
 
 	<div id="multimedia_wrapper">
 	  {include file="banner.tpl" title="Videos" icon="meetvideos.png" link="/page/meetvideos.html"}
+	  {include file="banner.tpl" title="1st flight photos" icon="spaceflight1ph.png" link="/page/flight1photos.html"}
 	</div>
 
 

@@ -7,9 +7,12 @@
 
       {include file="message.tpl"}
 
+<!--
 <div id="articlecontent" style="background:#181b0d;">
 This will be the Live Dashboard for the official launch of <a href="/page/spacebits1live.html">Spacebits 1</a> which is scheduled for the 30th of May, 2010, 11AM UTC/GMT+1. Now in demo mode.
 </div>
+-->
+
 {/if}
 
 {if $ipad}
