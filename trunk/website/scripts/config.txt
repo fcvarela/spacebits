@@ -1,0 +1,5 @@
+$HTTP["host"] == "spacebits.localhost" {
+  server.document-root       = "/servers/spacebits/www"
+  url.rewrite-once = ( "^/api$" => "/api.php" )
+  }
+
