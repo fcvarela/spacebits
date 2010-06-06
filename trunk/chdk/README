@@ -1,3 +1,9 @@
+This is file is just a memo to build CHDK sd cards. Ignore it. Go to http://chdk.wikia.com/wiki/CHDK for detailed information.
+
+The Spacebits LUA scripts can be found in the sub directories.
+
+Bulding a SD card memo:
+
 1. Open Disk Utility.
 2. Select the card reader from the list of devices on the left.
 3. Click the "Partition" tab in the right pane.
