@@ -16,6 +16,7 @@ Login<br/>
 Password<br/>
 <input name="password" type="password" style="width:80px;" value=""/><br/>
 <br/>
+<input name="referer" type="hidden" value="{$referer}"/>
 <input name="go" type="submit" value="Enter"/>
 </form>
 

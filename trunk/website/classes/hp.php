@@ -94,11 +94,13 @@ class Spacebits_Homepage {
            $cookie=$_POST['login']."#".sha1($_POST['password'])."#".$ts."#".md5($_POST['login'].sha1($_POST['password']).$ts.getenv('REMOTE_ADDR').$this->secret);
            $ct=time()+60*60*24*60;
            setcookie("login",$cookie,$ct,'/',getenv('HTTP_HOST'));
-           header("Location: /");
+           if($_POST['referer']) header("Location: ".$_POST['referer']);
+             else header("Location: /");
            exit;
            }
         }
       }
+    $this->smarty->assign('referer',getenv('HTTP_REFERER'));
     $this->smarty->display('login.tpl');
     }
 
