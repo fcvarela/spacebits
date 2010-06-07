@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+{if $title}
+<title>Spacebits: {$title}</title>
+{else}
 <title>Spacebits</title>
+{/if}
 <link href="/stylesheets/common.css?v=6" rel="stylesheet" type="text/css"/>
 <link rel="alternate" type="application/rss+xml" title="Spacebits" href="http://friendfeed.com/spacebits?format=atom"/>
 <script type="text/javascript" src="/js/base.js"></script>

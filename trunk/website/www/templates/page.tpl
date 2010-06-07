@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="header.tpl" title=$title}
 
   {include file="main_container_begin.tpl"}
 
