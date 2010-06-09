@@ -6,7 +6,7 @@
 					<li><a href="/page/spacebits1live.html" title="Spacebits 1 Launch">Spacebits 1 Launch</a></li>
 					<li><a href="/page/project.html" title="The project">The project</a></li>
 					<li><a href="/page/team.html" title="The team">The team</a></li>
-					<li><a href="/page/camera.html" title="Camera">Camera</a></li>
+					<li><a href="/page/camera.html" title="Cameras">Cameras</a></li>
 					<li><a href="/page/probe.html" title="Box">Payload Box</a></li>
 					<li><a href="/page/balloon.html" title="Balloon">The Balloon</a></li>
 					<li><a href="/page/power.html" title="Power Supply">Power Supply</a></li>

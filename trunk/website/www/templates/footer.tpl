@@ -16,5 +16,9 @@
 <script> SAPO.WebAnalytics.track({swakt:"305CBF64-3BE3-4DAB-B2C2-DB0001ACA942"}); </script>
 {/literal}
 
+{if $action=='page'}
+  {include file="disqus_footer.tpl"}
+{/if}
+
 </body>
 </html>

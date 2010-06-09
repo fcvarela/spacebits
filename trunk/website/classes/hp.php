@@ -173,6 +173,10 @@ class Spacebits_Homepage {
             $this->smarty->assign('title','Not found');
             $this->smarty->assign('body','This page doesn\'t exist');
             }
+          $this->smarty->assign('action','page');
+          if(strstr($_SERVER["REQUEST_URI"],'fbc_channel')) {
+            $this->smarty->assign('fbc_channel',1);
+            }
           $this->smarty->display('page.tpl');
           }
         break;

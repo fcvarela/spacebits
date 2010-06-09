@@ -34,3 +34,7 @@ CKEDITOR.replace( 'articlecontent',
 
 </div>
 
+{if $action=='page'}
+  {include file="disqus.tpl"}
+{/if}
+
