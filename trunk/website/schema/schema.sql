@@ -9,8 +9,20 @@ create table articles (
   body blob,
   title char(80),
   change int,
-  user char(20),
-  tags char(140), PRIMARY KEY(id)
+  user char(20), PRIMARY KEY(id)
+  );
+
+create table articles_tags (
+  id char(60),
+  tag char(20), PRIMARY KEY(id,tag)
+  );
+
+create table articles_history (
+  id char(60),
+  body blob,
+  title char(80),
+  change int,
+  user char(20), PRIMARY KEY(id,change)
   );
 
 create table users (

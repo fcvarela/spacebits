@@ -35,6 +35,8 @@ class Spacebits_Homepage {
     $this->smarty->assign('launch',$launch);
     $this->smarty->assign('left',$launch-time());
     if(strstr($_SERVER['HTTP_USER_AGENT'],'iPad')) $this->smarty->assign('ipad',true);
+    if(strstr($_SERVER["SERVER_NAME"],'localhost')) $this->smarty->assign('dev',1);
+      else $this->smarty->assign('dev',0);
     }
 
   function display() {
@@ -118,6 +120,7 @@ class Spacebits_Homepage {
     header("Cache-Control: no-cache");
     header("Pragma: no-cache");
     $this->smarty->assign('page',$id);
+    if(strlen($action)==0) $action='page';
     $this->smarty->assign('action',$action);
     $this->smarty->assign('rand',rand(0,10000));
     $this->smarty->assign('editable',true);
@@ -143,10 +146,26 @@ class Spacebits_Homepage {
         $this->smarty->display('browser.tpl');
         break;
       case "save":
-        if($this->uid=="") return;
+        if($this->uid==""|strlen($_POST['articlecontent'])==0) return;
         if($db = new PDO($this->db)) {
-          $sql="REPLACE INTO articles VALUES(".$db->quote($id).",".$db->quote($_POST['articlecontent']).",".$db->quote($_POST['articletitle']).",".time().",'".$this->uid."',".$db->quote($_POST['articletags']).");";
+          $sql="SELECT body,change,title,user FROM articles WHERE id=".$db->quote($id);
+          $q = $db->prepare($sql);
+          $q->execute();
+          if($r=$q->fetch(PDO::FETCH_ASSOC)) { // save old article in history table
+            $sql="REPLACE INTO articles_history VALUES(".$db->quote($id).",".$db->quote($r['body']).",".$db->quote($r['title']).",".$r['change'].",'".$r['user']."');";
+            $db->exec($sql);
+            }
+          // write the article into db
+          $sql="REPLACE INTO articles VALUES(".$db->quote($id).",".$db->quote($_POST['articlecontent']).",".$db->quote($_POST['articletitle']).",".time().",'".$this->uid."');";
           $q = $db->exec($sql);
+          // tags
+          $db->exec("DELETE FROM articles_tags WHERE id=".$db->quote($id));
+          $tags=str_replace(" ",",",$_POST['articletags']);
+          foreach(explode(",",$tags) as $tag) {
+            if(strlen($tag)) {
+              $db->exec("INSERT INTO articles_tags VALUES(".$db->quote($id).",".$db->quote($tag).");");
+              }
+            }
           header("Location: /page/".$id); 
           }
         break;
@@ -160,12 +179,12 @@ class Spacebits_Homepage {
         break;
       default:
         if($db = new PDO($this->db)) {
-          $sql="SELECT body,title,tags FROM articles WHERE id=".$db->quote($id);
+          $sql="SELECT body,title FROM articles WHERE id=".$db->quote($id);
           $q = $db->prepare($sql);
           $q->execute();
           if($r=$q->fetch(PDO::FETCH_ASSOC)) {
             $this->smarty->assign('title',stripslashes($r['title']));
-            $this->smarty->assign('tags',stripslashes($r['tags']));
+            $this->smarty->assign('tags',implode(",",$this->getpagetags($id)));
             $this->smarty->assign('body',stripslashes($r['body']));
             }
             else
@@ -173,7 +192,6 @@ class Spacebits_Homepage {
             $this->smarty->assign('title','Not found');
             $this->smarty->assign('body','This page doesn\'t exist');
             }
-          $this->smarty->assign('action','page');
           if(strstr($_SERVER["REQUEST_URI"],'fbc_channel')) {
             $this->smarty->assign('fbc_channel',1);
             }
@@ -182,5 +200,18 @@ class Spacebits_Homepage {
         break;
       }
     }
+
+ function getpagetags($id) {
+   $tags=array();
+   if($db = new PDO($this->db)) {
+     $sql="SELECT tag FROM articles_tags WHERE id=".$db->quote($id);
+     $q = $db->prepare($sql);
+     $q->execute();
+     while($r=$q->fetch(PDO::FETCH_ASSOC)) {
+       array_push($tags,$r['tag']);
+       }
+     }
+   return($tags);
+   }
 
 }

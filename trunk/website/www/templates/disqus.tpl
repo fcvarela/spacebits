@@ -1,10 +1,10 @@
 <div id="comments" {if $hidden=="1"}style="display:none;"{/if}>
-{literal}
 <h2>Comments<span></span></h2>
 <div id="commentscontent">
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-  var disqus_developer=0;
+  var disqus_developer={$dev};
+{literal}
 
   (function() {
    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
