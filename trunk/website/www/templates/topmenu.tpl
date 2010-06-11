@@ -19,6 +19,7 @@
     {/if}
   {/if}
 				<li><a href="/logout">Logout</a></li>
+				<li><a href="/bo">Backoffice</a></li>
 {else}
 				<li><a href="/login">Login</a></li>
 {/if}

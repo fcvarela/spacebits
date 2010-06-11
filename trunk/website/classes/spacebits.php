@@ -24,6 +24,19 @@ class Spacebits {
    return($posts);
    }
 
+  function getarticles($limit=10) {
+   $a=array();
+   if($db = new PDO($this->db)) {
+     $sql="select id,title,body,user,change from articles a order by a.change DESC limit ".$limit;
+     $q = $db->prepare($sql);
+     $q->execute();
+     while($r=$q->fetch(PDO::FETCH_ASSOC)) {
+       array_push($a,array('title'=>$r['title'],'id'=>$r['id'],'body'=>$r['body'],'user'=>$r['user'],'change'=>$r['change'],'date'=>date('l jS \of F Y',$r['change']),'tags'=>$this->getpagetags($r['id'])));
+       }
+     }
+   return($a);
+   }
+
  function getpagetags($id) {
    $tags=array();
    if($db = new PDO($this->db)) {

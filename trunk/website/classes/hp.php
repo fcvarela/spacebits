@@ -113,6 +113,13 @@ class Spacebits_Homepage extends Spacebits {
     $this->smarty->display('blog.tpl');
     }
 
+  function backoffice() {
+    if($this->uid) { 
+      $this->smarty->assign('articles',$this->getarticles());
+      $this->smarty->display('backoffice.tpl');
+      }
+    }
+
   function page($id,$action) {
     GLOBAL $sconfig;
     header("Content-Type: text/html; charset=utf-8"); 

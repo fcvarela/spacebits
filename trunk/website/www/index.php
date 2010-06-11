@@ -12,6 +12,9 @@ switch($_GET['action']) {
   case "blog":
     $hp->blog();
     break;
+  case "bo":
+    $hp->backoffice();
+    break;
   case "multimedia":
     $hp->multimedia();
     break;
