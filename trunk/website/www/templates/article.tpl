@@ -25,6 +25,12 @@ CKEDITOR.replace( 'articlecontent',
 	height: 400,
         filebrowserImageBrowseUrl : '/page/0?browser'
     });
+CKEDITOR.on('instanceReady',
+      function( evt )
+      {
+         var editor = evt.editor;
+         editor.execCommand('maximize');
+      });
 </script>
 {/literal}
 </form>
