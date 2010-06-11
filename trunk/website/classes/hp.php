@@ -1,21 +1,16 @@
 <?php
-/**
- * @author Celso Martinho
- * @version 1.0
- * @package Homepage
- */
-include('classes/smarty/Smarty.class.php');
-include('config/site.php');
+require_once('classes/smarty/Smarty.class.php');
+require_once('classes/spacebits.php');
+require_once('config/site.php');
 
 setlocale(LC_ALL, 'en_US');
 date_default_timezone_set('Europe/Lisbon');
 
-class Spacebits_Homepage {
+class Spacebits_Homepage extends Spacebits {
 
   function __construct() {
     $this->uploads="uploads";
     $this->secret=SECRET;
-    $this->db=DB_SITE;
     $this->smarty=new Smarty;
     $this->smarty->cache_lifetime = 60; // in seconds
     $this->smarty->compile_dir = '../cache/templates_c';
@@ -113,6 +108,11 @@ class Spacebits_Homepage {
     exit;
     }
 
+  function blog() {
+    $this->smarty->assign('posts',$this->getblogposts());
+    $this->smarty->display('blog.tpl');
+    }
+
   function page($id,$action) {
     GLOBAL $sconfig;
     header("Content-Type: text/html; charset=utf-8"); 
@@ -200,18 +200,5 @@ class Spacebits_Homepage {
         break;
       }
     }
-
- function getpagetags($id) {
-   $tags=array();
-   if($db = new PDO($this->db)) {
-     $sql="SELECT tag FROM articles_tags WHERE id=".$db->quote($id);
-     $q = $db->prepare($sql);
-     $q->execute();
-     while($r=$q->fetch(PDO::FETCH_ASSOC)) {
-       array_push($tags,$r['tag']);
-       }
-     }
-   return($tags);
-   }
 
 }

@@ -1,8 +1,10 @@
 <?php
 require_once('classes/api.php');
+require_once('classes/spacebits.php');
 
 $post=file_get_contents('php://input');
 $api=new Spacebits_API;
+$spacebits=new Spacebits;
 
 header("Expires: " . date("D, j M Y H:i:s", time() - (5 * 60)) . " UTC");
 header("Cache-Control: no-cache");
@@ -32,6 +34,10 @@ switch($_GET['action']) {
   case "twits":
     header("Content-Type: application/json; charset=utf-8");
     echo json_encode($api->getTwits());
+    break;
+  case "rss":
+    header('Content-type: text/xml; charset=utf-8');
+    echo $api->makerss($spacebits->getblogposts());
     break;
   case "all":
     header("Content-Type: application/json; charset=utf-8");

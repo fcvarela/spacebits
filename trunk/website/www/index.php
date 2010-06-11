@@ -9,6 +9,9 @@ switch($_GET['action']) {
   case "logout":
     $hp->logout();
     break;
+  case "blog":
+    $hp->blog();
+    break;
   case "multimedia":
     $hp->multimedia();
     break;

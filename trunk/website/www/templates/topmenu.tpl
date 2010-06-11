@@ -1,12 +1,12 @@
 		<div id="navigation_wrapper">
 			<ul id="navigation">
 				<li><a class="mit" href="/" title="Home">Home</a></li>
+				<li><a class="mit" href="/blog" title="Blog">Blog</a></li>
 				<li><a class="mit" href="/page/project.html" title="Project">Project</a></li>
 				<li><a class="mit" href="/page/team.html" title="Team">Team</a></li>
 				<li><a class="mit" href="/page/probe.html" title="Payload">Payload</a></li>
 				<li><a class="mit" href="/page/balloon.html" title="Balloon">Balloon</a></li>
 				<li><a class="mit" href="/multimedia" title="Multimedia">Multimedia</a></li>
-				<li><a class="mit" href="/live" title="Dashboard">Dashboard</a></li>
 			</ul>
 			<ul id="account_wrapper">
 {if $uid!=""}

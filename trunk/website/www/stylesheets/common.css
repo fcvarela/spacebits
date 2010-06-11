@@ -300,6 +300,57 @@
 		margin: -2px;
 	}
 	
+/* =BLOG */
+        .blogpost {margin-bottom:10px;}
+        .blogposttitle {font-weight:bold;}
+        .blogpostteaser {font-size: 0.8em;}
+        .blogpostby {font-size: 0.7em;color:#6d7262;}
+	#blog{
+		width: 858px;
+		margin:26px auto 0 auto;
+		position: relative;
+		border: 2px solid #3B3F2D;
+		clear:both;
+	}
+	#blogcontent a{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(97, 172, 0); font-weight: bold; text-decoration: none; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: initial;}
+	#blogcontent img{border: 3px solid #181B0F;margin-left:10px;margin-right:10px;}
+	#blogcontent embed{border: 3px solid #181B0F;margin-left:10px;margin-right:10px;}
+	#blogcontent p{margin-bottom:10px;}
+	#blogcontent table{margin-bottom:15px;border:3px solid #181B0F;}
+	#blogcontent td{padding: 3px 10px 3px 10px;background-color:#7c7c53;}
+	#blogcontent ul{margin-left:40px;margin-bottom:10px;}
+	#blogcontent li{list-style: outside;padding-left:10px;}
+	#blogcontent input{padding:3px;margin-top:5px;background-color:#181b0f;color:white;border-style:solid;border-color:#2f3722;}
+	#blogcontent{
+		width: 838px;
+		margin: 0 auto;
+		overflow: hidden;
+		clear:both;
+                color: #dddddd;
+		font:1.5em "Lucida Grande", "Trebuchet MS", Arial, Helvetica, sans-serif;
+		background: #39442B url(/images/services_bg.jpg) bottom repeat-x;
+		padding: 10px 10px 10px 10px;
+	}
+	#blog h2{
+		background: #2d3622 url(/images/services_top_bg.jpg);
+		height: 39px;
+		font-size:2.5em;
+		color: #7C7C58;
+		padding: 12px 0 0 10px;
+		border-bottom: 1px solid #2b2e1f;
+	}
+	/* top rounded image */
+	#blog h2 span{
+		position: absolute;
+		display: block;
+		height: 8px;
+		width: 862px;
+		left:0;top:0;
+		font-size:0.1em;
+		background: url(/images/services_top.jpg) left top no-repeat;
+		margin: -2px;
+	}
+	
 /* =SERVICES */
 	#services{
 		width: 858px;

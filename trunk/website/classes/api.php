@@ -191,4 +191,19 @@ class Spacebits_API {
     return(array('radio'=>$t,'sms'=>$t2));
     }
 
+
+  function makerss($posts) {
+    $out="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:openSearch=\"http://a9.com/-/spec/opensearchrss/1.0/\" xmlns:sapo=\"http://www.sapo.pt/RSS/Modules/Homepage\">\n<channel><link>http://spacebits.eu/</link>\n<language>pt-pt</language>\n<copyright>2007, PT.COM</copyright>\n<description></description>\n<title>Spacebits Blog</title>\n";
+    foreach($posts as $item) {
+      $guid=md5($item['id']);
+      $out.="<item><title><![CDATA[".$item['title']."]]></title><link><![CDATA[http://spacebits.eu/page/".stripslashes($item['id'])."]]></link>\n";
+      $out.="<description><![CDATA[<p>".stripslashes($item['body'])."</p>]]></description>\n";
+      $out.="<pubDate>".strftime("%a, %d %b %Y %H:%M:%S %z",$item['change'])."</pubDate>\n";
+      $out.="<guid isPermaLink=\"false\">".$guid."</guid><author>spacebits@sapo.pt</author><source url=\"http://spacebits.eu/\">Spacebits</source></item>\n\n";
+      }
+    $out.='<atom:link href="http://spacebits.eu/" rel="self" type="application/rss+xml" />'."\n";
+    $out.="</channel></rss>";
+    return($out);
+    }
+
 }
