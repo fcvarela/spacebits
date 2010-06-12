@@ -7,7 +7,7 @@
 {else}
 <title>Spacebits</title>
 {/if}
-<link href="/stylesheets/common.css?v=7" rel="stylesheet" type="text/css"/>
+<link href="/stylesheets/common.css?v=8" rel="stylesheet" type="text/css"/>
 <link rel="alternate" type="application/rss+xml" title="Spacebits" href="http://spacebits.eu/api/rss"/>
 <script type="text/javascript" src="/js/base.js"></script>
 <script type="text/javascript" src="/js/prototype.js"></script>
