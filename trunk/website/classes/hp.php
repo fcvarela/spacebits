@@ -39,7 +39,6 @@ class Spacebits_Homepage extends Spacebits {
     header("Content-Type: text/html; charset=utf-8"); 
     switch($_GET['action']) {
     default:
-      $this->smarty->assign('bigpic','bigpic'.rand(1,2).".jpg");
       $this->smarty->display('index.tpl');
       break;
       }

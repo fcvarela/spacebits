@@ -11,10 +11,11 @@
 <link rel="alternate" type="application/rss+xml" title="Spacebits" href="http://spacebits.eu/api/rss"/>
 <script type="text/javascript" src="/js/base.js"></script>
 <script type="text/javascript" src="/js/prototype.js"></script>
+<script src="/js/scriptaculous.js?load=effects" type="text/javascript"></script>
+<script src="/js/transition.js" type="text/javascript"></script>
 {if $uri=="/live"}
 <script type='text/javascript' src='http://www.google.com/jsapi'></script>
 <script type="text/javascript" src="http://js.sapo.pt/Bundles/SAPOMapsAPI.js"></script>
-<script src="/js/scriptaculous.js" type="text/javascript"></script>
 <script src="/js/iphone-style-checkboxes.js" type="text/javascript"></script>
 <script src="/js/live.js?v8" type="text/javascript"></script>
 <link rel="stylesheet" href="/stylesheets/buttons.css?v4" type="text/css" media="screen"/>
