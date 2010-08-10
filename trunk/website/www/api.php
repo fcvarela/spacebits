@@ -10,7 +10,9 @@ header("Expires: " . date("D, j M Y H:i:s", time() - (5 * 60)) . " UTC");
 header("Cache-Control: no-cache");
 header("Pragma: no-cache");
 
-switch($_GET['action']) {
+list($method,$value)=split("/",$_GET['action'],2);
+
+switch($method) {
   case "put":
     header("Content-Type: text/xml; charset=utf-8");
     file_put_contents("/tmp/spacepost.xml",print_r($post,true),FILE_APPEND);
@@ -25,7 +27,11 @@ switch($_GET['action']) {
     break;
   case "get":
     header("Content-Type: application/json; charset=utf-8");
-    echo json_encode($api->get());
+    echo json_encode($api->get(false,$value));
+    break;
+  case "balloons":
+    header("Content-Type: application/json; charset=utf-8");
+    echo json_encode($api->getBalloons());
     break;
   case "track":
     header("Content-Type: application/json; charset=utf-8");

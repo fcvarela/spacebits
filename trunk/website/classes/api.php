@@ -55,6 +55,16 @@ class Spacebits_API {
     return(false);
     }
 
+  function getBalloons() {
+    GLOBAL $active_balloons;
+    GLOBAL $balloons;
+    $b=array();
+    foreach($active_balloons as $bid) {
+      array_push($b,$this->balloonInfo($bid));
+      }
+    return($b);
+    }
+
   function putTwit($values=array()) {
     GLOBAL $sconfig;
     if($db = new PDO($this->twitter_db)) {
@@ -130,7 +140,7 @@ class Spacebits_API {
     return($p);
     }
 
-  function get($demo=false) {
+  function get($demo=false,$value) {
     GLOBAL $active_balloons;
     GLOBAL $balloons;
 
@@ -187,7 +197,14 @@ class Spacebits_API {
          }
        }
     }
-    return($p);
+    if($value) {
+      foreach($p as $b) if($b['id']==$value) return($b);
+      return(null);
+      }
+      else
+      {
+      return($p);
+      }
     }
 
   function balloonInfo($bid) {
