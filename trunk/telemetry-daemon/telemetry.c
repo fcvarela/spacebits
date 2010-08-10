@@ -13,29 +13,20 @@
 #include <pthread.h>
 
 #include "telemetry.h"
-#include "libsapo-broker2.h"
+#include "/Volumes/SVNRepo/broker/trunk/clients/c-component/libsapo-broker2/src/sapo-broker2.h"
 
-#define SERIAL_PORT "/dev/cu.usbserial-A6007x6A"
-#define SERIAL_SPD 115200
-
-#define DEBUG
-
-#ifndef DEBUG
-pthread_t command_thread;
-pthread_mutex_t serial_port_lock = PTHREAD_MUTEX_INITIALIZER;
-int serial_port;
-#endif
+#define SERIAL_PORT "/dev/cu.usbserial-A800ekp4"
+#define SERIAL_SPD 19200
 
 broker_server_t *broker_server;
 sapo_broker_t *broker;
+int serial_port;
 
 void packet_to_xml(sensor_data_t *packet, char *xml);
+size_t myread(int fd, void *ptr, size_t bytes);
 
 void catch_quit(int signal) {
-	#ifndef DEBUG
 	close(serial_port);
-	#endif
-	
 	printf("Closing serial port\n");
 	exit(0);
 }
@@ -45,13 +36,11 @@ int main(int argc, char **argv) {
 	signal(SIGINT, catch_quit);
 	signal(SIGQUIT, catch_quit);
 	
-	#ifndef DEBUG
 	// init serial port
-	if ((serial_port = setup_port()) == -1) {
+	/*if ((serial_port = setup_port()) == -1) {
 		perror("setup_port");
 		return 1;
-	}
-	#endif
+	}*/
 	
 	// init broker connection
 	char hostname[] = "127.0.0.1";
@@ -65,15 +54,9 @@ int main(int argc, char **argv) {
 	printf("Will spawn IO loops\n");
 	packet_loop();
 
-	// detach command thread
-	#ifndef DEBUG
-	pthread_create(&command_thread, NULL, (void *)&command_loop, NULL);
-	#endif
-	
 	return 0;
 }
 
-#ifndef DEBUG
 int setup_port(void) {
     int fd;
     struct termios newtio;
@@ -99,59 +82,66 @@ int setup_port(void) {
 
     return(fd);
 }
-#endif
+
+size_t myread(int fd, void *ptr, size_t bytes) {
+    size_t len = 0;
+    size_t temp;
+    
+    do {
+        temp = read(fd, ptr, bytes-len);
+        if (temp > 0)
+            len += temp;
+    } while (len < bytes);
+    
+    return len;
+}
 
 void packet_loop(void) {
     sensor_data_t packet;
-    #ifndef DEBUG
     char c;
-    #endif
-
+    
     while (1) {
-        #ifndef DEBUG
-        pthread_mutex_lock(&serial_port_lock);
-            read(serial_port, &c, 1);
-            if (c != 'A') {
-                pthread_mutex_unlock(&serial_port_lock);
-                continue;
-            }
-
-            read(serial_port, &packet, sizeof(packet));
-            read(serial_port, &c, 1);
-            if (c != 'Z') {
-                pthread_mutex_unlock(&serial_port_lock);
-                continue;
-            }
-
-            pthread_mutex_unlock(&serial_port_lock);
-        #else
-            struct timeval tv;
-            time_t curtime;
-            gettimeofday(&tv, NULL);
-            curtime=tv.tv_sec;
-            char t_hour[3], t_min[3], t_sec[3];
-            strftime(t_hour, 3,"%H", localtime(&curtime));
-            strftime(t_min, 3,"%M", localtime(&curtime));
-            strftime(t_sec, 3,"%S", localtime(&curtime));
-
-            packet.voltage = 1024;
-            packet.current = 1024;
-            packet.bearing = 1024;
-            packet.humidity = 1024;
-            packet.dust_density = 1024;
-            packet.rtc.tm_hour = atoi(t_hour);
-            packet.rtc.tm_min = atoi(t_min);
-            packet.rtc.tm_sec = atoi(t_sec);
-            packet.imu.gx = 1024;
-            packet.imu.gy = 1024;
-            packet.imu.ax = 1024;
-            packet.imu.ay = 1024;
-            packet.imu.az = 1024;
-            packet.scp.raw_pressure = 2048;
-            packet.scp.raw_temperature = 2048;
-            sleep(2); //simulate a little locking delay (locking read on serial port)
-        #endif
-
+        /*read(serial_port, &c, 1);
+        if (c != 'A')
+            continue;
+            
+        // RTC
+        myread(serial_port, &packet.rtc.tm_hour, 2);
+        myread(serial_port, &packet.rtc.tm_min, 2);
+        myread(serial_port, &packet.rtc.tm_sec, 2);
+        
+        // IMU
+        myread(serial_port, &packet.imu.gx, 2);
+        myread(serial_port, &packet.imu.gy, 2);
+        myread(serial_port, &packet.imu.ax, 2);
+        myread(serial_port, &packet.imu.ay, 2);
+        myread(serial_port, &packet.imu.az, 2);
+        
+        // SCP
+        myread(serial_port, &packet.scp.raw_pressure, 2);
+        myread(serial_port, &packet.scp.raw_temperature, 2);
+        
+        // GPS
+        myread(serial_port, &packet.gps.f_latitude, 4);
+        myread(serial_port, &packet.gps.f_longitude, 4);
+        myread(serial_port, &packet.gps.u_altitude, 2);
+        myread(serial_port, &packet.gps.u_valid, 1);
+        myread(serial_port, &packet.gps.u_satellites, 1);
+        
+        myread(serial_port, &packet.voltage, 2);
+        myread(serial_port, &packet.current, 2);
+        myread(serial_port, &packet.humidity, 2);
+        myread(serial_port, &packet.bearing, 2);
+        myread(serial_port, &packet.light, 2);
+        myread(serial_port, &packet.extern_temp, 2);
+ 
+        myread(serial_port, &c, 1);
+        if (c != 'Z')
+            continue;
+        */
+		packet.gps.f_latitude = 37.761933;
+		packet.gps.f_longitude = -8.091904;
+		sleep(1);
         // push packet to telemetry topic
         char *xml = (char *)malloc(10000);
         packet_to_xml(&packet, xml);
@@ -162,48 +152,14 @@ void packet_loop(void) {
 }
 
 void packet_to_xml(sensor_data_t *packet, char *xml) {
-    static float latitude = 37.761933;
-    static float longitude = -8.091904;
-    static int altitude = 0;
-    static uint8_t counter = 0;
-    
-    latitude += 0.001;
-    longitude += 0.001;
-    altitude += 1000;
-    
-    counter++;
-    
-    if (counter == 50) {
-        latitude = 37.761933;
-        longitude = -8.091904;
-        altitude = 0;
-        counter = 0;
-    }
-
-    char fmt[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><balloon><token>29v856792b29##/++9</token><power><current>%u</current><voltage>%u</voltage></power><atmosphere><pressure>%u</pressure><temp>%u</temp><humidity>%u</humidity><dust_density>%u</dust_density></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%f</lat><lon>%f</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%u</gx><gy>%u</gy><ax>%u</ax><ay>%u</ay><az>%u</az></imu></balloon>";
+    char fmt[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><balloon><id>2</id><token>29v856792b29##/++9</token><power><current>%u</current><voltage>%u</voltage></power><atmosphere><pressure>%hd</pressure><temp>%hd</temp><temp_ext>%hd</temp_ext><light>%u</light><humidity>%u</humidity></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%.5f</lat><lon>%.5f</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%hd</gx><gy>%hd</gy><ax>%hd</ax><ay>%hd</ay><az>%hd</az></imu></balloon>";
     sprintf(xml, fmt,
         packet->current, packet->voltage,
-        packet->scp.raw_pressure, packet->scp.raw_temperature, packet->humidity, packet->dust_density,
+        packet->scp.raw_pressure, packet->scp.raw_temperature,
+        packet->extern_temp, packet->light, packet->humidity,
         packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec,
-        latitude, longitude, altitude, packet->bearing,
+        packet->gps.f_latitude, packet->gps.f_longitude, packet->gps.u_altitude, packet->bearing,
         packet->imu.gx, packet->imu.gy, packet->imu.ax, packet->imu.ay, packet->imu.az);
     fprintf(stderr, "Time is: %d:%d:%d\n", packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec);
     fprintf(stderr, "XML msg:\n---\n%s\n---\n", xml);
-}
-
-void command_loop(void) {
-    printf("Command loop started...\n");
-    while (1) {
-        // read from command queue...
-        sleep(1);
-        continue;
-        // got cmd? write to queue
-        /*
-        pthread_mutex_lock(&serial_port_lock);
-        write(serial_port, &hf[0], 1);
-        write(serial_port, (char)COMMAND_RESET, 1);
-        write(serial_port, &hf[1], 1);
-        pthread_mutex_unlock(&serial_port_lock);
-        */
-    }
 }
