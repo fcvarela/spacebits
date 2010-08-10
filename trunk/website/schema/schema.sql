@@ -31,6 +31,7 @@ create table users (
   );
 
 create table data (
+  balloon int,
   change int,
   power_current real,
   power_voltage real,
