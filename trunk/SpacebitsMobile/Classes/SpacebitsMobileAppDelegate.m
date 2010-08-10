@@ -32,7 +32,11 @@
 
 - (void)spawnTelemetryRequest
 {
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://spacebits.eu/api/get"]];	
+	NSInteger balloonId = [[NSUserDefaults standardUserDefaults] integerForKey:@"balloonId"];
+	if (balloonId == 0)
+		balloonId = 1;
+	NSString *urlString = [NSString stringWithFormat:@"http://spacebits.eu/api/get/%d", balloonId];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];	
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
 }
@@ -52,6 +56,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	[connection release];
 	
+	// selected balloon
 	NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	NSDictionary *d_telemetry = [responseString JSONValue];
 	

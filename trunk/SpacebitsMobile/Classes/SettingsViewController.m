@@ -6,7 +6,7 @@
 @synthesize telemetrySegmentedControl;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 
@@ -19,6 +19,9 @@
 	
 	if (section == 0)
 		outStr = @"Map Settings";
+		
+	if (section == 2)
+		outStr = @"Follow Balloon";
 	
 	return outStr;
 	
@@ -45,10 +48,18 @@
 		telemetrySegmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"telemetryRate"];
 	}
 	
-	if (indexPath.section == 0)
-		[cell.contentView addSubview:mapSegmentedControl];
-	else
-		[cell.contentView addSubview:telemetrySegmentedControl];
+	if (balloonIdSegmentedControl == nil) {
+		balloonIdSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"1", @"2", @"3", nil]];
+		balloonIdSegmentedControl.frame = CGRectMake(-1, -1, 301, 47);
+		[balloonIdSegmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+		balloonIdSegmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"balloonId"];
+	}
+	
+	switch (indexPath.section) {
+		case 0:[cell.contentView addSubview:mapSegmentedControl];break;
+		case 1:[cell.contentView addSubview:telemetrySegmentedControl];break;
+		case 2:[cell.contentView addSubview:balloonIdSegmentedControl]; break;
+	}
 
     return cell;
 }
@@ -60,6 +71,10 @@
 	
 	if (sender == telemetrySegmentedControl) {
 		[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedSegmentIndex] forKey:@"telemetryRate"];
+	}
+	
+	if (sender == balloonIdSegmentedControl) {
+		[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedSegmentIndex]+1 forKey:@"balloonId"];
 	}
 }
 

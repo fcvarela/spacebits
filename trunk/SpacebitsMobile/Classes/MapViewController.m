@@ -9,6 +9,11 @@
 #define pi 3.141592
 #define pi2 6.283184
 
+#define ANGLE_THRESHOLD 45
+#define NUMBER_OF_POSSIBLE_STRINGS 8
+
+int azimuth_to_int(float az);
+
 @implementation MapViewController
 
 - (void)viewDidLoad {
@@ -60,7 +65,7 @@
 		
 		SpacebitsMobileAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 		NSDictionary *telemetry = appDelegate.telemetry;
-	
+		NSLog(@"%@", telemetry);
 		CLLocationCoordinate2D newCoords;
 		newCoords.latitude = [[telemetry valueForKey:@"lat"] floatValue];
 		newCoords.longitude = [[telemetry valueForKey:@"lon"] floatValue];
@@ -102,8 +107,11 @@
 	
 	bearing *= r2d;
 	
+	char *bear_table[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
+	
+	
 	((UILabel *)distanceField).text = [NSString stringWithFormat:@"%.2f m", distance];
-	((UILabel *)bearingField).text = [NSString stringWithFormat:@"%.1f deg", bearing];
+	((UILabel *)bearingField).text = [NSString stringWithFormat:@"%.1f deg (%s)", bearing, bear_table[azimuth_to_int(bearing)]];
 }
 
 - (float)estimateDistance:(CLLocationCoordinate2D)fromPoint toPoint:(CLLocationCoordinate2D)toPoint
@@ -147,5 +155,11 @@
 	[super dealloc];
 }
 
-
 @end
+
+int azimuth_to_int(float az) {
+    int angle = (int) az;
+    angle += ANGLE_THRESHOLD / 2;
+    angle = angle / ANGLE_THRESHOLD;
+    return angle % NUMBER_OF_POSSIBLE_STRINGS;
+}
