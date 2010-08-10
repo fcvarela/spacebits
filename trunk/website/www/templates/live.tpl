@@ -99,6 +99,17 @@ useGauges = false;
   </li>
 -->
   </ol>
+<ol>
+<li>
+<label class="left" for="blid">Balloon</label>
+<select id="blid" name="balloons" onChange="swapBalloon();return(false);">
+{foreach from=$balloons item=b name=f}
+<option value="{$b.id}" {if $b.id==2}selected{/if}>{$b.name}</option>
+{/foreach}
+</select>
+</li>
+
+</ol>
 </div>
 <div id="sensors" style="float:left;width:600px;margin-left:25px;height:210px;">
   <div id='sensors_alt' style="float:left;"></div>

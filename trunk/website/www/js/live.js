@@ -8,9 +8,11 @@ var sw_sms_cb = false;
 var sw_radio_cb = false;
 var sw_demo_cb = false;
 var sw_twitter_cb = false;
+var sw_startpos=[-8.6837,37.1082];
 var useGauges = true;
 var twitter_width = 250;
 var twitter_last = false;
+var sw_balloon_id = 1;
 var dg=[];
 dg['0']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAANgCLrc/i8UQ2sljJRpqWYTMYwkYRSggTUhQw3O6xpCTC8BFTS5sSsCimMgXBBXjB5jgOQ1B7WHALaY/BjBpqyxBfSuii9OxyMriIZh8bw2tkOk0glk6pwKzbr9BIb4/wwJADs=';
 dg['1']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAAM5CLrc/jACIZkoVQmDczFEBhjGIJJUFZBBNpDiaohAEIqCmW13ReoSWUvFcsGMswyBQyP0MkOalJEAADs=';
@@ -102,7 +104,7 @@ function changeSwitch(i) {
   }
 
 function initMap() {
-  start=new OpenLayers.LonLat(-8.0919,37.7616);
+  start=new OpenLayers.LonLat(sw_startpos[0],sw_startpos[1]);
   img={markerImage: '/images/balloon.png', markerAnchor: new OpenLayers.Pixel(-8, -49), size: new OpenLayers.Size(32, 42)};
   map = new SAPO.Maps.Map('map');
   map.addControl(new SAPO.Maps.Control.MapType());
@@ -140,24 +142,34 @@ function drawGauge(n,v,d,o,alt) {
   setTooltip(d,params.alt);
   }
 
+function swapBalloon() {
+  sw_balloon_id=s$('blid').value;
+  var s=new Ajax.Request('/api/all',{method: 'post',onSuccess:refreshDashboard});
+  // alert(sw_balloon_id);
+  }
+
 function refreshDashboard(t) {
   var r=t.responseText.evalJSON();
-    //SAPO.Utility.Dumper.alertDump(r);
-    // s$('coords').innerHTML=r.lon+','+r.lat;
+  // s$('coords').innerHTML=r.lon+','+r.lat;
+  var last=r['last'][0];
+  for(var i=0;i<r['last'].length;i++) {
+    if(r['last'][i].id==sw_balloon_id) last=r['last'][i];
+    }
+  // SAPO.Utility.Dumper.alertDump(last);
   if(useGauges) {
-    drawGauge('Altitude',r['last'].alt,'sensors_alt',gauges.altitude);
-    drawGauge('Pressure',r['last'].pressure,'sensors_pressure',gauges.pressure);
-    drawGauge('Int Temp',r['last'].temperature,'sensors_temperature',gauges.temp);
-    drawGauge('Ext Temp',r['last'].temperature_ext,'sensors_temperature_ext',gauges.temp_ext);
-    drawGauge('Humidity',r['last'].humidity,'sensors_humidity',gauges.humidity);
+    drawGauge('Altitude',last.alt,'sensors_alt',gauges.altitude);
+    drawGauge('Pressure',last.pressure,'sensors_pressure',gauges.pressure);
+    drawGauge('Int Temp',last.temperature,'sensors_temperature',gauges.temp);
+    drawGauge('Ext Temp',last.temperature_ext,'sensors_temperature_ext',gauges.temp_ext);
+    drawGauge('Humidity',last.humidity,'sensors_humidity',gauges.humidity);
     }
     else
     {
-    analogNumber('Altitude',r['last'].alt,'sensors_alt',gauges.altitude.alt);
-    analogNumber('Pressure',r['last'].pressure,'sensors_pressure',gauges.pressure.alt);
-    analogNumber('Int Temperature',r['last'].temperature,'sensors_temperature',gauges.temp.alt);
-    analogNumber('Ext Temperature',r['last'].temperature_ext,'sensors_temperature_ext',gauges.temp_ext.alt);
-    analogNumber('Humidity',r['last'].humidity,'sensors_humidity',gauges.humidity.alt);
+    analogNumber('Altitude',last.alt,'sensors_alt',gauges.altitude.alt);
+    analogNumber('Pressure',last.pressure,'sensors_pressure',gauges.pressure.alt);
+    analogNumber('Int Temperature',last.temperature,'sensors_temperature',gauges.temp.alt);
+    analogNumber('Ext Temperature',last.temperature_ext,'sensors_temperature_ext',gauges.temp_ext.alt);
+    analogNumber('Humidity',last.humidity,'sensors_humidity',gauges.humidity.alt);
     }
   // Track
   markerslayer.removeMarkers();
@@ -184,19 +196,19 @@ function refreshDashboard(t) {
       }
     }
   // Balloon
-  var pos=new OpenLayers.LonLat(r['last'].lon,r['last'].lat);
+  var pos=new OpenLayers.LonLat(last.lon,last.lat);
   if(sw_follow_cb) map.setMapCenter(pos);
   balloon.setLonLat(pos);
   // Other measures
-  analogNumber('Bear',r['last'].bear,'bear','Compass Heading or Bearing<br/>(in degrees)');
-  analogNumber('Ax',r['last'].imu_ax,'ax','Acceleration X axis<br/>(in Gs)');
-  analogNumber('Ay',r['last'].imu_ay,'ay','Acceleration Y axis<br/>(in Gs)');
-  analogNumber('Az',r['last'].imu_az,'az','Acceleration Z axis<br/>(in Gs)');
-  analogNumber('Gx',r['last'].imu_gx,'gx','Angular Speed X axis<br/>(in rad/sec)');
-  analogNumber('Gy',r['last'].imu_gy,'gy','Angular Speed Y axis<br/>(in rad/sec)');
-  analogNumber('Elapsed Now Last',r['last'].elapsed,'time','Time elapsed from flight start<br/>Current time<br/>Last measurement',true);
-  analogNumber('Current',r['last'].power_current,'amps','Power current<br/>(in amps)');
-  analogNumber('Voltage',r['last'].power_voltage,'volts','Power voltage<br/>(in volts)');
+  analogNumber('Bear',last.bear,'bear','Compass Heading or Bearing<br/>(in degrees)');
+  analogNumber('Ax',last.imu_ax,'ax','Acceleration X axis<br/>(in Gs)');
+  analogNumber('Ay',last.imu_ay,'ay','Acceleration Y axis<br/>(in Gs)');
+  analogNumber('Az',last.imu_az,'az','Acceleration Z axis<br/>(in Gs)');
+  analogNumber('Gx',last.imu_gx,'gx','Angular Speed X axis<br/>(in rad/sec)');
+  analogNumber('Gy',last.imu_gy,'gy','Angular Speed Y axis<br/>(in rad/sec)');
+  analogNumber('Elapsed Now Last',last.elapsed,'time','Time elapsed from flight start<br/>Current time<br/>Last measurement',true);
+  analogNumber('Current',last.power_current,'amps','Power current<br/>(in amps)');
+  analogNumber('Voltage',last.power_voltage,'volts','Power voltage<br/>(in volts)');
   // Twitter
   $o='<h1><a href="http://twitter.com/flyspacebits" target="_blank">Twitter feed</a></h1>';
   for(i=0;i<r['twitter'].length;i++) {
@@ -238,6 +250,7 @@ function initDashboard() {
     initGauges();
     }
   initSwitches();
+  sw_balloon_id=s$('blid').value;
   getData();
   }
 

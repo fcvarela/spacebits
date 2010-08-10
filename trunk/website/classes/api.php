@@ -126,21 +126,22 @@ class Spacebits_API {
       }
     }
 
-  function lastSMS() {
+  function lastSMS($bid=0) {
     $p=array();
     if($db = new PDO($this->sms_db)) {
-      $sql="select change,message from sms WHERE message!='0.0000,0.0000,0,0' order by change desc limit 1";
+      $sql="select change,message from sms WHERE balloon=".$bid." AND message!='0.0000,0.0000,0,0' order by change desc limit 1";
       $q = $db->prepare($sql);
       $q->execute();
       if($r=$q->fetch(PDO::FETCH_ASSOC)) {
         $p['change']=$r['change'];
+        $p['balloon']=$bid;
         list($p['lat'],$p['lon'],$p['alt'],$p['nsats'])=split(",",$r['message']);
         }
       }
     return($p);
     }
 
-  function get($demo=false,$value) {
+  function get($demo=false,$value=false) {
     GLOBAL $active_balloons;
     GLOBAL $balloons;
 
@@ -182,7 +183,7 @@ class Spacebits_API {
             foreach(array_keys($r) as $key) {
               $lp[$key]=$r[$key];
               }
-            $sms=$this->lastSMS();
+            $sms=$this->lastSMS($bid);
             if(intval($sms['change'])>intval($lp['change'])) {
               $lp['lat']=$sms['lat'];
               $lp['lon']=$sms['lon'];

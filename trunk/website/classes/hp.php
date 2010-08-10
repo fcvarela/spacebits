@@ -1,6 +1,7 @@
 <?php
 require_once('classes/smarty/Smarty.class.php');
 require_once('classes/spacebits.php');
+require_once('classes/api.php');
 require_once('config/site.php');
 
 setlocale(LC_ALL, 'en_US');
@@ -11,6 +12,7 @@ class Spacebits_Homepage extends Spacebits {
   function __construct() {
     $this->uploads="uploads";
     $this->secret=SECRET;
+    $this->api=new Spacebits_API;
     $this->smarty=new Smarty;
     $this->smarty->cache_lifetime = 60; // in seconds
     $this->smarty->compile_dir = '../cache/templates_c';
@@ -56,9 +58,17 @@ class Spacebits_Homepage extends Spacebits {
 
   function live() {
     GLOBAL $sconfig;
+    GLOBAL $balloons;
+    GLOBAL $active_balloons;
+
     header("Content-Type: text/html; charset=utf-8"); 
     switch($_GET['action']) {
     default:
+      $b=array();
+      foreach($active_balloons as $bid) {
+        array_push($b,$this->api->balloonInfo($bid));
+        }
+      $this->smarty->assign('balloons',$b);
       $this->smarty->display('live.tpl');
       break;
       }
