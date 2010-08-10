@@ -52,10 +52,12 @@ create table data (
   );
 
 create table sms (
+  balloon int,
   change int,
   source char(80),
   message char(160),
   broadcast int, PRIMARY KEY(change)
   );
+
 CREATE INDEX message_idx on sms (message);
 

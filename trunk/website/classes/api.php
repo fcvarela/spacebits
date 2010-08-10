@@ -25,6 +25,7 @@ class Spacebits_API {
     if($arr=@simplexml_load_string($xml)) {
       if($this->api_secret!=$arr->token) return(false);
       $p=array();
+      $p['balloon']=floatval($arr->id); // Balloon id
       $p['power_current']=floatval($arr->power->current);
       $p['power_voltage']=floatval($arr->power->voltage);
       $p['pressure']=floatval($arr->atmosphere->pressure);
@@ -41,7 +42,14 @@ class Spacebits_API {
       $p['imu_ax']=floatval($arr->imu->ax);
       $p['imu_ay']=floatval($arr->imu->ay);
       $p['imu_az']=floatval($arr->imu->az);
-      $p['change']=strtotime($arr->rtc);
+      $change=strtotime($arr->rtc);
+      if($change==FALSE) {
+        $p['change']=time(); // assumes system time
+        }
+        else
+        {
+        $p['change']=$change;
+        }
       return($p);
       }
     return(false);
@@ -93,7 +101,7 @@ class Spacebits_API {
   function put($values=array()) {
     GLOBAL $sconfig;
     if($db = new PDO($this->db)) {
-      $sql="INSERT INTO data (change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az) VALUES(".$values['change'].",".$values['power_current'].",".$values['power_voltage'].",".$values['pressure'].",".$values['temperature'].",".$values['temperature_ext'].",".$values['humidity'].",".$values['dust_density'].",".$values['lat'].",".$values['lon'].",".$values['alt'].",".$values['bear'].",".$values['imu_gx'].",".$values['imu_gy'].",".$values['imu_ax'].",".$values['imu_ay'].",".$values['imu_az'].")";
+      $sql="INSERT INTO data (balloon,change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az) VALUES(".$values['balloon'].",".$values['change'].",".$values['power_current'].",".$values['power_voltage'].",".$values['pressure'].",".$values['temperature'].",".$values['temperature_ext'].",".$values['humidity'].",".$values['dust_density'].",".$values['lat'].",".$values['lon'].",".$values['alt'].",".$values['bear'].",".$values['imu_gx'].",".$values['imu_gy'].",".$values['imu_ax'].",".$values['imu_ay'].",".$values['imu_az'].")";
       $q = $db->prepare($sql);
       $q->execute();
       }
@@ -101,7 +109,8 @@ class Spacebits_API {
 
   function saveSMS($source,$message) {
     if($db = new PDO($this->sms_db)) {
-      $sql="INSERT INTO sms (change,source,message,broadcast) VALUES(".time().",".$db->quote($source).",".$db->quote($message).",0)";
+      list($balloon,$m)=split(",",$message,2);
+      $sql="INSERT INTO sms (balloon,change,source,message,broadcast) VALUES(".$db->quote($balloon).",".time().",".$db->quote($source).",".$db->quote($m).",0)";
       $q = $db->prepare($sql);
       $q->execute();
       }
@@ -122,73 +131,111 @@ class Spacebits_API {
     }
 
   function get($demo=false) {
+    GLOBAL $active_balloons;
+    GLOBAL $balloons;
+
     $p=array();
     if($demo) {
-      $p['change']=time();
-      $p['power_voltage']=sprintf("%.1f",(float)(rand(0,50)/10));
-      $p['power_current']=sprintf("%.1f",(float)(rand(0,20)/10));
-      $p['imu_ax']=sprintf("%.1f",(float)(rand(0,10)/10));
-      $p['imu_ay']=sprintf("%.1f",(float)(rand(0,10)/10));
-      $p['imu_az']=sprintf("%.1f",(float)(rand(0,10)/10));
-      $p['imu_gx']=rand(0,90);
-      $p['imu_gy']=rand(0,90);
-      $p['temperature']=rand(-50,10);
-      $p['temperature_ext']=rand(-50,10);
-      $p['alt']=rand(0,40000);
-      $p['humidity']=rand(0,100);
-      $p['bear']=rand(0,360);
-      $p['dust_density']=rand(0,100);
-      $p['pressure']=rand(10,1000);
-      $p['lon']=-8.0919+(float)(rand(-500,500)/1000);
-      $p['lat']=37.7616+(float)(rand(-500,500)/1000);
+      $lp=array();
+      $balloon_id=1;
+      $lp['change']=time();
+      $lp['power_voltage']=sprintf("%.1f",(float)(rand(0,50)/10));
+      $lp['power_current']=sprintf("%.1f",(float)(rand(0,20)/10));
+      $lp['imu_ax']=sprintf("%.1f",(float)(rand(0,10)/10));
+      $lp['imu_ay']=sprintf("%.1f",(float)(rand(0,10)/10));
+      $lp['imu_az']=sprintf("%.1f",(float)(rand(0,10)/10));
+      $lp['imu_gx']=rand(0,90);
+      $lp['imu_gy']=rand(0,90);
+      $lp['temperature']=rand(-50,10);
+      $lp['temperature_ext']=rand(-50,10);
+      $lp['alt']=rand(0,40000);
+      $lp['humidity']=rand(0,100);
+      $lp['bear']=rand(0,360);
+      $lp['dust_density']=rand(0,100);
+      $lp['pressure']=rand(10,1000);
+      $lp['lon']=-8.0919+(float)(rand(-500,500)/1000);
+      $lp['lat']=37.7616+(float)(rand(-500,500)/1000);
+      $binfo=$this->balloonInfo($balloon_id);
+      $lp['id']=$binfo['id'];
+      $lp['name']=$binfo['name'];
+      array_push($p,$lp);
     }
     else
     {
       if($db = new PDO($this->db)) {
-        $sql="SELECT change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data WHERE lat!=0 AND lon!=0 ORDER BY change DESC LIMIT 1";
-        $q = $db->prepare($sql);
-        $q->execute();
-        if($r=$q->fetch(PDO::FETCH_ASSOC)) {
-          foreach(array_keys($r) as $key) {
-            $p[$key]=$r[$key];
+        foreach($active_balloons as $bid) {
+          $sql="SELECT balloon,change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data WHERE balloon=".$bid." AND lat!=0 AND lon!=0 ORDER BY change DESC LIMIT 1";
+          $q = $db->prepare($sql);
+          $q->execute();
+          $lp=array();
+          if($r=$q->fetch(PDO::FETCH_ASSOC)) {
+            foreach(array_keys($r) as $key) {
+              $lp[$key]=$r[$key];
+              }
+            $sms=$this->lastSMS();
+            if(intval($sms['change'])>intval($lp['change'])) {
+              $lp['lat']=$sms['lat'];
+              $lp['lon']=$sms['lon'];
+              $lp['alt']=$sms['alt'];
+              }
             }
-          $sms=$this->lastSMS();
-          if(intval($sms['change'])>intval($p['change'])) {
-            $p['lat']=$sms['lat'];
-            $p['lon']=$sms['lon'];
-            $p['alt']=$sms['alt'];
-            }
-          }
+         $binfo=$this->balloonInfo($bid);
+         $lp['id']=$binfo['id'];
+         $lp['name']=$binfo['name'];
+         $lp['elapsed']=date("H:i:s",time()-strtotime($binfo['starts'])).' '.date("H:i:s").' '.date("H:i:s",$p['change']);
+         array_push($p,$lp);
+         }
        }
     }
-    $p['elapsed']=date("H:i:s",time()-strtotime("2010-05-30 03:00:00 GMT")).' '.date("H:i:s").' '.date("H:i:s",$p['change']);
     return($p);
     }
 
-  function track() {
-    $p=array();
-    if($db = new PDO($this->db)) {
-      $sql="select distinct lat,lon  from data where lat>20 and lat<60 and lon<-1 and lon>-12 order by change desc,lat,lon limit 100";
-      $q = $db->prepare($sql);
-      $q->execute();
-      $t=array(); 
-      while($r=$q->fetch(PDO::FETCH_ASSOC)) {
-        array_push($t,array($r['lat'],$r['lon']));
-        }
+  function balloonInfo($bid) {
+    GLOBAL $balloons;
+    foreach($balloons as $b) {
+      if($bid==$b['id']) return($b);
       }
-    if($db = new PDO($this->sms_db)) {
-      $sql="select message,change from sms order by change desc limit 100";
-      $q = $db->prepare($sql);
-      $q->execute();
-      $t2=array(); 
-      while($r=$q->fetch(PDO::FETCH_ASSOC)) {
-        list($lat,$lon)=split(",",$r['message']);
-        if($lat>20&&$lat<60&&$lon<-1&&$lon>-12) {
-          array_push($t2,array($lat,$lon));
+    return(null);
+    }
+
+  function track() {
+    GLOBAL $active_balloons;
+    GLOBAL $balloons;
+
+    if($db = new PDO($this->db)) {
+      $t=array(); 
+      foreach($active_balloons as $bid) {
+        $t[$bid]=array(); 
+        $sql="select distinct lat,lon  from data where balloon=".$bid." AND lat>20 and lat<60 and lon<-1 and lon>-12 order by change desc,lat,lon limit 100";
+        $q = $db->prepare($sql);
+        $q->execute();
+        while($r=$q->fetch(PDO::FETCH_ASSOC)) {
+          array_push($t[$bid],array($r['lat'],$r['lon']));
           }
         }
       }
-    return(array('radio'=>$t,'sms'=>$t2));
+    if($db = new PDO($this->sms_db)) {
+      $t2=array(); 
+      foreach($active_balloons as $bid) {
+        $sql="select message,change from sms WHERE balloon=".$bid." order by change desc limit 100";
+        $q = $db->prepare($sql);
+        $q->execute();
+        $t2[$bid]=array(); 
+         while($r=$q->fetch(PDO::FETCH_ASSOC)) {
+          list($lat,$lon)=split(",",$r['message']);
+          if($lat>20&&$lat<60&&$lon<-1&&$lon>-12) {
+            array_push($t2[$bid],array($lat,$lon));
+            }
+          }
+        }
+      }
+    // consolidation
+    $p=array();
+    foreach($active_balloons as $bid) {
+      $binfo=$this->balloonInfo($bid);
+      array_push($p,array('id'=>$binfo['id'],'name'=>$binfo['name'],'radio'=>$t[$bid],'sms'=>$t2[$bid]));
+      }
+    return($p);
     }
 
 
