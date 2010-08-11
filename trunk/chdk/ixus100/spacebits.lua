@@ -16,7 +16,7 @@ end
 function spacebits()
         while 1 do
           take_movie(60)
-          take_photo(5)
+          take_photo(20)
           end
 	-- need this to see display if we switched back to play
 	sleep(1000)
@@ -30,7 +30,7 @@ function take_photo(n)
 	set_backlight(0)
         sleep(500)
         -- ISO 100
-        set_iso 2
+	set_prop(149,100)
 	-- flash off
 	set_prop(143,2)
 	-- Picture Quality (0,1,2 = Superfine, Fine, Normal)
