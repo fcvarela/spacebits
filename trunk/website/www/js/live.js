@@ -70,7 +70,7 @@ function initSwitches() {
     new iPhoneStyle('.on_off input[type=checkbox]',{checkedLabel: 'YES', uncheckedLabel: 'NO'});
     setInterval(function checkSwitches() {
     sw_follow_cb = $$('.on_off input[type=checkbox]')[0].checked;
-    sw_sms_cb = $$('.on_off input[type=checkbox]')[1].checked;
+    // sw_sms_cb = $$('.on_off input[type=checkbox]')[1].checked;
     sw_radio_cb = $$('.on_off input[type=checkbox]')[2].checked;
     sw_twitter_cb = $$('.on_off input[type=checkbox]')[3].checked;
     // sw_demo_cb = $$('.on_off input[type=checkbox]')[4].checked;
@@ -91,7 +91,7 @@ function initSwitches() {
     twitter_last = sw_twitter_cb;
     }, 1000);
   changeSwitch(0);
-  changeSwitch(1);
+  // changeSwitch(1);
   changeSwitch(2);
   changeSwitch(3);
   // changeSwitch(4);
@@ -155,7 +155,6 @@ function refreshDashboard(t) {
   for(var i=0;i<r['last'].length;i++) {
     if(r['last'][i].id==sw_balloon_id) last=r['last'][i];
     }
-  // SAPO.Utility.Dumper.alertDump(last);
   if(useGauges) {
     drawGauge('Altitude',last.alt,'sensors_alt',gauges.altitude);
     drawGauge('Pressure',last.pressure,'sensors_pressure',gauges.pressure);
@@ -177,18 +176,22 @@ function refreshDashboard(t) {
   var size=new OpenLayers.Size(16, 16)
   var shift=new OpenLayers.Pixel(-8,-8);
   var green = { markerImage: '/images/green.png', size: size, markerOpacity: 1,markerAnchor: shift };
-  var red = { markerImage: '/images/red.png', size: size, markerOpacity: 1,markerAnchor: shift };
+  var red = { markerImage: '/images/red.png', size: size, markerOpacity: 1,markerAnchor: shift};
+
 
   if(sw_radio_cb) {
-    for(var i=0;i<r['track']['radio'].length;i++) {
-      var co=new OpenLayers.LonLat(r['track']['radio'][i][1],r['track']['radio'][i][0]);
+    red.markerOpacity=0;
+    for(var i=0;i<r['track'][0]['radio'].length;i++) {
+      var co=new OpenLayers.LonLat(r['track'][0]['radio'][i][1],r['track'][0]['radio'][i][0]);
       var m=new SAPO.Maps.Marker(co, {draggable: false});
+      red.markerOpacity+=1/r['track'][0]['radio'].length;
+      red.label=i;
       m.setStyle(red);
       markerslayer.addMarker(m);
       }
     }
   if(sw_sms_cb) {
-    for(var i=0;i<r['track']['sms'].length;i++) {
+    for(var i=0;i<r['track'][0]['sms'].length;i++) {
       var co=new OpenLayers.LonLat(r['track']['sms'][i][1],r['track']['sms'][i][0]);
       var m=new SAPO.Maps.Marker(co, {draggable: false});
       m.setStyle(green);

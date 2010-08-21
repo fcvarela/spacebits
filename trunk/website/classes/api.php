@@ -42,14 +42,7 @@ class Spacebits_API {
       $p['imu_ax']=floatval($arr->imu->ax);
       $p['imu_ay']=floatval($arr->imu->ay);
       $p['imu_az']=floatval($arr->imu->az);
-      $change=strtotime($arr->rtc);
-      if($change==FALSE) {
-        $p['change']=time(); // assumes system time
-        }
-        else
-        {
-        $p['change']=$change;
-        }
+      $p['change']=strtotime($arr->rtc);
       return($p);
       }
     return(false);
@@ -175,7 +168,7 @@ class Spacebits_API {
     {
       if($db = new PDO($this->db)) {
         foreach($active_balloons as $bid) {
-          $sql="SELECT balloon,change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data WHERE balloon=".$bid." AND lat!=0 AND lon!=0 ORDER BY change DESC LIMIT 1";
+          $sql="SELECT balloon,change,power_current,power_voltage,pressure,temperature,temperature_ext,humidity,dust_density,lat,lon,alt,bear,imu_gx,imu_gy,imu_ax,imu_ay,imu_az FROM data WHERE balloon=".$bid." AND lat!=0 AND lon!=0 ORDER BY rowid DESC LIMIT 1";
           $q = $db->prepare($sql);
           $q->execute();
           $lp=array();
@@ -224,7 +217,7 @@ class Spacebits_API {
       $t=array(); 
       foreach($active_balloons as $bid) {
         $t[$bid]=array(); 
-        $sql="select distinct lat,lon  from data where balloon=".$bid." AND lat>20 and lat<60 and lon<-1 and lon>-12 order by change desc,lat,lon limit 100";
+        $sql="select distinct lat,lon  from data where balloon=".$bid." AND lat>20 and lat<60 and lon<-1 and lon>-12 order by rowid desc,lat,lon limit 300";
         $q = $db->prepare($sql);
         $q->execute();
         while($r=$q->fetch(PDO::FETCH_ASSOC)) {
