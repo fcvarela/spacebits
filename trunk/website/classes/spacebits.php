@@ -15,8 +15,9 @@ class Spacebits {
      $q = $db->prepare($sql);
      $q->execute();
      while($r=$q->fetch(PDO::FETCH_ASSOC)) {
-       preg_match("/<p>(.*)<\/p>/is",$r['body'],$matches);
-       $teaser=strip_tags($matches[1]);
+       $plain=trim(html_entity_decode(strip_tags($r['body']),ENT_COMPAT,'UTF-8'));
+       $pgs=split("\n",$plain);
+       $teaser=$pgs[0];
        $matches=explode(". ",$teaser);
        array_push($posts,array('title'=>$r['title'],'id'=>$r['id'],'body'=>$r['body'],'teaser'=>$matches[0].". ".$matches[1].".",'user'=>$r['user'],'change'=>$r['change'],'date'=>date('l jS \of F Y',$r['change']),'tags'=>$this->getpagetags($r['id'])));
        }
