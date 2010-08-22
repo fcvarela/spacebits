@@ -33,14 +33,3 @@
 			</fieldset>
 -->
 		</div>
-<script type="text/javascript">
-var uri="{$uri}";
-{literal}
-elements = document.getElementsByClassName('mit');
-for ( var i=0, len=elements.length; i<len; ++i ){
-  var parts=(elements[i].href.split("/"));
-  var path=elements[i].href.substr(7+parts[2].length);
-  if(uri==path) elements[i].className = 'mit active';
-  }
-</script>
-{/literal}

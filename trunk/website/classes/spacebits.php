@@ -25,6 +25,22 @@ class Spacebits {
    return($posts);
    }
 
+  function getlatestblogpost() {
+   if($db = new PDO($this->db)) {
+     $sql="select a.id,a.title from articles a order by a.change DESC limit 1";
+     $q = $db->prepare($sql);
+     $q->execute();
+     while($r=$q->fetch(PDO::FETCH_ASSOC)) {
+       $plain=trim(html_entity_decode(strip_tags($r['body']),ENT_COMPAT,'UTF-8'));
+       $pgs=split("\n",$plain);
+       $teaser=$pgs[0];
+       $matches=explode(". ",$teaser);
+       return(array('title'=>$r['title'],'id'=>$r['id']));
+       }
+     }
+    return(false);
+    }
+
   function getarticles($limit=10) {
    $a=array();
    if($db = new PDO($this->db)) {

@@ -4,6 +4,8 @@
 
       {include file="topmenu.tpl"}
 
+      {include file="lastposts.tpl"}
+
       {include file="bigimage.tpl"}
 
       {include file="message.tpl"}

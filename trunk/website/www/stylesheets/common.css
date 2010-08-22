@@ -251,7 +251,34 @@
 		background: url(/images/services_top.jpg) left top no-repeat;
 		margin: -2px;
 	}
-	
+
+/* =LASTPOST */
+	#lastpost{
+		width: 858px;
+		margin:26px auto 10px auto;
+		position: relative;
+		border: 2px solid #3B3F2D;
+	}
+	#lastpost h2{
+		background: #2d3622 url(/images/services_top_bg.jpg);
+		height: 29px;
+		font-size:2.1em;
+		color: #7C7C58;
+		padding: 5px 0 0 10px;
+		border-bottom: 1px solid #2b2e1f;
+	}
+	/* top rounded image */
+	#lastpost h2 span{
+		position: absolute;
+		display: block;
+		height: 8px;
+		width: 862px;
+		left:0;top:0;
+		font-size:0.1em;
+		background: url(/images/services_top.jpg) left top no-repeat;
+		margin: -2px;
+	}
+
 /* =ARTICLE */
 	#article{
 		width: 858px;
