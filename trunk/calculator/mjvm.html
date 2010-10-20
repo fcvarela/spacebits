@@ -26,9 +26,10 @@ form #notice {
 font-weight:bold;
 }
 
-form #error {
+form #balloon_error {
 font-weight:bold;
 color:#f00;
+text-align: center;
 }
 
 input.search.text {
@@ -76,7 +77,7 @@ text-align:right;
 width:32%;
 }
 fieldset.login p input {
-width:60%;
+width:10em;
 }
 
 </style>
@@ -91,8 +92,9 @@ width:60%;
 <p><label>Payload: </label><input type="text" name="payload" id="balloon_payload" /> <input type="text" id="balloon_rec_payload" /> g </p>
 <p><label>Terminal rising speed: </label><input type="text" name="speed" id="balloon_speed" /> <input type="text" id="balloon_rec_speed" /> m/s </p>
 <p><label>Nozzle lift: </label><input type="text" name="speed" id="balloon_lift" /> <input type="text" id="balloon_rec_lift" /> gf </p>
+<p>
 <input class="button" type="submit" value="Calculate" id="balloon_calculate" onsubmit="return false;"/>
-<p id="error"></p>
+<span id="balloon_error" /></p>
 </fieldset>
 </form>
 </body>
