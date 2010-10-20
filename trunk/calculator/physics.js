@@ -5,10 +5,14 @@ g = 9.80665; // m/(s^2) surface Earth gravitational acceleration
 m_He = 4.002602/1000;// kg/mol Helium atomic weight
 T0 = -273.15; // degrees celsius absolute zero temperature
 m_air = 0.0289644; /// kg/mol dry air mean atomic weight
+rho_air = 1.2// kg/m^3
 
+//experimentaly the pressure avries with the altitude as O = P_0 * exp(-A*h)
+//where A should be approximately rho_air*g*P_0 where P_0 is the surface pressure 1 atm
+////by fitting A = 0.153303 1/km (see pressure.plt for a script that calculates this)
 
+var P_delta = 0.153303; // 1/km
 var bar = 100000; //1 bar in Pa
-
 
 // the basic formula is v = v_0 * (le/le_0)^(1/2) * (lg_0/lg)^(1/3)
 // where le is the effective lift (gross lift - payload - balloon weight) and lg is the gross lift (archimede's force)
@@ -35,4 +39,23 @@ function nozzle_lift_from_speed(balloon, payload, speed){
 
     //now find the solution
     return solve(wrap_fun, payload, Number.MAX_VALUE, speed, 0.001);
+}
+
+//returns in Km
+function burst_altitude_from_nozzle_lift(balloon, nozzle_lift){
+    var h_0 = balloon['Bursting Altitude (km)'];
+    var lg_0 = balloon['Gross Lift (gr)'];
+    var bm = balloon['Average Weight (gr)']; //balloon mass
+    var lg = nozzle_lift + bm;
+
+    return h_0 + Math.log(lg_0/lg)/P_delta;
+}
+
+function nozzle_lift_from_burst_altitude(balloon, altitude){
+    var h_0 = balloon['Bursting Altitude (km)'];
+    var lg_0 = balloon['Gross Lift (gr)'];
+    var bm = balloon['Average Weight (gr)']; //balloon mass
+
+    var lg = lg_0 * Math.exp((altitude - h_0)*P_delta);
+    return lg - bm;
 }
