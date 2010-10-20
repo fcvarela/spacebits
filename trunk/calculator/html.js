@@ -7,8 +7,9 @@ function ballon_setup(){
         option.value = model;
         dropdown.add(option, null);
     }
-    dropdown.options[0].selected = 'selected';
     dropdown.onchange = function(){return balloon_set_model(dropdown);};
+    dropdown.options[dropdown.options.length-3].selected = 'selected';
+    balloon_set_model(dropdown);
 }
 
 //called when the dropdown with the balloon models changes
