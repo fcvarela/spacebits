@@ -30,29 +30,47 @@ function balloon_set_model(select){
     rec_speed.readOnly = true;
     rec_speed.value = balloon['Nozzle Lift (gr)'];
 
+    var rec_speed = document.getElementById('balloon_rec_burst'); //nozzle lift
+    rec_speed.readOnly = true;
+    rec_speed.value = balloon['Bursting Altitude (km)'];
+
     var button = document.getElementById('balloon_calculate');
     var payload = document.getElementById('balloon_payload');
     var speed = document.getElementById('balloon_speed');
     var lift = document.getElementById('balloon_lift');
+    var burst = document.getElementById('balloon_burst');
 
-    button.onclick = function(){calculate(balloon, payload, speed, lift); return false;};
+    button.onclick = function(){calculate(balloon, payload, speed, lift, burst); return false;};
 
     return;
 }
 
-function calculate(balloon, payload, speed, lift){
+function calculate(balloon, payload, speed, lift, burst){
     clear_error();
     _payload = parseFloat(payload.value);
     _speed = parseFloat(speed.value);
     _lift = parseFloat(lift.value);
+    _burst = parseFloat(burst.value);
 
-    //first see whether there is only one unknown value
-    if( !isNaN(_payload) && !isNaN(_lift) && isNaN(_speed) ){
-        speed.value = speed_from_nozzle_lift(balloon, _payload, _lift).toFixed(2);
-    }else if(!isNaN(_payload) && isNaN(_lift) && !isNaN(_speed) ){
-        lift.value = nozzle_lift_from_speed(balloon, _payload, _speed).toFixed(1);
+    if( isNaN(_payload)){
+        report_error('Must specify the payload.');
     }else{
-        report_error('Can\'t solve.');
+        //first see whether there is only one unknown value
+        if( !isNaN(_lift) && isNaN(_speed) && isNaN(_burst)){
+            _speed = speed_from_nozzle_lift(balloon, _payload, _lift);
+            _burst = burst_altitude_from_nozzle_lift(balloon, _lift);
+        }else if( isNaN(_lift) && !isNaN(_speed) && isNaN(_burst)){
+            _lift = nozzle_lift_from_speed(balloon, _payload, _speed);
+            _burst = burst_altitude_from_nozzle_lift(balloon, _lift);
+        }else if( isNaN(_lift) && isNaN(_speed) && !isNaN(_burst)){
+            _lift = nozzle_lift_from_burst_altitude(balloon, _burst);
+            _speed = speed_from_nozzle_lift(balloon, _payload, _lift);
+        }else{
+            report_error('Overdetermined. Only one of speed, lift or burst may be defined');
+        }
+        speed.value = _speed.toFixed(2);
+        lift.value = _lift.toFixed(0);
+        burst.value = _burst.toPrecision(3);
     }
 }
 
