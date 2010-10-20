@@ -34,5 +34,5 @@ function nozzle_lift_from_speed(balloon, payload, speed){
     }
 
     //now find the solution
-    return solve(wrap_fun, payload, 100*payload, speed, 0.001);
+    return solve(wrap_fun, payload, Number.MAX_VALUE, speed, 0.001);
 }
