@@ -5,29 +5,118 @@
 <script src="physics.js"></script>
 <script src="html.js"></script>
 <title>Balloon calculations</title>
+<style>
+
+fieldset p select {
+    width:99%;
+}
+fieldset.login p label {
+    float:left;
+    line-height:2em;
+    margin-right:3%;
+    text-align:right;
+    width:32%;
+}
+fieldset.login p input {
+    width:60%;
+}
+fieldset.login input.button {
+    margin-left:35%;
+}
+form #notice {
+    font-weight:bold;
+}
+
+form #balloon_error {
+    font-weight:bold;
+    color:#f00;
+    text-align: center;
+}
+
+input.search.text {
+    width:66%;
+}
+input.search.button {
+    width:28%;
+    margin-left:2%;
+}
+
+form {
+    overflow:hidden;
+}
+fieldset {
+    border:1px solid #bbb;
+    padding:10px;
+    position:relative;
+    background:#e9e9e9;
+    margin-bottom:10px;
+}
+legend {
+    font-size:1.1em;
+    padding:.4em .8em;
+    background:#fff;
+    border:1px solid #bbb;
+}
+fieldset.login p {
+    margin-bottom:1em;
+    margin-top:0pt;
+}
+fieldset p label {
+    width:98%;
+}
+fieldset p input {
+    width:98%;
+}
+fieldset p select {
+    width:99%;
+}
+fieldset.login p label {
+    float:left;
+    line-height:2em;
+    margin-right:3%;
+    text-align:right;
+    width:32%;
+    font-weight: bold;
+}
+
+fieldset.login p input {
+width:10em;
+}
+
+input[readonly] {
+    background-color: #aaa; 
+    color: #fff;
+}
+
+input{
+    text-align: right;
+}
+
+input[type="submit"]{
+    text-align: center;
+}
+
+body {
+    background-color: #fff;
+    font-family: "Liberation Sans", "Bitstream Vera Sans", "Verdana", sans;
+}
+
+</style>
+
 </head>
 <body onload="ballon_setup()">
 
-<table>
-<tr>
-    <th><a href="http://www.kaymont.com/pages/sounding-balloons.cfm">Balloon Model</a>: <select id="balloon_model" ></select></th><th>Measured</th><th>Recommended</th>
-</tr>
-<tr>
-    <td><label>Payload:</label></td><td><input type="text" id="balloon_payload"/></td>
-    <td><input type="text" id="balloon_rec_payload" /></td><td>g<td>
-</tr>
-<tr>
-    <td><label>Terminal rising speed:</label></td><td><input type="text" id="balloon_speed"/></td>
-    <td><input type="text" id="balloon_rec_speed" /></td><td>m/s</td>
-</tr>
-<tr>
-    <td><label>Nozzle lift:</label></td><td><input type="text" id="balloon_lift"/></td>
-    <td><input type="text" id="balloon_rec_lift" /></td><td>gf</td>
-</tr>
-</table>
-    <div>
-        <button id="balloon_calculate">Calculate</button>
-    </div>
-
+<form action="#" method="post">
+<fieldset class="login">
+<legend><a href="http://www.kaymont.com/pages/sounding-balloons.cfm">Balloon Model</a>: <select id="balloon_model" ></select></legend>
+<p id="notice"></p>
+<p><label>Payload: </label><input type="text" name="payload" id="balloon_payload" /> <input type="text" id="balloon_rec_payload" /> g </p>
+<p><label>Terminal rising speed: </label><input type="text" name="speed" id="balloon_speed" /> <input type="text" id="balloon_rec_speed" /> ms<sup>-1</sup> </p>
+<p><label>Nozzle lift: </label><input type="text" name="speed" id="balloon_lift" /> <input type="text" id="balloon_rec_lift" /> gf </p>
+<p>
+<input class="button" type="submit" value="Calculate" id="balloon_calculate" onsubmit="return false;"/>
+<span id="balloon_error" /></p>
+</fieldset>
+</form>
 </body>
 </html>

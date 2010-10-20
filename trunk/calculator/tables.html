@@ -1,0 +1,33 @@
+<html>
+<head>
+<script src="specs.js"></script>
+<script src="solve.js"></script>
+<script src="physics.js"></script>
+<script src="html.js"></script>
+<title>Balloon calculations</title>
+</head>
+<body onload="ballon_setup()">
+
+<table>
+<tr>
+    <th><a href="http://www.kaymont.com/pages/sounding-balloons.cfm">Balloon Model</a>: <select id="balloon_model" ></select></th><th>Measured</th><th>Recommended</th>
+</tr>
+<tr>
+    <td><label>Payload:</label></td><td><input type="text" id="balloon_payload"/></td>
+    <td><input type="text" id="balloon_rec_payload" /></td><td>g<td>
+</tr>
+<tr>
+    <td><label>Terminal rising speed:</label></td><td><input type="text" id="balloon_speed"/></td>
+    <td><input type="text" id="balloon_rec_speed" /></td><td>m/s</td>
+</tr>
+<tr>
+    <td><label>Nozzle lift:</label></td><td><input type="text" id="balloon_lift"/></td>
+    <td><input type="text" id="balloon_rec_lift" /></td><td>gf</td>
+</tr>
+</table>
+    <div>
+        <button id="balloon_calculate">Calculate</button>
+    </div>
+
+</body>
+</html>
