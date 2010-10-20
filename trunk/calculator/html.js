@@ -34,12 +34,13 @@ function balloon_set_model(select){
     var speed = document.getElementById('balloon_speed');
     var lift = document.getElementById('balloon_lift');
 
-    button.onclick = function(){return calculate(balloon, payload, speed, lift)};
+    button.onclick = function(){calculate(balloon, payload, speed, lift); return false;};
 
     return;
 }
 
 function calculate(balloon, payload, speed, lift){
+    clear_error();
     _payload = parseFloat(payload.value);
     _speed = parseFloat(speed.value);
     _lift = parseFloat(lift.value);
@@ -50,6 +51,29 @@ function calculate(balloon, payload, speed, lift){
     }else if(!isNaN(_payload) && isNaN(_lift) && !isNaN(_speed) ){
         lift.value = nozzle_lift_from_speed(balloon, _payload, _speed).toFixed(1);
     }else{
-        alert('Can\'t solve.');
+        report_error('Can\'t solve.');
+    }
+}
+
+function clear_error(){
+    var error_dom = document.getElementById('balloon_error');
+
+    if(error_dom){
+        if(error_dom.childNodes.length > 0){
+            error_dom.childNodes[0].nodeValue = '';
+        }else{
+            var text_dom = document.createTextNode('');
+            error_dom.appendChild(text_dom);
+        }
+    }
+}
+
+function report_error(error){
+    var error_dom = document.getElementById('balloon_error');
+
+    if(error_dom){
+        error_dom.childNodes[0].nodeValue = error;
+    }else{
+        alert(error);
     }
 }
