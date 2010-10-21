@@ -21,19 +21,23 @@ function balloon_set_model(select){
     //fill in recommended values
     var rec_payload = document.getElementById('balloon_rec_payload');
     rec_payload.readOnly = true;
+    rec_payload.title = 'Recommended value';
     rec_payload.value = balloon['Payload (gr)'];
 
     var rec_speed = document.getElementById('balloon_rec_speed');
     rec_speed.readOnly = true;
+    rec_speed.title = 'Recommended value';
     rec_speed.value = (balloon['Rate of Ascent (m.min)']/60.).toPrecision(2); //convert to m/s
 
-    var rec_speed = document.getElementById('balloon_rec_lift'); //nozzle lift
-    rec_speed.readOnly = true;
-    rec_speed.value = balloon['Nozzle Lift (gr)'];
+    var rec_lift = document.getElementById('balloon_rec_lift'); //nozzle lift
+    rec_lift.readOnly = true;
+    rec_lift.title = 'Recommended value';
+    rec_lift.value = balloon['Nozzle Lift (gr)'];
 
-    var rec_speed = document.getElementById('balloon_rec_burst'); //nozzle lift
-    rec_speed.readOnly = true;
-    rec_speed.value = balloon['Bursting Altitude (km)'];
+    var rec_burst = document.getElementById('balloon_rec_burst'); //nozzle lift
+    rec_burst.readOnly = true;
+    rec_burst.title = 'Recommended value';
+    rec_burst.value = balloon['Bursting Altitude (km)'];
 
     var button = document.getElementById('balloon_calculate');
     var payload = document.getElementById('balloon_payload');
