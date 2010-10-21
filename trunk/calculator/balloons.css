@@ -71,7 +71,7 @@ fieldset.login p label {
 }
 
 fieldset.login p input {
-width:10em;
+    width:8em;
 }
 
 input[readonly] {
@@ -92,6 +92,11 @@ input[type="submit"]{
 body {
     background-color: #fff;
     font-family: "Liberation Sans", "Bitstream Vera Sans", "Verdana", sans;
+}
+
+a {
+    /* text-decoration: none; */
+    color: black;
 }
 
 
