@@ -40,6 +40,7 @@ function balloon_set_model(select){
     var speed = document.getElementById('balloon_speed');
     var lift = document.getElementById('balloon_lift');
     var burst = document.getElementById('balloon_burst');
+    var time = document.getElementById('balloon_time');
 
     if( "" === payload.value ){
         payload.value = balloon['Payload (gr)']
@@ -64,12 +65,12 @@ function balloon_set_model(select){
         input.onchange = generate(input);
     }
 
-    button.onclick = function(){calculate(balloon, payload, speed, lift, burst); return false;};
+    button.onclick = function(){calculate(balloon, payload, speed, lift, burst, time); return false;};
 
     return;
 }
 
-function calculate(balloon, payload, speed, lift, burst){
+function calculate(balloon, payload, speed, lift, burst, time){
     clear_error();
     _payload = parseFloat(payload.value);
     _speed = parseFloat(speed.value);
@@ -83,22 +84,38 @@ function calculate(balloon, payload, speed, lift, burst){
         if( !isNaN(_lift) && isNaN(_speed) && isNaN(_burst)){
             _speed = speed_from_nozzle_lift(balloon, _payload, _lift);
             _burst = burst_altitude_from_nozzle_lift(balloon, _lift);
+            _lift = Number.NaN;
         }else if( isNaN(_lift) && !isNaN(_speed) && isNaN(_burst)){
             _lift = nozzle_lift_from_speed(balloon, _payload, _speed);
             _burst = burst_altitude_from_nozzle_lift(balloon, _lift);
+            _speed = Number.NaN;
         }else if( isNaN(_lift) && isNaN(_speed) && !isNaN(_burst)){
             _lift = nozzle_lift_from_burst_altitude(balloon, _burst);
             _speed = speed_from_nozzle_lift(balloon, _payload, _lift);
+            _burst = Number.NaN;
         }else{
             return report_error('Overdetermined. Only one of speed, lift or burst may be defined');
         }
-        if(_lift >= _payload){
+
+        if( !isNaN(_speed) ){
             speed.value = _speed.toFixed(2);
+        }
+        if( !isNaN(_lift) ){
             lift.value = _lift.toFixed(0);
+        }
+        if(!isNaN(_burst) ){
             burst.value = _burst.toPrecision(3);
-        }else{
+        }
+
+        if( lift.value <= _payload){
             return report_error('Insufficient lift for the payload.');
         }
+
+        var _time = burst.value*1000/speed.value;
+        var min = Math.floor(_time/60);
+        var h = Math.floor(min/60);
+        min = min % 60;
+        time.value = h+'h '+min+'m';
     }
 }
 
