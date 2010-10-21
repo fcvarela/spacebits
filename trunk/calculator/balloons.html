@@ -1,27 +1,36 @@
+<!DOCTYPE html>
 <html>
 <head>
-<script src="specs.js"></script>
-<script src="solve.js"></script>
-<script src="physics.js"></script>
-<script src="html.js"></script>
-<link rel="stylesheet" type="text/css" href="balloons.css" />
-<title>Balloon calculations</title>
-</head>
-<body onload="ballon_setup()">
+  <meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <script src="specs.js" type="text/javascript"></script>
+  <script src="solve.js" type="text/javascript"></script>
+  <script src="physics.js" type="text/javascript"></script>
+  <script src="html.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="balloons.css"/>
 
-<form action="#" method="post">
-<fieldset class="login">
-<legend><a href="http://www.kaymont.com/pages/sounding-balloons.cfm">Balloon Model</a>: <select id="balloon_model" ></select></legend>
-<p id="notice"></p>
-<p><label>Payload: </label><input type="text" name="payload" id="balloon_payload" /> <input type="text" id="balloon_rec_payload" /> g </p>
-<p><label>Terminal rising speed: </label><input type="text" name="speed" id="balloon_speed" /> <input type="text" id="balloon_rec_speed" /> ms<sup>-1</sup> </p>
-<p><label>Nozzle lift: </label><input type="text" name="speed" id="balloon_lift" /> <input type="text" id="balloon_rec_lift" /> gf </p>
-<p><label>Burst altitude: </label><input type="text" name="speed" id="balloon_burst" /> <input type="text" id="balloon_rec_burst" /> Km </p>
-<div id="balloon_error" ></div>
-<p>
-<input class="button" type="submit" value="Calculate" id="balloon_calculate" onsubmit="return false;"/>
-</p>
-</fieldset>
-</form>
+  <title>Balloon calculations</title>
+</head>
+
+<body onload="ballon_setup()">
+  <form action="#" method="post">
+    <fieldset class="login">
+      <legend><a href="http://www.kaymont.com/pages/sounding-balloons.cfm">Balloon Model</a>: <select id="balloon_model">
+        </select></legend>
+
+      <p id="notice"></p>
+
+      <p><label>Payload:</label> <input type="text" name="payload" id="balloon_payload"> <input type="text" id="balloon_rec_payload"> g</p>
+
+      <p><label>Terminal rising speed:</label> <input type="text" name="speed" id="balloon_speed"> <input type="text" id="balloon_rec_speed"> ms<sup>-1</sup></p>
+
+      <p><label>Nozzle lift:</label> <input type="text" name="speed" id="balloon_lift"> <input type="text" id="balloon_rec_lift"> gf</p>
+
+      <p><label>Burst altitude:</label> <input type="text" name="speed" id="balloon_burst"> <input type="text" id="balloon_rec_burst"> Km</p>
+
+      <div id="balloon_error"></div>
+
+      <p><input class="button" type="submit" value="Calculate" id="balloon_calculate" onsubmit="return false;"></p>
+    </fieldset>
+  </form>
 </body>
 </html>
