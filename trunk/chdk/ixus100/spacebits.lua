@@ -1,5 +1,11 @@
 --[[
 @title Spacebits flightplan (IXUS100)
+@param b backlit 0=off
+@default b 1
+@param m movie duration
+@default m 60
+@param n number of photos
+@default n 20
 --]]
 
 capmode=require("capmode")
@@ -13,10 +19,35 @@ function log_printf(...)
 	log:write(os.date(s,tm),": ",string.format(...),"\n")
 end
 
+function my_backlight()
+  if b == 0 then set_backlight(0) end
+end
+
 function spacebits()
+
+        log_printf("wait 10 secs")
+	sleep_and_blink(10)
+        log_printf("end wait 10 secs")
+        log_printf("wait 10 secs")
+	sleep_and_blink(10)
+        log_printf("end wait 10 secs")
+
+        -- takes two photos and one small video to warm up
+	blink_led(3)
+        take_photo(2)
+	blink_led(3)
+        take_movie(5)
+	blink_led(7)
+        -- starts main loop
         while 1 do
-          take_movie(60)
-          take_photo(20)
+          take_movie(m)
+          take_photo(n)
+          -- sd card size sleep saver
+          my_backlight()
+          sleep(2000)
+          my_backlight()
+          sleep(2000)
+          blink_led(100)
           end
 	-- need this to see display if we switched back to play
 	sleep(1000)
@@ -24,10 +55,10 @@ end
 
 function take_photo(n)
         log_printf("switch photo")
-	set_backlight(0)
-	blink_led()
+        my_backlight()
+	blink_led(1)
         capmode.set(capmode.name_to_mode["LANDSCAPE"])
-	set_backlight(0)
+        my_backlight()
         sleep(500)
         -- ISO 100
 	set_prop(149,100)
@@ -43,32 +74,33 @@ function take_photo(n)
            sleep(500)
            press("shoot_full")
            sleep(1000)
-	   set_backlight(0)
+           my_backlight()
            sleep(4000)
-	   set_backlight(0)
+           my_backlight()
            release("shoot_full")
 	end
 end
 
 function take_movie(secs)
         log_printf("switch video")
-	set_backlight(0)
-	blink_led()
+        my_backlight()
+	blink_led(1)
 	capmode.set(capmode.name_to_mode["VIDEO_STD"])
+	blink_led(1)
+        set_led (1,1)
         log_printf("set_record true")
 	set_record(true)
-	set_backlight(0)
+        my_backlight()
         sleep(1000)
-	set_backlight(0)
+        my_backlight()
         sleep(4000)
 
 	press("shoot_half")
  	press("shoot_full")
 
-	set_backlight(0)
-        log_printf("wait secs")
-        sleep(secs*1000)
-
+        my_backlight()
+        log_printf("wait secs" .. secs)
+        sleep_and_blink(secs)
 -- releasing the video is tricky. sd card may be slow, we must check the status
 
         release("shoot_full")
@@ -82,7 +114,7 @@ function take_movie(secs)
         log_printf("waiting for cam")
         rec,vid,mode=get_mode()
         i=0
-	set_backlight(0)
+        my_backlight()
         while vid==true and i<10 do
           rec,vid,mode=get_mode()
           log_printf("busy, wait %3d", i)
@@ -90,19 +122,37 @@ function take_movie(secs)
           i=i+1
           end
 	set_record(true)
-	set_backlight(0)
+        my_backlight()
+        set_led (1,0)
         sleep(3000)
 end
 
-function blink_led()
-	for i = 1,5 do
+function blink_led(n)
+	for j = 1,n do
+	  for i = 1,5 do
 		 set_led (1,1)
 		 sleep (10)
 		 set_led (1,0)
 		 set_led (2,1)
 		 sleep (10)
 		 set_led (2,0)
+	  end
 	end
+end
+
+function sleep_and_blink(s)
+   for j = 1,s do
+	for i = 1,9 do
+	  sleep (10)
+	  set_led (1,1)
+	  sleep (10)
+	  set_led (1,0)
+	  sleep (10)
+	  set_led (2,1)
+	  sleep (10)
+	  set_led (2,0)
+	end
+   end
 end
 
 -- main program
