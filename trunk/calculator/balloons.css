@@ -1,0 +1,97 @@
+fieldset p select {
+    width:99%;
+}
+fieldset.login p label {
+    float:left;
+    line-height:2em;
+    margin-right:3%;
+    text-align:right;
+    width:32%;
+}
+fieldset.login p input {
+    width:60%;
+}
+fieldset.login input.button {
+    margin-left:35%;
+}
+form #notice {
+    font-weight:bold;
+}
+
+form #balloon_error {
+    font-weight:bold;
+    color:#f00;
+    text-align: center;
+}
+
+input.search.text {
+    width:66%;
+}
+input.search.button {
+    width:28%;
+    margin-left:2%;
+}
+
+form {
+    overflow:hidden;
+}
+fieldset {
+    border:1px solid #bbb;
+    padding:10px;
+    position:relative;
+    background:#e9e9e9;
+    margin-bottom:10px;
+}
+legend {
+    font-size:1.1em;
+    padding:.4em .8em;
+    background:#fff;
+    border:1px solid #bbb;
+}
+fieldset.login p {
+    margin-bottom:1em;
+    margin-top:0pt;
+}
+fieldset p label {
+    width:98%;
+}
+fieldset p input {
+    width:98%;
+}
+fieldset p select {
+    width:99%;
+}
+fieldset.login p label {
+    float:left;
+    line-height:2em;
+    margin-right:3%;
+    text-align:right;
+    width:32%;
+    font-weight: bold;
+}
+
+fieldset.login p input {
+width:10em;
+}
+
+input[readonly] {
+    background-color: #aaa; 
+    color: #fff;
+}
+
+input{
+    text-align: right;
+}
+
+input[type="submit"]{
+    text-align: center;
+    font-weight: bold;
+    width: 50%;
+}
+
+body {
+    background-color: #fff;
+    font-family: "Liberation Sans", "Bitstream Vera Sans", "Verdana", sans;
+}
+
+
