@@ -56,6 +56,6 @@ function nozzle_lift_from_burst_altitude(balloon, altitude){
     var lg_0 = balloon['Gross Lift (gr)'];
     var bm = balloon['Average Weight (gr)']; //balloon mass
 
-    var lg = lg_0 * Math.exp((altitude - h_0)*P_delta);
+    var lg = lg_0 * Math.exp((h_0 - altitude)*P_delta);
     return lg - bm;
 }
