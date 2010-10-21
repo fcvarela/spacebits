@@ -11,7 +11,8 @@ rho_air = 1.2// kg/m^3
 //where A should be approximately rho_air*g*P_0 where P_0 is the surface pressure 1 atm
 ////by fitting A = 0.153303 1/km (see pressure.plt for a script that calculates this)
 
-var P_delta = 0.153303; // 1/km
+//var P_delta = 0.153303; // 1/km (cvalente's fit from manufacturer's data)
+var P_delta = 0.1289; // 1/km (pvalenca's fit)
 var bar = 100000; //1 bar in Pa
 
 // the basic formula is v = v_0 * (le/le_0)^(1/2) * (lg_0/lg)^(1/3)
