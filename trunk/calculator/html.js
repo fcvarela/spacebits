@@ -45,6 +45,25 @@ function balloon_set_model(select){
         payload.value = balloon['Payload (gr)']
     }
 
+    var inputs = [speed, lift, burst];
+    for (var i1 in inputs){
+
+        var input = inputs[i1];
+        function generate(e){
+            return function(){
+                for (var i2 in inputs){
+                    var input2 = inputs[i2];
+                    if( input2 != e ){
+                        input2.value = "";
+                    }
+                }
+                button.click();
+            };
+        }
+
+        input.onchange = generate(input);
+    }
+
     button.onclick = function(){calculate(balloon, payload, speed, lift, burst); return false;};
 
     return;
