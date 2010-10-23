@@ -9,18 +9,28 @@ error_reporting(1);
 
 $api=new Spacebits_API;
 
-$balloon_id=2;
 
+$track=$api->track();
 
-if($sms=$api->lastSMS($balloon_id)) {
-  $stamp=md5($sms['lon'].$sms['lat']);
-  if(@file_get_contents("/tmp/lastspacesms".$balloon_id)!=$stamp) {
-    echo "There's an update. Broadcasting...\n";
-    $body="BalloonId: ".$balloon_id." Lat: ".$sms['lat']." Lon: ".$sms['lon']." alt: ".$sms['alt']." nsats: ".$sms['nsats']." http://maps.google.com/maps?q=".$sms['lat'].",".$sms['lon'];
-    foreach(split(" ",RECEPTORS) as $n) {
-      echo "Broadcasting to ".$n."\n";
-      exec("/servers/spacebits/daemon/send_sms.pl ".$n." '".$body."'");
+foreach($active_balloons as $id) {
+  foreach($balloons as $b) {
+    if($b['id']==$id) {
+      foreach($sms_list[$id] as $phone) {
+        echo "Sending coordinate for balloon $id to phone $phone\n";
+        $t=$api->get(false,$id);
+        if($t['lat']) {
+          $stamp=md5($phone.$t['lat'].$t['lon'].$t['alt']);
+          $stamp_file="/tmp/spacebits".$stamp.".stamp";
+          if(!@file_exists($stamp_file)) {
+            $body="BalloonId: ".$id." Lat: ".$t['lat']." Lon: ".$t['lon']." alt: ".$t['alt']." http://maps.google.com/maps?q=".$t['lat'].",".$t['lon'];
+            echo "  ".$body."\n";
+            exec("/servers/spacebits/daemon/send_sms.pl ".$phone." '".$body."'");
+            touch($stamp_file);
+            }
+          }
+        }
       }
-    file_put_contents("/tmp/lastspacesms".$balloon_id,$stamp);
     }
   }
+
+exit;

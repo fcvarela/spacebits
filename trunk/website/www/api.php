@@ -13,9 +13,16 @@ header("Pragma: no-cache");
 list($method,$value)=split("/",$_GET['action'],2);
 
 switch($method) {
+  case "sms":
+    $b=urldecode($_POST['body']);
+    list($id,$lat,$lon,$alt,$nsats)=split(",",$b);
+    $b=($id-1).",".$lat.",".$lon.",".$alt.",".$nsats;
+    file_put_contents("/servers/spacebits/www/logs/sms.log",$b."\n",FILE_APPEND);
+    $api->saveSMS(urldecode($_POST['from']),$b);
+    break;
   case "put":
     header("Content-Type: text/xml; charset=utf-8");
-    file_put_contents("/tmp/spacepost.xml",print_r($post,true),FILE_APPEND);
+    file_put_contents("/tmp/spacepost.xml",print_r($post,true)."\n\n",FILE_APPEND);
     if($payload=$api->parsePayload($post)) {
       $api->put($payload);
       echo "<result>ok</result>\n";

@@ -62,6 +62,9 @@ class Spacebits_Homepage extends Spacebits {
     GLOBAL $balloons;
     GLOBAL $active_balloons;
 
+    header("Location: http://mapas.sapo.pt/spacebits/dashboard.html");
+    exit;
+
     header("Content-Type: text/html; charset=utf-8"); 
     switch($_GET['action']) {
     default:
