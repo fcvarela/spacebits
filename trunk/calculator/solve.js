@@ -33,7 +33,7 @@ function solve(f, x0, x1, v, d){
         if( (v0<0 && v2>0) || (v0>0 && v2<0)){
             return solve(f, x0, x2, v, d);
         }else if( (v1<0 && v2>0) || (v1>0 && v2<0)){
-            return solve(f, x1, x2, v, d);
+            return solve(f, x2, x1, v, d);
         }
     }else{
         return x2;
