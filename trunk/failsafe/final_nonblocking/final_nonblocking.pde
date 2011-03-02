@@ -6,11 +6,11 @@
 
 // SMS timer control + counters
 uint8_t tcnt2;
-static uint16_t ticks = 0;
+static uint64_t ticks = 0;
 uint8_t run_task_flag = 0;
 
 // initial timeout = 5 seconds
-uint16_t timeout = 5000;
+uint64_t timeout = 5000;
 uint8_t task = 0;
 
 // nmea handler
@@ -89,9 +89,15 @@ void parse_gsm() {
             Serial.println("REGISTERED");
             gsm_registered = 1;
         }
+        
         if (strstr(gsm_buff, "SIND: 4") != 0) {
             Serial.println("READY");
             gsm_ready = 1;
+        }
+        
+        if (strstr(gsm_buff, "RING") != 0) {
+            Serial.println("RINGING");
+            gsm_ring = 1;
         }
             
         gsm_buff_idx = 0;
@@ -133,7 +139,7 @@ void run_task() {
         
     case 4:
         send_sms_body();
-        timeout = 10000;
+        timeout = 10800000;
         break;
     }
     
@@ -143,7 +149,7 @@ void run_task() {
 }
 
 void reset_modem() {
-    gsm.print("AT");
+    gsm.print("AT+VTD=255");
     gsm.print(13, BYTE);
 }
 
@@ -161,7 +167,7 @@ void send_at() {
 void send_sms_header() {
     digitalWrite(13, HIGH);
     digitalWrite(9, HIGH);
-    gsm.print("AT+CMGS=\"+351924125170\"");
+    gsm.print("AT+CMGS=\"+351927956314\"");
     gsm.print(13, BYTE);
 }
 

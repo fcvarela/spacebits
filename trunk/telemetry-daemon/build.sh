@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/bash -v
 
-gcc -Wall -I/Volumes/SVN\ Repo/broker/trunk/clients/c-component/libsapo-broker2/src -lsapo\-broker -o telemetry telemetry.c
+gcc -Wall -O0 -lcurl -o telemetry telemetry.c

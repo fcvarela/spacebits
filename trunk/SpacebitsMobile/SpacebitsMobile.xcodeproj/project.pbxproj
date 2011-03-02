@@ -361,7 +361,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Filipe Varela (9M3952JYP9)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -369,7 +369,7 @@
 				GCC_PREFIX_HEADER = SpacebitsMobile_Prefix.pch;
 				INFOPLIST_FILE = "SpacebitsMobile-Info.plist";
 				PRODUCT_NAME = SpacebitsMobile;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C157486E-D291-4194-B06C-216D7EAAC8CC";
 			};
 			name = Debug;
 		};
@@ -377,13 +377,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Filipe Varela (9M3952JYP9)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SpacebitsMobile_Prefix.pch;
 				INFOPLIST_FILE = "SpacebitsMobile-Info.plist";
 				PRODUCT_NAME = SpacebitsMobile;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C157486E-D291-4194-B06C-216D7EAAC8CC";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -392,15 +392,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "Don't Code Sign";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Filipe Varela (9M3952JYP9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Filipe Varela (9M3952JYP9)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				PROVISIONING_PROFILE = "C157486E-D291-4194-B06C-216D7EAAC8CC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C157486E-D291-4194-B06C-216D7EAAC8CC";
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -408,16 +409,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "Don't Code Sign";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Filipe Varela (9M3952JYP9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Filipe Varela (9M3952JYP9)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				PROVISIONING_PROFILE = "C157486E-D291-4194-B06C-216D7EAAC8CC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C157486E-D291-4194-B06C-216D7EAAC8CC";
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};

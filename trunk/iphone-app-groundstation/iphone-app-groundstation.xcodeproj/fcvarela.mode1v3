@@ -272,15 +272,13 @@
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>CAF2094811ACA11B004128E8</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>30</integer>
-									<integer>28</integer>
+									<integer>27</integer>
 									<integer>26</integer>
 								</array>
 							</array>
@@ -332,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>CAF2095111ACA12D004128E8</string>
+										<string>CA474D1A127195E9004E9F3A</string>
 										<key>history</key>
 										<array>
 											<string>CAC905E311A471190037A42E</string>
@@ -345,7 +343,7 @@
 											<string>CA3039C411AC308D006A7EB8</string>
 											<string>CA4850B511AC9D820040C167</string>
 											<string>CA4850C411AC9E2F0040C167</string>
-											<string>CA1FFC7111ACA0C30095FA1E</string>
+											<string>CAF2095111ACA12D004128E8</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -357,14 +355,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1072, 459}}</string>
+								<string>{{0, 0}, {1072, 452}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1280 719 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>459pt</string>
+							<string>452pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -377,14 +375,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 464}, {1072, 214}}</string>
+								<string>{{0, 457}, {1072, 221}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1280 719 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>214pt</string>
+							<string>221pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -403,9 +401,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>CAF2094A11ACA11B004128E8</string>
+				<string>CA474D18127195B2004E9F3A</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>CAF2094B11ACA11B004128E8</string>
+				<string>CA474D19127195B2004E9F3A</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -586,6 +584,8 @@
 							<string>208pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -625,7 +625,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>CA35D10611A1517500E63E18</string>
-				<string>CAF2094C11ACA11B004128E8</string>
+				<string>CA474CF012719545004E9F3A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -747,13 +747,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>CAF2095211ACA12D004128E8</string>
+				<string>CA474CF112719545004E9F3A</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>CAF2095311ACA12D004128E8</string>
-				<string>CAF2095411ACA12D004128E8</string>
-				<string>CAF2095511ACA12D004128E8</string>
-				<string>CAF2095611ACA12D004128E8</string>
-				<string>CAF2095711ACA12D004128E8</string>
+				<string>CA474CF212719545004E9F3A</string>
+				<string>CA474CF312719545004E9F3A</string>
+				<string>CA474CF412719545004E9F3A</string>
+				<string>CA474CF512719545004E9F3A</string>
+				<string>CA474CF612719545004E9F3A</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

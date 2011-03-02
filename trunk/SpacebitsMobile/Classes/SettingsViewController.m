@@ -49,7 +49,7 @@
 	}
 	
 	if (balloonIdSegmentedControl == nil) {
-		balloonIdSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"1", @"2", @"3", nil]];
+		balloonIdSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"3", @"4", @"5", nil]];
 		balloonIdSegmentedControl.frame = CGRectMake(-1, -1, 301, 47);
 		[balloonIdSegmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 		balloonIdSegmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"balloonId"];
@@ -74,7 +74,7 @@
 	}
 	
 	if (sender == balloonIdSegmentedControl) {
-		[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedSegmentIndex]+1 forKey:@"balloonId"];
+		[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedSegmentIndex]+3 forKey:@"balloonId"];
 	}
 }
 

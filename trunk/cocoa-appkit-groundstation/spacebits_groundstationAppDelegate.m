@@ -1,17 +1,13 @@
-//
-//  spacebits_groundstationAppDelegate.m
-//  spacebits-groundstation
-//
-//  Created by Filipe Varela on 10/02/24.
-//  Copyright 2010 Caixa Mágica Software. All rights reserved.
-//
-
 #import "spacebits_groundstationAppDelegate.h"
 
 @implementation spacebits_groundstationAppDelegate
 @synthesize window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+}
+
+- (NSNumber *)latitude {
+	return [NSNumber numberWithFloat: telemetry.latitude];
 }
 
 - (void)awakeFromNib
@@ -21,16 +17,11 @@
 	NSString *fullPath = [NSBundle pathForResource:@"mapbase" ofType:@"html" inDirectory:path];
 
 	[[mapView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:fullPath]]];
-    [[[mapView mainFrame] frameView] setAllowsScrolling:NO];
-    [mapView setNeedsDisplay:YES];
+	[[[mapView mainFrame] frameView] setAllowsScrolling:NO];
+	[mapView setNeedsDisplay:YES];
 	
 	telemetry.latitude = 39.0;
 	telemetry.longitude = -9.0;
-}
-
-- (IBAction)takeVGAPicture:(id)sender
-{
-	// send cmd to daemon
 }
 
 - (IBAction)ctrOnAltair:(id)sender

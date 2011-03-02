@@ -11,19 +11,12 @@
 #include <signal.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <curl/curl.h>
 
 #include "telemetry.h"
-#include "/Volumes/SVNRepo/broker/trunk/clients/c-component/libsapo-broker2/src/sapo-broker2.h"
 
-#define SERIAL_PORT "/dev/cu.usbserial-A800ekp4"
-#define SERIAL_SPD 19200
-
-broker_server_t *broker_server;
-sapo_broker_t *broker;
 int serial_port;
-
-void packet_to_xml(sensor_data_t *packet, char *xml);
-size_t myread(int fd, void *ptr, size_t bytes);
+uint8_t balloon_id = 0;
 
 void catch_quit(int signal) {
 	close(serial_port);
@@ -36,37 +29,33 @@ int main(int argc, char **argv) {
 	signal(SIGINT, catch_quit);
 	signal(SIGQUIT, catch_quit);
 	
+	if (argc < 4) {
+        fprintf(stdout, "Usage: %s /dev/your_serial_device PORT_BAUD BALLOON_ID\n", argv[0]);
+        return 1;
+	}
+	
 	// init serial port
-	/*if ((serial_port = setup_port()) == -1) {
+	if ((serial_port = setup_port(argv[1], atoi(argv[2]))) == -1) {
 		perror("setup_port");
 		return 1;
-	}*/
-	
-	// init broker connection
-	char hostname[] = "127.0.0.1";
-	broker_server = malloc(sizeof(broker_server_t));
-	broker_server->hostname = strdup(hostname);
-	broker_server->port = 3323;
-	broker_server->transport = 0;
-	broker_server->protocol = 1;
-	broker = broker_init(*broker_server);
-
+	}
+    balloon_id = atoi(argv[3]);
 	printf("Will spawn IO loops\n");
 	packet_loop();
 
 	return 0;
 }
 
-int setup_port(void) {
+int setup_port(const char *serial_device, uint32_t port_baud) {
     int fd;
     struct termios newtio;
 
-    fd = open(SERIAL_PORT, O_RDWR | O_NOCTTY);
+    fd = open(serial_device, O_RDWR | O_NOCTTY);
     if (fd == -1)
         return fd;
 
     tcgetattr(fd, &newtio);
-    cfsetspeed(&newtio, SERIAL_SPD);
+    cfsetspeed(&newtio, port_baud);
 
     newtio.c_cflag |= (CLOCAL | CREAD);
     newtio.c_cflag &= ~PARENB;
@@ -101,10 +90,13 @@ void packet_loop(void) {
     char c;
     
     while (1) {
-        /*read(serial_port, &c, 1);
+		memset(&packet, '\0', sizeof(sensor_data_t));
+        read(serial_port, &c, 1);
         if (c != 'A')
             continue;
-            
+        
+        fprintf(stderr, "GOT START\n");
+        
         // RTC
         myread(serial_port, &packet.rtc.tm_hour, 2);
         myread(serial_port, &packet.rtc.tm_min, 2);
@@ -118,8 +110,8 @@ void packet_loop(void) {
         myread(serial_port, &packet.imu.az, 2);
         
         // SCP
-        myread(serial_port, &packet.scp.raw_pressure, 2);
-        myread(serial_port, &packet.scp.raw_temperature, 2);
+        myread(serial_port, &packet.bmp.raw_pressure, 4);
+        myread(serial_port, &packet.bmp.raw_temperature, 2);
         
         // GPS
         myread(serial_port, &packet.gps.f_latitude, 4);
@@ -128,38 +120,74 @@ void packet_loop(void) {
         myread(serial_port, &packet.gps.u_valid, 1);
         myread(serial_port, &packet.gps.u_satellites, 1);
         
-        myread(serial_port, &packet.voltage, 2);
-        myread(serial_port, &packet.current, 2);
         myread(serial_port, &packet.humidity, 2);
         myread(serial_port, &packet.bearing, 2);
         myread(serial_port, &packet.light, 2);
-        myread(serial_port, &packet.extern_temp, 2);
+        myread(serial_port, &packet.internal_temp, 2);
+		myread(serial_port, &packet.extern_temp, 2);
+
+		myread(serial_port, &packet.gsm_registered, 1);
+		myread(serial_port, &packet.gsm_ready, 1);
  
         myread(serial_port, &c, 1);
         if (c != 'Z')
             continue;
-        */
-		packet.gps.f_latitude = 37.761933;
-		packet.gps.f_longitude = -8.091904;
-		sleep(1);
+        
         // push packet to telemetry topic
-        char *xml = (char *)malloc(10000);
+        char *xml = (char *)calloc(10000, sizeof(char));
         packet_to_xml(&packet, xml);
-        unsigned int retval = broker_publish(broker, TELEMETRY_TOPIC, xml, strlen(xml));
+        int retval = broadcast_packet(xml, strlen(xml));
         free(xml);
         fprintf(stderr, "Published packet: %u\n", retval);
+        sleep(1);
     }
 }
 
+int broadcast_packet(const char *xml, size_t xml_len) {
+    CURL *curl;
+    CURLcode res;
+    
+    curl = curl_easy_init();
+    curl_easy_setopt(curl, CURLOPT_URL, "http://spacebits.eu/api/put");
+    //curl_easy_setopt (curl, CURLOPT_HTTPHEADER, array("Content-Type: text/xml"));
+    curl_easy_setopt(curl, CURLOPT_POST, 1);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, xml);
+    res = curl_easy_perform(curl);
+    if (res != 0) {
+        perror("curl_easy_perform");
+        curl_easy_cleanup(curl);
+        return 1;
+    }
+    curl_easy_cleanup(curl);
+    return 0;
+}
+
 void packet_to_xml(sensor_data_t *packet, char *xml) {
-    char fmt[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><balloon><id>2</id><token>29v856792b29##/++9</token><power><current>%u</current><voltage>%u</voltage></power><atmosphere><pressure>%hd</pressure><temp>%hd</temp><temp_ext>%hd</temp_ext><light>%u</light><humidity>%u</humidity></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%.5f</lat><lon>%.5f</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%hd</gx><gy>%hd</gy><ax>%hd</ax><ay>%hd</ay><az>%hd</az></imu></balloon>";
+    // dummy payload
+    /*struct timeval tv;
+    time_t curtime;
+    gettimeofday(&tv, NULL);
+    curtime=tv.tv_sec;
+    char t_hour[3], t_min[3], t_sec[3];
+    strftime(t_hour, 3,"%H", localtime(&curtime));
+    strftime(t_min, 3,"%M", localtime(&curtime));
+    strftime(t_sec, 3,"%S", localtime(&curtime));
+    packet->rtc.tm_hour = atoi(t_hour);
+    packet->rtc.tm_min = atoi(t_min);
+    packet->rtc.tm_sec = atoi(t_sec);
+    packet->gps.f_latitude = 38.10;
+    packet->gps.f_longitude = -6.7;
+	*/
+    
+    char fmt[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><balloon><id>%u</id><token>29v856792b29##/++9</token><atmosphere><pressure>%hd</pressure><temp>%hd</temp><temp_int>%hd</temp_int><temp_ext>%hd</temp_ext><light>%u</light><humidity>%u</humidity></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%.5f</lat><lon>%.5f</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%hd</gx><gy>%hd</gy><ax>%hd</ax><ay>%hd</ay><az>%hd</az></imu><gsm><registered>%u</registered><ready>%u</ready></gsm></balloon>";
     sprintf(xml, fmt,
-        packet->current, packet->voltage,
-        packet->scp.raw_pressure, packet->scp.raw_temperature,
+        balloon_id,
+        packet->bmp.raw_pressure, packet->bmp.raw_temperature,packet->internal_temp,
         packet->extern_temp, packet->light, packet->humidity,
         packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec,
         packet->gps.f_latitude, packet->gps.f_longitude, packet->gps.u_altitude, packet->bearing,
-        packet->imu.gx, packet->imu.gy, packet->imu.ax, packet->imu.ay, packet->imu.az);
+        packet->imu.gx, packet->imu.gy, packet->imu.ax, packet->imu.ay, packet->imu.az,
+		packet->gsm_registered, packet->gsm_ready);
     fprintf(stderr, "Time is: %d:%d:%d\n", packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec);
     fprintf(stderr, "XML msg:\n---\n%s\n---\n", xml);
 }
