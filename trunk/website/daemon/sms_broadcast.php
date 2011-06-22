@@ -19,7 +19,7 @@ foreach($active_balloons as $id) {
         echo "Sending coordinate for balloon $id to phone $phone\n";
         $t=$api->get(false,$id);
         if($t['lat']) {
-          $stamp=md5($phone.$t['lat'].$t['lon'].$t['alt']);
+          $stamp=md5($phone.$t['lat'].$t['lon'].$t['alt'].$t['change']);
           $stamp_file="/tmp/spacebits".$stamp.".stamp";
           if(!@file_exists($stamp_file)) {
             $body="BalloonId: ".$id." Lat: ".$t['lat']." Lon: ".$t['lon']." alt: ".$t['alt']." http://maps.google.com/maps?q=".$t['lat'].",".$t['lon'];

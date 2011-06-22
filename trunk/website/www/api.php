@@ -16,7 +16,7 @@ switch($method) {
   case "sms":
     $b=urldecode($_POST['body']);
     list($id,$lat,$lon,$alt,$nsats)=split(",",$b);
-    $b=($id-1).",".$lat.",".$lon.",".$alt.",".$nsats;
+    $b=$id.",".$lat.",".$lon.",".$alt.",".$nsats;
     file_put_contents("/servers/spacebits/www/logs/sms.log",$b."\n",FILE_APPEND);
     $api->saveSMS(urldecode($_POST['from']),$b);
     break;

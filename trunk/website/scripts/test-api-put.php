@@ -4,6 +4,7 @@ require_once('classes/api.php');
 
 $xml='<balloon>
 	<token>29v856792b29##/++9</token>
+        <id>6</id>
 	<power>
 		<current>1024</current>
 		<voltage>1024</voltage>
@@ -16,9 +17,9 @@ $xml='<balloon>
 	</atmosphere>
 	<rtc>'.date("h:i:s").'</rtc>
 	<geo>
-		<lat>37.701933</lat>
-		<lon>-8.051904</lon>
-		<alt>0</alt>
+		<lat>40.321161</lat>
+		<lon>-7.61367</lon>
+		<alt>2000</alt>
 		<bear>1024</bear>
 	</geo>
 	<imu>

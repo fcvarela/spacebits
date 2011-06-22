@@ -42,7 +42,8 @@ class Spacebits_API {
       $p['imu_ax']=floatval($arr->imu->ax);
       $p['imu_ay']=floatval($arr->imu->ay);
       $p['imu_az']=floatval($arr->imu->az);
-      $p['change']=strtotime($arr->rtc);
+      // $p['change']=strtotime($arr->rtc); // ignore the rtc, its unrelieable
+      $p['change']=time();
       return($p);
       }
     return(false);
@@ -176,12 +177,14 @@ class Spacebits_API {
             foreach(array_keys($r) as $key) {
               $lp[$key]=$r[$key];
               }
-            $sms=$this->lastSMS($bid);
-            if(intval($sms['change'])>intval($lp['change'])) {
-              $lp['lat']=$sms['lat'];
-              $lp['lon']=$sms['lon'];
-              $lp['alt']=$sms['alt'];
-              }
+            $lp['type']='radio';
+            }
+          $sms=$this->lastSMS($bid);
+          if(intval($sms['change'])>intval($lp['change'])) {
+            $lp['lat']=$sms['lat'];
+            $lp['lon']=$sms['lon'];
+            $lp['type']='sms';
+            $lp['alt']=$sms['alt'];
             }
          $binfo=$this->balloonInfo($bid);
          $lp['id']=$binfo['id'];
