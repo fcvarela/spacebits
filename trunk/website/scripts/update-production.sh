@@ -18,7 +18,7 @@ echo "Syncing production farm"
 for s in $SERVERS
 do
   echo "Syncing code tree with $s"
-  rsync -a --times $exclude --exclude=www/logs --exclude=.* --exclude=uploads --exclude=*.swp --exclude=main-*  --exclude=.svn -e ssh . $s:$PROD_PATH --delete
+  rsync -a --times $exclude --exclude=cusf --exclude=www/logs --exclude=.* --exclude=uploads --exclude=*.swp --exclude=main-*  --exclude=.svn -e ssh . $s:$PROD_PATH --delete
   echo "Syncing site.db from $s to local computer"
   rsync -a --times -e ssh $s:$PROD_PATH/db/*.db db/
 #  echo "Syncing images from $s to local computer"
