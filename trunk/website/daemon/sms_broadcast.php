@@ -22,7 +22,7 @@ foreach($active_balloons as $id) {
           $stamp=md5($phone.$t['lat'].$t['lon'].$t['alt'].$t['change']);
           $stamp_file="/tmp/spacebits".$stamp.".stamp";
           if(!@file_exists($stamp_file)) {
-            $body="BalloonId: ".$id." Lat: ".$t['lat']." Lon: ".$t['lon']." alt: ".$t['alt']." http://maps.google.com/maps?q=".$t['lat'].",".$t['lon'];
+            $body="B".$id." C: ".$t['lat'].",".$t['lon']." A: ".$t['alt']." http://maps.google.com/maps?q=".$t['lat'].",".$t['lon'];
             echo "  ".$body."\n";
             exec("/servers/spacebits/daemon/send_sms.pl ".$phone." '".$body."'");
             touch($stamp_file);
