@@ -138,24 +138,43 @@ void packet_loop(void) {
             continue;
         }
 
-        // save sms request to disk
-        struct timeval tv;
-        time_t curtime;
-        gettimeofday(&tv, NULL);
-        curtime=tv.tv_sec;
-        char msg[160];
+        // get a timestamp for our filename
+        uint64_t timestamp = make_timestamp();
+
+        // make filename
         char filename[128];
-        sprintf(filename, "/sdcard/spacebits/new/%llu.txt", tv.tv_sec);
-        sprintf(msg, "%u,%f,%f,%u,%u", balloon_id, packet.gps.f_latitude, packet.gps.f_longitude, packet.gps.u_altitude, packet.gps.u_satellites);
-        
+        sprintf(filename, "/sdcard/spacebits/new/%llu.txt", timestamp);
+
+        // make groundstation id
+        uint8_t groundstation_id = 0;
+        #ifdef GROUNDSTATIONID
+        groundstation_id = GROUNDSTATIONID;
+        #endif
+
+        // make sms message string
+        char msg[160];
+        sprintf(msg, "%u,%f,%f,%u,%u,%u",
+            balloon_id, packet.gps.f_latitude, packet.gps.f_longitude, packet.gps.u_altitude, packet.gps.u_satellites, groundstation_id);
+
+        // open file for writing
         FILE *sendsms;
-        sendsms = fopen(filename, "wt");
-        if (sendsms == NULL) {
+        if ((sendsms = fopen(filename, "wt")) == NULL) {
             perror("could not open new sms file for writing");
-            continue;
+            // act all christ here. we're _sure_ someOne will respawn us
+            return;
         }
+
+        // write message to file
         fprintf(sendsms, "%s\n", msg);
+
+        // close, debug
         fclose(sendsms);
         printf("Wrote packet to file\n");
     }
+}
+
+uint64_t make_timestamp(void) {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec;
 }

@@ -34,13 +34,9 @@ typedef struct {
 
 #define PACKET_FOOTER 'Z'
 
-#define COMMAND_QUEUE "/spacebits/control"
-#define TELEMETRY_TOPIC "/spacebits/telemetry"
-
 // prototypes
 void catch_quit(int signal);
 void packet_loop(void);
 int setup_port(const char *serial_device);
-int broadcast_packet(const char *xml, size_t xml_len);
-void packet_to_xml(sensor_data_t *packet, char *xml);
 size_t myread(int fd, void *ptr, size_t bytes);
+uint64_t make_timestamp(void);
