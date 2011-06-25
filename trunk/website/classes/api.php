@@ -185,6 +185,7 @@ class Spacebits_API {
             $lp['lon']=$sms['lon'];
             $lp['type']='sms';
             $lp['alt']=$sms['alt'];
+            $lp['change']=$sms['change'];
             }
          $binfo=$this->balloonInfo($bid);
          $lp['id']=$binfo['id'];
@@ -194,6 +195,9 @@ class Spacebits_API {
          }
        }
     }
+
+    $p[0]['change_txt']=date("F j, Y, g:i a",$p[0]['change']);
+
     if($value) {
       foreach($p as $b) if($b['id']==$value) return($b);
       return(null);

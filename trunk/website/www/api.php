@@ -15,10 +15,21 @@ list($method,$value)=split("/",$_GET['action'],2);
 switch($method) {
   case "sms":
     $b=urldecode($_POST['body']);
-    list($id,$lat,$lon,$alt,$nsats)=split(",",$b);
-    $b=$id.",".$lat.",".$lon.",".$alt.",".$nsats;
+    if($b[0]=='R') {
+      list(,$gid,$id,$lat,$lon,$alt,$nsats,$pressure,$int_temp,$ext_temp,$humidity)=split(",",$b);
+      $xml='<?xml version="1.0" encoding="UTF-8"?><balloon><id>'.$id.'</id><token>29v856792b29##/++9</token><atmosphere><pressure>'.$pressure.'</pressure><temp>'.$int_temp.'</temp><temp_int>'.$int_temp.'</temp_int><temp_ext>'.$ext_temp.'</temp_ext><light>0</light><humidity>'.$humidity.'</humidity></atmosphere><rtc>0</rtc><geo><lat>'.$lat.'</lat><lon>'.$lon.'</lon><alt>'.$alt.'</alt><bear>0</bear></geo><imu><gx>0</gx><gy>0</gy><ax>0</ax><ay>0</ay><az>0</az></imu><gsm><registered>0</registered><ready>0</ready></gsm></balloon>';
+      $b="radio sms from gs: ".$id.",".$lat.",".$lon.",".$alt.",".$nsats.",".$pressure.",".$int_temp.",".$ext_temp.",".$humidity;
+      if($payload=$api->parsePayload($xml)) {
+        $api->put($payload);
+        }
+      }
+      else // normal ground station id
+      {
+      list($id,$lat,$lon,$alt,$nsats)=split(",",$b);
+      $b="payload sms: ".$id.",".$lat.",".$lon.",".$alt.",".$nsats;
+      $api->saveSMS(urldecode($_POST['from']),$b);
+      }
     file_put_contents("/servers/spacebits/www/logs/sms.log",$b."\n",FILE_APPEND);
-    $api->saveSMS(urldecode($_POST['from']),$b);
     break;
   case "put":
     header("Content-Type: text/xml; charset=utf-8");
@@ -54,6 +65,9 @@ switch($method) {
     break;
   case "all":
     header("Content-Type: application/json; charset=utf-8");
+    if($value) {
+      $active_balloons=array($value);
+      }
     echo json_encode(array('last'=>$api->get($_POST['demo']),'track'=>$api->track(),'twitter'=>$api->getTwits()));
     break;
   default:

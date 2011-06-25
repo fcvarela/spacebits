@@ -31,7 +31,7 @@ class Spacebits_Homepage extends Spacebits {
     $this->smarty->assign('now',time());
     $this->smarty->assign('launch',$launch);
     $this->smarty->assign('left',$launch-time());
-    if(strstr($_SERVER['HTTP_USER_AGENT'],'iPad')) $this->smarty->assign('ipad',true);
+    if(true||strstr($_SERVER['HTTP_USER_AGENT'],'iPad')) $this->smarty->assign('ipad',true);
     if(strstr($_SERVER["SERVER_NAME"],'localhost')) $this->smarty->assign('dev',1);
       else $this->smarty->assign('dev',0);
     }

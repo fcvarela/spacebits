@@ -1,18 +1,19 @@
 var refreshRate=10*1000;
 var map = false;
+var ctimer=15;
 var markerslayer = false;
 var start=false;
 var img=false;
 var sw_follow_cb = false;
-var sw_sms_cb = false;
-var sw_radio_cb = false;
+var sw_sms_cb = true;
+var sw_radio_cb = true;
 var sw_demo_cb = false;
 var sw_twitter_cb = false;
 var sw_startpos=[-8.6837,37.1082];
 var useGauges = true;
 var twitter_width = 250;
 var twitter_last = false;
-var sw_balloon_id = 1;
+var sw_balloon_id = 6;
 var dg=[];
 dg['0']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAANgCLrc/i8UQ2sljJRpqWYTMYwkYRSggTUhQw3O6xpCTC8BFTS5sSsCimMgXBBXjB5jgOQ1B7WHALaY/BjBpqyxBfSuii9OxyMriIZh8bw2tkOk0glk6pwKzbr9BIb4/wwJADs=';
 dg['1']='data:image/gif;base64,R0lGODlhEAAYAKIAABISEjMzAGYzAGZmAJlmAMyZAP/MAAAAACH5BAkKAAcALAAAAAAQABgAAAM5CLrc/jACIZkoVQmDczFEBhjGIJJUFZBBNpDiaohAEIqCmW13ReoSWUvFcsGMswyBQyP0MkOalJEAADs=';
@@ -66,44 +67,8 @@ function setTooltip(divid,alt) {
   $(divid).onmouseout=function () {tooltip.hide();};
   }
 
-function initSwitches() {
-    new iPhoneStyle('.on_off input[type=checkbox]',{checkedLabel: 'YES', uncheckedLabel: 'NO'});
-    setInterval(function checkSwitches() {
-    sw_follow_cb = $$('.on_off input[type=checkbox]')[0].checked;
-    // sw_sms_cb = $$('.on_off input[type=checkbox]')[1].checked;
-    sw_radio_cb = $$('.on_off input[type=checkbox]')[2].checked;
-    sw_twitter_cb = $$('.on_off input[type=checkbox]')[3].checked;
-    // sw_demo_cb = $$('.on_off input[type=checkbox]')[4].checked;
-    if(twitter_last!==sw_twitter_cb) {
-      if(sw_twitter_cb) {
-        $('map_wrapper').style.width=(840-twitter_width-10).toString()+"px";
-        $('twitter_wrapper').style.width=twitter_width.toString()+"px";
-        $('twitter_wrapper').style.display="block";
-        if(map) map.zoomOut();
-        }
-        else
-        {
-        $('twitter_wrapper').style.display="none";
-        $('map_wrapper').style.width="840px";
-        if(map) map.zoomIn();
-        }
-      }
-    twitter_last = sw_twitter_cb;
-    }, 1000);
-  changeSwitch(0);
-  // changeSwitch(1);
-  changeSwitch(2);
-  changeSwitch(3);
-  // changeSwitch(4);
-  }
-
-function changeSwitch(i) {
-  var checkbox = $$('.on_off input[type=checkbox]')[i];
-  checkbox.writeAttribute('checked', !checkbox.checked);
-  checkbox.change();
-  }
-
 function initMap() {
+  resizeMap();
   start=new OpenLayers.LonLat(sw_startpos[0],sw_startpos[1]);
   img={markerImage: '/images/balloon.png', markerAnchor: new OpenLayers.Pixel(-8, -49), size: new OpenLayers.Size(32, 42)};
   map = new SAPO.Maps.Map('map');
@@ -142,33 +107,12 @@ function drawGauge(n,v,d,o,alt) {
   setTooltip(d,params.alt);
   }
 
-function swapBalloon() {
-  sw_balloon_id=s$('blid').value;
-  var s=new Ajax.Request('/api/all',{method: 'post',onSuccess:refreshDashboard});
-  // alert(sw_balloon_id);
-  }
-
 function refreshDashboard(t) {
   var r=t.responseText.evalJSON();
   // s$('coords').innerHTML=r.lon+','+r.lat;
   var last=r['last'][0];
   for(var i=0;i<r['last'].length;i++) {
     if(r['last'][i].id==sw_balloon_id) last=r['last'][i];
-    }
-  if(useGauges) {
-    drawGauge('Altitude',last.alt,'sensors_alt',gauges.altitude);
-    drawGauge('Pressure',last.pressure,'sensors_pressure',gauges.pressure);
-    drawGauge('Int Temp',last.temperature,'sensors_temperature',gauges.temp);
-    drawGauge('Ext Temp',last.temperature_ext,'sensors_temperature_ext',gauges.temp_ext);
-    drawGauge('Humidity',last.humidity,'sensors_humidity',gauges.humidity);
-    }
-    else
-    {
-    analogNumber('Altitude',last.alt,'sensors_alt',gauges.altitude.alt);
-    analogNumber('Pressure',last.pressure,'sensors_pressure',gauges.pressure.alt);
-    analogNumber('Int Temperature',last.temperature,'sensors_temperature',gauges.temp.alt);
-    analogNumber('Ext Temperature',last.temperature_ext,'sensors_temperature_ext',gauges.temp_ext.alt);
-    analogNumber('Humidity',last.humidity,'sensors_humidity',gauges.humidity.alt);
     }
   // Track
   markerslayer.removeMarkers();
@@ -177,7 +121,6 @@ function refreshDashboard(t) {
   var shift=new OpenLayers.Pixel(-8,-8);
   var green = { markerImage: '/images/green.png', size: size, markerOpacity: 1,markerAnchor: shift };
   var red = { markerImage: '/images/red.png', size: size, markerOpacity: 1,markerAnchor: shift};
-
 
   if(sw_radio_cb) {
     red.markerOpacity=0;
@@ -192,39 +135,51 @@ function refreshDashboard(t) {
     }
   if(sw_sms_cb) {
     for(var i=0;i<r['track'][0]['sms'].length;i++) {
-      var co=new OpenLayers.LonLat(r['track']['sms'][i][1],r['track']['sms'][i][0]);
+      var co=new OpenLayers.LonLat(r['track'][0]['sms'][i][1],r['track'][0]['sms'][i][0]);
       var m=new SAPO.Maps.Marker(co, {draggable: false});
       m.setStyle(green);
       markerslayer.addMarker(m);
       }
     }
+
+  // Console
+  var ct='<p><b>Last radio packet ('+last.change_txt+')</b></p>';
+  ct+='<p>Balloon id: '+last.balloon+"</p>";
+  var patmp=last.pressure/101325;
+  var pbarp=last.pressure/100000;
+  ct+='<p>Pressure: '+last.pressure+' Pa, '+patmp.toPrecision(2)+' Atm, '+pbarp.toPrecision(2)+' Bar</p>';
+  ct+='<p>Internal Temperature: '+(last.temperature/100)+" C</p>";
+  ct+='<p>External Temperature: '+(last.temperature_ext/100)+" C</p>";
+
+  var humidity=161*(last.humidity*4.88/5000)-25.8;
+  humidity=Math.round(humidity/(1.0546-0.0026*(last.temperature_ext/100)));
+  ct+='<p>Humidity: '+humidity+" %</p>";
+  ct+='<p>Latitude: '+last.lat+"</p>";
+  ct+='<p>Longitude: '+last.lon+"</p>";
+  ct+='<p>Altitude: '+Math.round(last.alt)+" m</p>";
+  $('console').innerHTML=ct;
+
   // Balloon
   var pos=new OpenLayers.LonLat(last.lon,last.lat);
-  if(sw_follow_cb) map.setMapCenter(pos);
+  map.setMapCenter(pos);
   balloon.setLonLat(pos);
-  // Other measures
-  analogNumber('Bear',last.bear,'bear','Compass Heading or Bearing<br/>(in degrees)');
-  analogNumber('Ax',last.imu_ax,'ax','Acceleration X axis<br/>(in Gs)');
-  analogNumber('Ay',last.imu_ay,'ay','Acceleration Y axis<br/>(in Gs)');
-  analogNumber('Az',last.imu_az,'az','Acceleration Z axis<br/>(in Gs)');
-  analogNumber('Gx',last.imu_gx,'gx','Angular Speed X axis<br/>(in rad/sec)');
-  analogNumber('Gy',last.imu_gy,'gy','Angular Speed Y axis<br/>(in rad/sec)');
-  analogNumber('Elapsed Now Last',last.elapsed,'time','Time elapsed from flight start<br/>Current time<br/>Last measurement',true);
-  analogNumber('Current',last.power_current,'amps','Power current<br/>(in amps)');
-  analogNumber('Voltage',last.power_voltage,'volts','Power voltage<br/>(in volts)');
-  // Twitter
-  $o='<h1><a href="http://twitter.com/flyspacebits" target="_blank">Twitter feed</a></h1>';
-  for(i=0;i<r['twitter'].length;i++) {
-    $o+='<div class="twit">'+r['twitter'][i].description+" <a href=\""+r['twitter'][i].link+"\" target=\"_blank\">[+]</a></div>";
-    }
-  $('twitter_wrapper').innerHTML=$o;
   }
 
 function getData() {
   var params=[];
-  if(sw_demo_cb) params.push("demo=true");
-  var s=new Ajax.Request('/api/all',{method: 'post',postBody: params.join('&'),onSuccess:refreshDashboard});
-  setTimeout (getData, refreshRate);
+  $('console').innerHTML='Getting new data...';
+  // if(sw_demo_cb) params.push("demo=true");
+  var s=new Ajax.Request('/api/all/'+sw_balloon_id,{method: 'post',postBody: params.join('&'),onSuccess:refreshDashboard});
+  }
+
+function printTimer() {
+  $('counter').innerHTML=ctimer;
+  ctimer--;
+  if(ctimer==0) {
+    getData();
+    ctimer=15;
+    }
+  setTimeout (printTimer, 1000);
   }
 
 function initDashboard() {
@@ -249,11 +204,7 @@ function initDashboard() {
       break;
     }
   initMap();
-  if(useGauges) {
-    initGauges();
-    }
-  initSwitches();
-  sw_balloon_id=s$('blid').value;
+  setTimeout (printTimer, 1000);
   getData();
   }
 
@@ -692,5 +643,66 @@ SAPO.Maps.Control.MapCenter = OpenLayers.Class(OpenLayers.Control, {
 
     CLASS_NAME: "SAPO.Maps.Control.MapCenter"
 });
+
+
+/**
+ * @author SAPO Maps
+ */
+
+//Create the spacebits namespace
+var Spacebits = {};
+
+//Global variables
+var map = null;
+var navigationControl = null;
+var mapTypeControl = null;
+var windowControls = [];
+
+//Global functions
+
+function resizeMap(){
+	var mapDiv = document.getElementById('map');
+	var consoleDiv = document.getElementById('console');
+	var counterDiv = document.getElementById('counter');
+	
+	mapDiv.style.width = getClientWidth() + 'px';
+	mapDiv.style.height = getClientHeight() + 'px';
+
+	consoleDiv.style.left = 0;
+	consoleDiv.style.top = (getClientHeight()-200) + 'px';
+	consoleDiv.style.height = '200px';
+	consoleDiv.style.width = '300px';
+
+	counterDiv.style.left = '280px';
+	counterDiv.style.top = (getClientHeight()-200) + 'px';
+	counterDiv.style.height = '15px';
+	counterDiv.style.width = '15px';
+}
+
+function getClientWidth() {
+	return document.compatMode=='CSS1Compat' && !window.opera?document.documentElement.clientWidth:document.body.clientWidth;
+};
+
+function getClientHeight() {
+	return document.compatMode=='CSS1Compat' && !window.opera?document.documentElement.clientHeight:document.body.clientHeight;
+};
+
+function saveWindowPosition(name, position){
+  var cookieName = 'spacebits_' + name;
+  var cookieValue = position.left + ',' + position.top;
+  SAPO.Utility.Cookie.set(cookieName, cookieValue);
+}
+
+function setWindowPosition(name, window){
+  var cookies = SAPO.Utility.Cookie.get();
+  if(cookies && cookies['spacebits_' + name]){
+    var cookie = cookies['spacebits_' + name];
+    var cookiePosition = cookie.split(',');
+    var windowPosition = new OpenLayers.Pixel(Number(cookiePosition[0]), Number(cookiePosition[1]));
+    
+    window.setWindowPosition(windowPosition);
+  }
+}
+
 
 BrowserDetect.init();
