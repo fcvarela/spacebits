@@ -10,12 +10,17 @@
 #include <sys/select.h>
 #include <signal.h>
 #include <unistd.h>
+#ifndef TESTMODE
 #include <jni.h>
+#endif
 
-#include "telemetry.h"
+#include "../telemetry-daemon/telemetry.h"
 
 int serial_port;
 uint8_t balloon_id = 6;
+
+void packet_loop(void);
+uint64_t make_timestamp(void);
 
 void catch_quit(int signal) {
     close(serial_port);
@@ -29,10 +34,12 @@ int main(int argc, char **argv) {
     signal(SIGQUIT, catch_quit);
 
     // init serial port
+    #ifndef TESTMODE
     if ((serial_port = setup_port("/dev/ttyMSM2")) == -1) {
         perror("setup_port");
         return 1;
     }
+    #endif
 
     printf("Will spawn IO loops\n");
     packet_loop();
@@ -88,6 +95,33 @@ void packet_loop(void) {
     while (1) {
         sleep(1);
         memset(&packet, '\0', sizeof(sensor_data_t));
+        
+        #ifdef TESTMODE
+        struct timeval tv;
+        gettimeofday(&tv, NULL);;
+        char t_hour[3], t_min[3], t_sec[3];
+        strftime(t_hour, 3,"%H", localtime(&tv.tv_sec));
+        strftime(t_min, 3,"%M", localtime(&tv.tv_sec));
+        strftime(t_sec, 3,"%S", localtime(&tv.tv_sec));
+        packet.rtc.tm_hour = atoi(t_hour);
+        packet.rtc.tm_min = atoi(t_min);
+        packet.rtc.tm_sec = atoi(t_sec);
+    
+        packet.imu.gx = packet.imu.gy = packet.imu.ax = packet.imu.ay = packet.imu.az = 512;
+        
+        packet.bmp.raw_pressure = 10;
+        packet.bmp.raw_temperature = 512;
+        
+        packet.gps.f_latitude = 38.10;
+        packet.gps.f_longitude = -6.7;
+        packet.gps.u_altitude = 25000;
+        packet.gps.u_satellites = 7;
+        
+        packet.internal_temp = 2500;
+        packet.extern_temp = -5000;
+        packet.humidity = 40;
+        
+        #else
         read(serial_port, &c, 1);
         if (c != 'A')
             continue;
@@ -131,13 +165,18 @@ void packet_loop(void) {
             printf("malformed packet\n");
             continue;
         }
+        #endif
 
         // get a timestamp for our filename
         uint64_t timestamp = make_timestamp();
 
         // make filename
         char filename[128];
+        #ifndef TESTMODE
         sprintf(filename, "/sdcard/spacebits/new/%llu.txt", timestamp);
+        #else
+        sprintf(filename, "%llu.txt", timestamp);
+        #endif
 
         // make groundstation id
         uint8_t groundstation_id = 0;
@@ -147,8 +186,12 @@ void packet_loop(void) {
 
         // make sms message string
         char msg[160];
-        sprintf(msg, "%u,%f,%f,%u,%u,%u",
-                balloon_id, packet.gps.f_latitude, packet.gps.f_longitude, packet.gps.u_altitude, packet.gps.u_satellites, groundstation_id);
+        
+        //R,ground_stations_id,ballon_id,lat,lon,alt,nstats,pressure,int_temp,ext_temp,humidity
+        sprintf(msg, "R,%u,%u,%f,%f,%u,%u,%d,%hd,%hd,%u",
+                groundstation_id, balloon_id,
+                packet.gps.f_latitude, packet.gps.f_longitude, packet.gps.u_altitude, packet.gps.u_satellites,
+                packet.bmp.raw_pressure, packet.internal_temp, packet.extern_temp, packet.humidity);
 
         // open file for writing
         FILE *sendsms;

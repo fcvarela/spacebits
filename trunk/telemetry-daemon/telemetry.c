@@ -15,6 +15,15 @@
 
 #include "telemetry.h"
 
+// prototypes
+void catch_quit(int signal);
+void packet_loop(void);
+int setup_port(const char *serial_device, uint32_t port_baud);
+size_t myread(int fd, void *ptr, size_t bytes);
+uint64_t make_timestamp(void);
+void packet_to_xml(sensor_data_t *packet, char *xml);
+int broadcast_packet(const char *xml, size_t xml_len);
+    
 int serial_port;
 uint8_t balloon_id = 0;
 
@@ -29,6 +38,7 @@ int main(int argc, char **argv) {
 	signal(SIGINT, catch_quit);
 	signal(SIGQUIT, catch_quit);
 	
+	#ifndef TESTMODE
 	if (argc < 4) {
         fprintf(stdout, "Usage: %s /dev/your_serial_device PORT_BAUD BALLOON_ID\n", argv[0]);
         return 1;
@@ -40,6 +50,9 @@ int main(int argc, char **argv) {
 		return 1;
 	}
     balloon_id = atoi(argv[3]);
+    #else
+    balloon_id = 6;
+    #endif
 	printf("Will spawn IO loops\n");
 	packet_loop();
 
@@ -91,6 +104,7 @@ void packet_loop(void) {
     
     while (1) {
 		memset(&packet, '\0', sizeof(sensor_data_t));
+		#ifndef TESTMODE
         read(serial_port, &c, 1);
         if (c != 'A')
             continue;
@@ -132,6 +146,7 @@ void packet_loop(void) {
         myread(serial_port, &c, 1);
         if (c != 'Z')
             continue;
+        #endif
         
         // push packet to telemetry topic
         char *xml = (char *)calloc(10000, sizeof(char));
@@ -164,7 +179,8 @@ int broadcast_packet(const char *xml, size_t xml_len) {
 
 void packet_to_xml(sensor_data_t *packet, char *xml) {
     // dummy payload
-    /*struct timeval tv;
+    #ifdef TESTMODE
+    struct timeval tv;
     time_t curtime;
     gettimeofday(&tv, NULL);
     curtime=tv.tv_sec;
@@ -175,19 +191,34 @@ void packet_to_xml(sensor_data_t *packet, char *xml) {
     packet->rtc.tm_hour = atoi(t_hour);
     packet->rtc.tm_min = atoi(t_min);
     packet->rtc.tm_sec = atoi(t_sec);
+    packet->rtc.tm_hour = atoi(t_hour);
+    packet->rtc.tm_min = atoi(t_min);
+    packet->rtc.tm_sec = atoi(t_sec);
+
+    packet->imu.gx = packet->imu.gy = packet->imu.ax = packet->imu.ay = packet->imu.az = 512;
+    
+    packet->bmp.raw_pressure = 10;
+    packet->bmp.raw_temperature = 2500;
+    
     packet->gps.f_latitude = 38.10;
     packet->gps.f_longitude = -6.7;
-	*/
+    packet->gps.u_altitude = 25000;
+    packet->gps.u_satellites = 7;
     
-    char fmt[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><balloon><id>%u</id><token>29v856792b29##/++9</token><atmosphere><pressure>%hd</pressure><temp>%hd</temp><temp_int>%hd</temp_int><temp_ext>%hd</temp_ext><light>%u</light><humidity>%u</humidity></atmosphere><rtc>%u:%u:%u</rtc><geo><lat>%.5f</lat><lon>%.5f</lon><alt>%u</alt><bear>%u</bear></geo><imu><gx>%hd</gx><gy>%hd</gy><ax>%hd</ax><ay>%hd</ay><az>%hd</az></imu><gsm><registered>%u</registered><ready>%u</ready></gsm></balloon>";
+    packet->internal_temp = 2500;
+    packet->extern_temp = -5000;
+    packet->humidity = 40;
+	#endif
+    
+    char fmt[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<balloon>\n<id>%u</id>\n<token>29v856792b29##/++9</token>\n<atmosphere>\n<pressure>%hd</pressure>\n<temp>%hd</temp>\n<temp_int>%hd</temp_int>\n<temp_ext>%hd</temp_ext>\n<light>%u</light>\n<humidity>%u</humidity>\n</atmosphere>\n<rtc>%u:%u:%u</rtc>\n<geo>\n<lat>%.5f</lat>\n<lon>%.5f</lon>\n<alt>%u</alt>\n<bear>%u</bear>\n</geo>\n<imu>\n<gx>%hd</gx>\n<gy>%hd</gy>\n<ax>%hd</ax>\n<ay>%hd</ay>\n<az>%hd</az>\n</imu>\n<gsm>\n<registered>%u</registered>\n<ready>%u</ready>\n</gsm>\n</balloon>";
     sprintf(xml, fmt,
         balloon_id,
-        packet->bmp.raw_pressure, packet->bmp.raw_temperature,packet->internal_temp,
+        packet->bmp.raw_pressure, packet->bmp.raw_temperature, packet->internal_temp,
         packet->extern_temp, packet->light, packet->humidity,
         packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec,
         packet->gps.f_latitude, packet->gps.f_longitude, packet->gps.u_altitude, packet->bearing,
         packet->imu.gx, packet->imu.gy, packet->imu.ax, packet->imu.ay, packet->imu.az,
-		packet->gsm_registered, packet->gsm_ready);
+        packet->gsm_registered, packet->gsm_ready);
     fprintf(stderr, "Time is: %d:%d:%d\n", packet->rtc.tm_hour, packet->rtc.tm_min, packet->rtc.tm_sec);
     fprintf(stderr, "XML msg:\n---\n%s\n---\n", xml);
 }
