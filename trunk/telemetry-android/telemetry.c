@@ -21,6 +21,8 @@ uint8_t balloon_id = 6;
 
 void packet_loop(void);
 uint64_t make_timestamp(void);
+int setup_port(const char *serial_device);
+void catch_quit(int signal);
 
 void catch_quit(int signal) {
     close(serial_port);
