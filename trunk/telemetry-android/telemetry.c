@@ -92,16 +92,18 @@ size_t myread(int fd, void *ptr, size_t bytes) {
 
 void packet_loop(void) {
     sensor_data_t packet;
-    char c;
+    char c, filename[128], msg[160];
+    struct timeval tv;
+    char t_hour[3], t_min[3], t_sec[3];
+    uint64_t timestamp;
+    uint8_t groundstation_id;
 
     while (1) {
         sleep(1);
         memset(&packet, '\0', sizeof(sensor_data_t));
         
         #ifdef TESTMODE
-        struct timeval tv;
         gettimeofday(&tv, NULL);;
-        char t_hour[3], t_min[3], t_sec[3];
         strftime(t_hour, 3,"%H", localtime(&tv.tv_sec));
         strftime(t_min, 3,"%M", localtime(&tv.tv_sec));
         strftime(t_sec, 3,"%S", localtime(&tv.tv_sec));
@@ -161,6 +163,8 @@ void packet_loop(void) {
 
         myread(serial_port, &packet.gsm_registered, 1);
         myread(serial_port, &packet.gsm_ready, 1);
+        
+        // 46 bytes
 
         myread(serial_port, &c, 1);
         if (c != 'Z') {
@@ -170,10 +174,9 @@ void packet_loop(void) {
         #endif
 
         // get a timestamp for our filename
-        uint64_t timestamp = make_timestamp();
+        timestamp = make_timestamp();
 
         // make filename
-        char filename[128];
         #ifndef TESTMODE
         sprintf(filename, "/sdcard/spacebits/new/%llu.txt", timestamp);
         #else
@@ -181,16 +184,13 @@ void packet_loop(void) {
         #endif
 
         // make groundstation id
-        uint8_t groundstation_id = 0;
+        groundstation_id = 0;
 #ifdef GROUNDSTATIONID
         groundstation_id = GROUNDSTATIONID;
 #endif
-
-        // make sms message string
-        char msg[160];
         
         //R,ground_stations_id,ballon_id,lat,lon,alt,nstats,pressure,int_temp,ext_temp,humidity
-        sprintf(msg, "R,%u,%u,%f,%f,%u,%u,%d,%hd,%hd,%u",
+        sprintf(msg, "%s R,%u,%u,%f,%f,%u,%u,%d,%hd,%hd,%u", "+351968252265"
                 groundstation_id, balloon_id,
                 packet.gps.f_latitude, packet.gps.f_longitude, packet.gps.u_altitude, packet.gps.u_satellites,
                 packet.bmp.raw_pressure, packet.internal_temp, packet.extern_temp, packet.humidity);
