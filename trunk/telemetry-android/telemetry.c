@@ -190,7 +190,7 @@ void packet_loop(void) {
 #endif
         
         //R,ground_stations_id,ballon_id,lat,lon,alt,nstats,pressure,int_temp,ext_temp,humidity
-        sprintf(msg, "%s R,%u,%u,%f,%f,%u,%u,%d,%hd,%hd,%u", "+351968252265"
+        sprintf(msg, "%s R,%u,%u,%f,%f,%u,%u,%d,%hd,%hd,%u", "+351968252265", 
                 groundstation_id, balloon_id,
                 packet.gps.f_latitude, packet.gps.f_longitude, packet.gps.u_altitude, packet.gps.u_satellites,
                 packet.bmp.raw_pressure, packet.internal_temp, packet.extern_temp, packet.humidity);
