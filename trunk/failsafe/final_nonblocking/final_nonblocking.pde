@@ -1,4 +1,4 @@
-#define BALLOON_IDX 4
+#define BALLOON_IDX 6
 
 #include <avr/interrupt.h>
 #include <NewSoftSerial.h>
@@ -26,6 +26,7 @@ char gsm_buff[80];
 uint8_t gsm_buff_idx;
 uint8_t gsm_registered = 0;
 uint8_t gsm_ready = 0;
+uint8_t gsm_ring = 0;
 
 void setup() {
     // setup led
@@ -139,7 +140,7 @@ void run_task() {
         
     case 4:
         send_sms_body();
-        timeout = 10800000;
+        timeout = 300000;
         break;
     }
     
@@ -167,7 +168,7 @@ void send_at() {
 void send_sms_header() {
     digitalWrite(13, HIGH);
     digitalWrite(9, HIGH);
-    gsm.print("AT+CMGS=\"+351927956314\"");
+    gsm.print("AT+CMGS=\"+351968252265\"");
     gsm.print(13, BYTE);
 }
 
@@ -182,6 +183,8 @@ void send_sms_body() {
     gsm.print(nmeaHandler.u_altitude, DEC);
     gsm.print(",");
     gsm.print(nmeaHandler.u_satellites, DEC);
+    gsm.print(",");
+    gsm.print(1, DEC);
     gsm.print(26, BYTE);
     digitalWrite(13, LOW);
     digitalWrite(9, LOW);
