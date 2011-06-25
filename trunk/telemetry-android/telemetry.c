@@ -58,7 +58,7 @@ int setup_port(const char *serial_device) {
         return fd;
 
     tcgetattr(fd, &newtio);
-    speed_t speed = B9600;
+    speed_t speed = B19200;
     cfsetispeed(&newtio, speed);
     cfsetospeed(&newtio, speed);
 
