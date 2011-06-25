@@ -147,14 +147,14 @@ void packet_loop(void) {
 
         // make groundstation id
         uint8_t groundstation_id = 0;
-        #ifdef GROUNDSTATIONID
+#ifdef GROUNDSTATIONID
         groundstation_id = GROUNDSTATIONID;
-        #endif
+#endif
 
         // make sms message string
         char msg[160];
         sprintf(msg, "%u,%f,%f,%u,%u,%u",
-            balloon_id, packet.gps.f_latitude, packet.gps.f_longitude, packet.gps.u_altitude, packet.gps.u_satellites, groundstation_id);
+                balloon_id, packet.gps.f_latitude, packet.gps.f_longitude, packet.gps.u_altitude, packet.gps.u_satellites, groundstation_id);
 
         // open file for writing
         FILE *sendsms;
