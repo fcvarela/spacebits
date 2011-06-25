@@ -49,11 +49,6 @@ void setup() {
     
     // init buff idx
     gsm_buff_idx = 0;
-    
-    // boot msg (just so we know it's alive)
-    Serial.print("FAILSAFE #");
-    Serial.print(BALLOON_IDX);
-    Serial.println(" INITED");
 }
 
 
@@ -87,17 +82,17 @@ void parse_gsm() {
     
     if (gsm_buff[gsm_buff_idx-1] == '\n') {
         if (strstr(gsm_buff, "SIND: 11") != 0) {
-            Serial.println("REGISTERED");
+            //Serial.println("REGISTERED");
             gsm_registered = 1;
         }
         
         if (strstr(gsm_buff, "SIND: 4") != 0) {
-            Serial.println("READY");
+            //Serial.println("READY");
             gsm_ready = 1;
         }
         
         if (strstr(gsm_buff, "RING") != 0) {
-            Serial.println("RINGING");
+            //Serial.println("RINGING");
             gsm_ring = 1;
         }
             
