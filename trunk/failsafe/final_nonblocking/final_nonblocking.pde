@@ -135,7 +135,7 @@ void run_task() {
         
     case 4:
         send_sms_body();
-        timeout = 300000;
+        timeout = 20000;
         break;
     }
     
