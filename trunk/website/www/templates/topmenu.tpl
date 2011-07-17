@@ -7,6 +7,7 @@
 				<li><a class="mit" href="/page/probe.html" title="Payload">Payload</a></li>
 				<li><a class="mit" href="/page/balloon.html" title="Balloon">Balloon</a></li>
 				<li><a class="mit" href="/multimedia" title="Multimedia">Multimedia</a></li>
+				<li><a class="mit" href="/live/" title="Multimedia"><b>Flight 6 Live</b></a></li>
 			</ul>
 			<ul id="account_wrapper">
 {if $uid!=""}
