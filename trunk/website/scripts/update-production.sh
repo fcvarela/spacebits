@@ -21,10 +21,10 @@ do
   rsync -a --times $exclude --exclude=cusf --exclude=www/logs --exclude=.* --exclude=uploads --exclude=*.swp --exclude=main-*  --exclude=.svn -e ssh . $s:$PROD_PATH --delete
   echo "Syncing site.db from $s to local computer"
   rsync -a --times -e ssh $s:$PROD_PATH/db/*.db db/
-#  echo "Syncing images from $s to local computer"
-#  rsync -a --times --exclude=*.swp --exclude=.* --exclude=main-*  --exclude=.svn -e ssh $s:$PROD_PATH/www/uploads/* www/uploads
-#  echo "Syncing local images with remote $s"
-#  rsync -a --times --exclude=*.swp --exclude=.* --exclude=main-*  --exclude=.svn -e ssh www/uploads/* $s:$PROD_PATH/www/uploads
+  echo "Syncing images from $s to local computer"
+  rsync -a --times --exclude=*.swp --exclude=.* --exclude=main-*  --exclude=.svn -e ssh $s:$PROD_PATH/www/uploads/* www/uploads
+  echo "Syncing local images with remote $s"
+  rsync -a --times --exclude=*.swp --exclude=.* --exclude=main-*  --exclude=.svn -e ssh www/uploads/* $s:$PROD_PATH/www/uploads
 done
 echo "Done."
 

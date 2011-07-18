@@ -113,7 +113,7 @@ class Spacebits_API {
 
   function saveSMS($source,$message) {
     if($db = new PDO($this->sms_db)) {
-      list($balloon,$m)=split(",",$message,2);
+      list($balloon,$m)=explode(",",$message,2);
       $sql="INSERT INTO sms (balloon,change,source,message,broadcast) VALUES(".$db->quote($balloon).",".time().",".$db->quote($source).",".$db->quote($m).",0)";
       $q = $db->prepare($sql);
       $q->execute();
