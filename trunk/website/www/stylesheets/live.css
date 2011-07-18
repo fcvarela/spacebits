@@ -1,0 +1,58 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.logo{
+	position: absolute;
+	top: 10px;
+	left: 60px;
+	z-index: 999;
+}
+
+.balloon_popup h1{
+	font-size: 20px;
+}
+
+.balloon_popup p{
+	line-height: 7px;
+	font-size: 12px;
+}
+
+.balloon_popup p span{
+	font-weight: bold;
+}
+
+.twitter_feed{
+	overflow-y: auto;
+}
+
+.tweet{
+	border-bottom: 1px solid black;
+	font-size: 12px;
+}
+
+.tweet >img{
+	float: left;
+	width: 50px;
+	height: 50px;
+}
+
+#console {
+  margin:0;
+  padding-left:5px;
+  font-weight: bold;
+  font: 70%/2.7em Arial, Tahoma, Verdana,Helvetica, sans-serif;
+}
+
+#console p {
+  line-height: 8px;
+  }
+
+#counter {
+  margin:0;
+  padding-left:5px;
+  font-weight: bold;
+  font: 70%/2.7em Arial, Tahoma, Verdana,Helvetica, sans-serif;
+}
+
