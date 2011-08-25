@@ -27,7 +27,7 @@ class Spacebits {
 
   function getlatestblogpost() {
    if($db = new PDO($this->db)) {
-     $sql="select a.id,a.title from articles a order by a.change DESC limit 1";
+     $sql="select a.id,a.title from articles a,articles_tags at WHERE at.id=a.id AND at.tag='blog' order by a.change DESC limit 1";
      $q = $db->prepare($sql);
      $q->execute();
      while($r=$q->fetch(PDO::FETCH_ASSOC)) {
